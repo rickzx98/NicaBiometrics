@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Windows.Forms;
 using NicaBiometrics.helper;
 using NicaBiometrics.models;
@@ -31,7 +32,7 @@ namespace NicaBiometrics.forms
 
         private void Connect(object sender)
         {
-            _deviceSetting.Connect(out var message);
+            Connect();
             if (_deviceSetting.IsConnected())
             {
                 var connect = (Button) sender;
@@ -39,16 +40,14 @@ namespace NicaBiometrics.forms
             }
             else
             {
-                MessageBox.Show(message, Resources.LABEL_APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.LABEL_DEVICE_CONNECTION_FAILED, Resources.LABEL_APP_NAME,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BUTTON_REFRESH_Click(object sender, EventArgs e)
         {
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+            Connect();
         }
 
         private void VALUE_DEVICE_ADDRESS_TextChanged(object sender, EventArgs e)
@@ -128,9 +127,24 @@ namespace NicaBiometrics.forms
             CHECK_VIA_USB.Checked = Settings.Default._connectViaUSB;
             VALUE_DEVICE_ID.Text = Settings.Default._deviceId;
             VALUE_COMM_KEY.Text = Settings.Default._commKey;
+            BUTTON_DEVICE_REFRESH.Enabled = Settings.Default._connected;
+            BUTTON_CONNECT.Enabled = !Settings.Default._connected;
+            LoadConsoleLogs();
             RefreshDeviceSettingNet();
             RefreshDeviceSettingUsb();
-            RenderUsbDeviceList();
+            Connect();
+        }
+
+        private void LoadConsoleLogs()
+        {
+            if (Settings.Default._consoleLogs != null)
+            {
+                LIST_DEVICE_HARDWARE.Items.Clear();
+                foreach (var consoleLog in Settings.Default._consoleLogs)
+                {
+                    LIST_DEVICE_HARDWARE.Items.Add(consoleLog);
+                }
+            }
         }
 
         private void BUTTON_CONNECT_SERVER_Click(object sender, EventArgs e)
@@ -161,7 +175,7 @@ namespace NicaBiometrics.forms
             VALUE_DEVICE_ADDRESS.Text = Settings.Default._deviceIpAddress;
             VALUE_DEVICE_PORT.Text = Settings.Default._devicePort.ToString();
             BUTTON_CONNECT.Enabled = Settings.Default._connectViaNet;
-            BUTTON_DEVICE_REFRESH.Enabled = Settings.Default._connectViaNet;
+            BUTTON_DEVICE_REFRESH.Enabled = Settings.Default._connectViaNet && Settings.Default._connected;
         }
 
         private void CHECK_VIA_USB_CheckedChanged(object sender, EventArgs e)
@@ -176,8 +190,8 @@ namespace NicaBiometrics.forms
         {
             CHECK_VIA_USB.Enabled = !Settings.Default._connectViaNet;
             CHECK_VIA_USB.Checked = Settings.Default._connectViaUSB;
-            LIST_DEVICE_USB_HARDWARE.Enabled = Settings.Default._connectViaUSB;
             BUTTON_REFRESH_USB_LIST.Enabled = Settings.Default._connectViaUSB;
+            VALUE_DEVICE_ID.Enabled = Settings.Default._connectViaUSB;
         }
 
         private void BUTTON_REFRESH_USB_LIST_Click(object sender, EventArgs e)
@@ -190,63 +204,42 @@ namespace NicaBiometrics.forms
             else
             {
                 Settings.Default._usbDevice = device;
-                RenderUsbDeviceList();
+                Connect();
             }
         }
 
-        private void RenderUsbDeviceList()
+        private void Connect()
         {
-            if (Settings.Default._usbDevice != null)
-            {
-                LIST_DEVICE_USB_HARDWARE.Items.Clear();
-                string deviceid = Settings.Default._deviceId;
-                string commkey = Settings.Default._commKey;
-
-                if (deviceid == "" || commkey == "")
-                {
-                    LIST_DEVICE_USB_HARDWARE.Items.Add(Resources.LABEL_COMM_KEY_REQUIRED);
-                    return;
-                }
-
-                if (Convert.ToInt32(deviceid) < 0 || Convert.ToInt32(deviceid) > 256)
-                {
-                    LIST_DEVICE_USB_HARDWARE.Items.Add(Resources.LABEL_ILLEGAL_DEVICE);
-                    return;
-                }
-
-                if (Convert.ToInt32(commkey) < 0 || Convert.ToInt32(commkey) > 999999)
-                {
-                    LIST_DEVICE_USB_HARDWARE.Items.Add(Resources.LABEL_ILLEGAL_COMMKEY);
-                    return;
-                }
-
-                SetUsbSettingFieldState(false);
-                using (var deviceProgress = new ConnectingToDeviceProcessForm(ConnectViaUsb))
-                {
-                    deviceProgress.ShowDialog(this);
-                }
-
-                foreach (var message in _messages)
-                {
-                    LIST_DEVICE_USB_HARDWARE.Items.Add(message);
-                }
-
-            }
-            else
+            if (Settings.Default._connectViaUSB && Settings.Default._usbDevice == null)
             {
                 MessageBox.Show(Resources.LABEL_NO_USB_DEVICE_FOUND, Resources.LABEL_APP_NAME, MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
-
+                return;
             }
 
-            SetUsbSettingFieldState(true);
+            using (var deviceProgress = new ConnectingToDeviceProcessForm(ConnectDevice))
+            {
+                deviceProgress.ShowDialog(this);
+            }
+
+            foreach (var message in _messages)
+            {
+                if (Settings.Default._consoleLogs == null)
+                {
+                    Settings.Default._consoleLogs = new StringCollection();
+                }
+
+                Settings.Default._consoleLogs.Add(message);
+                LIST_DEVICE_HARDWARE.Items.Add(message);
+            }
         }
 
-        private void ConnectViaUsb()
+        private void ConnectDevice()
         {
-            _deviceSetting.ConnectViaUsb(out var messages);
+            _deviceSetting.Connect(out var messages);
             _messages = messages;
         }
+
 
         private void VALUE_COMM_KEY_TextChanged(object sender, EventArgs e)
         {
@@ -260,12 +253,20 @@ namespace NicaBiometrics.forms
             _deviceSetting.SetDeviceId(textBox.Text);
         }
 
-        private void SetUsbSettingFieldState(bool state)
+        private void BUTTON_CLEAR_LOGS_Click(object sender, EventArgs e)
         {
-            BUTTON_REFRESH_USB_LIST.Enabled = state;
-            CHECK_VIA_USB.Enabled = state;
-            VALUE_COMM_KEY.Enabled = state;
-            VALUE_DEVICE_ID.Enabled = state;
+            LIST_DEVICE_HARDWARE.Items.Clear();
+            Settings.Default._consoleLogs.Clear();
+        }
+
+        private void APP_CONTEXT_MENU_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
         }
     }
 }

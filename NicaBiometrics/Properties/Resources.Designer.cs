@@ -79,6 +79,15 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear logs.
+        /// </summary>
+        internal static string LABEL_CLEAR_LOGS {
+            get {
+                return ResourceManager.GetString("LABEL_CLEAR_LOGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to *deviceid, commkey cannot be null !.
         /// </summary>
         internal static string LABEL_COMM_KEY_REQUIRED {
@@ -142,6 +151,15 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to *Port illegal!.
+        /// </summary>
+        internal static string LABEL_ILLEGAL_PORT {
+            get {
+                return ResourceManager.GetString("LABEL_ILLEGAL_PORT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid device IP address.
         /// </summary>
         internal static string LABEL_INVALID_DEVICE_IP_ADDRESS {
@@ -151,7 +169,7 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No biometric device found..
+        ///   Looks up a localized string similar to No fingerprint device found..
         /// </summary>
         internal static string LABEL_NO_USB_DEVICE_FOUND {
             get {
@@ -169,7 +187,16 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to connect to the device, ErrorCode=.
+        ///   Looks up a localized string similar to Unable to connect to the network. ErrorCode=.
+        /// </summary>
+        internal static string LABEL_UNABLE_TO_CONNECT_VIA_NET {
+            get {
+                return ResourceManager.GetString("LABEL_UNABLE_TO_CONNECT_VIA_NET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to connect to the device. ErrorCode=.
         /// </summary>
         internal static string LABEL_UNABLE_TO_CONNECT_VIA_USB {
             get {

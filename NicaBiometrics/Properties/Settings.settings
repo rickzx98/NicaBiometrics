@@ -89,5 +89,8 @@
     <Setting Name="LABEL_CONNECTING_TO_DEVICE" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Connecting to device...</Value>
     </Setting>
+    <Setting Name="_consoleLogs" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -313,5 +313,16 @@ namespace NicaBiometrics.Properties {
                 return ((string)(this["LABEL_CONNECTING_TO_DEVICE"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection _consoleLogs {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["_consoleLogs"]));
+            }
+            set {
+                this["_consoleLogs"] = value;
+            }
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace NicaBiometrics.forms
+﻿using NicaBiometrics.Properties;
+
+namespace NicaBiometrics.forms
 {
     partial class TRAY_FORM
     {
@@ -37,11 +39,12 @@
             this.TAB_FORM_TRAY = new System.Windows.Forms.TabControl();
             this.TAB_DEVICE_SETTING = new System.Windows.Forms.TabPage();
             this.PANEL_DEVICE_NET_SETTING = new System.Windows.Forms.Panel();
+            this.BUTTON_CLEAR_LOGS = new System.Windows.Forms.Button();
             this.VALUE_DEVICE_ID = new System.Windows.Forms.TextBox();
             this.LABEL_DEVICE_ID = new System.Windows.Forms.Label();
             this.LABEL_COMM_KEY = new System.Windows.Forms.Label();
             this.VALUE_COMM_KEY = new System.Windows.Forms.TextBox();
-            this.LIST_DEVICE_USB_HARDWARE = new System.Windows.Forms.ListBox();
+            this.LIST_DEVICE_HARDWARE = new System.Windows.Forms.ListBox();
             this.BUTTON_REFRESH_USB_LIST = new System.Windows.Forms.Button();
             this.CHECK_VIA_USB = new System.Windows.Forms.CheckBox();
             this.CHECK_VIA_NET = new System.Windows.Forms.CheckBox();
@@ -63,6 +66,7 @@
             this.LABEL_NB = new System.Windows.Forms.LinkLabel();
             this.APP_TRAY_ICON = new System.Windows.Forms.NotifyIcon(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             APP_CONTEXT_MENU = new System.Windows.Forms.ContextMenuStrip(this.components);
             APP_CONTEXT_MENU.SuspendLayout();
             this.TAB_FORM_TRAY.SuspendLayout();
@@ -76,23 +80,23 @@
             // APP_CONTEXT_MENU
             // 
             APP_CONTEXT_MENU.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showToolStripMenuItem,
             this.refreshToolStripMenuItem,
             this.exitToolStripMenuItem});
             APP_CONTEXT_MENU.Name = "APPI_CONTEXT_MENU";
-            APP_CONTEXT_MENU.Size = new System.Drawing.Size(114, 48);
-            APP_CONTEXT_MENU.DoubleClick += new System.EventHandler(this.APP_CONTEXT_MENU_DoubleClick);
+            APP_CONTEXT_MENU.Size = new System.Drawing.Size(181, 92);
+            APP_CONTEXT_MENU.Click += new System.EventHandler(this.APP_CONTEXT_MENU_Click);
             // 
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.BUTTON_REFRESH_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -104,16 +108,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(373, 390);
             this.panel1.TabIndex = 2;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // TAB_FORM_TRAY
             // 
             this.TAB_FORM_TRAY.Controls.Add(this.TAB_DEVICE_SETTING);
             this.TAB_FORM_TRAY.Controls.Add(this.TAB_SERVER_SETTING);
-            this.TAB_FORM_TRAY.Location = new System.Drawing.Point(79, 43);
+            this.TAB_FORM_TRAY.Location = new System.Drawing.Point(79, 12);
             this.TAB_FORM_TRAY.Name = "TAB_FORM_TRAY";
             this.TAB_FORM_TRAY.SelectedIndex = 0;
-            this.TAB_FORM_TRAY.Size = new System.Drawing.Size(382, 390);
+            this.TAB_FORM_TRAY.Size = new System.Drawing.Size(382, 421);
             this.TAB_FORM_TRAY.TabIndex = 5;
             // 
             // TAB_DEVICE_SETTING
@@ -123,7 +126,7 @@
             this.TAB_DEVICE_SETTING.Location = new System.Drawing.Point(4, 22);
             this.TAB_DEVICE_SETTING.Name = "TAB_DEVICE_SETTING";
             this.TAB_DEVICE_SETTING.Padding = new System.Windows.Forms.Padding(3);
-            this.TAB_DEVICE_SETTING.Size = new System.Drawing.Size(374, 364);
+            this.TAB_DEVICE_SETTING.Size = new System.Drawing.Size(374, 395);
             this.TAB_DEVICE_SETTING.TabIndex = 0;
             this.TAB_DEVICE_SETTING.Text = global::NicaBiometrics.Properties.Settings.Default.LABEL_DEVICE_SETTING;
             // 
@@ -131,11 +134,12 @@
             // 
             this.PANEL_DEVICE_NET_SETTING.BackColor = System.Drawing.Color.Transparent;
             this.PANEL_DEVICE_NET_SETTING.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.BUTTON_CLEAR_LOGS);
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.VALUE_DEVICE_ID);
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.LABEL_DEVICE_ID);
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.LABEL_COMM_KEY);
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.VALUE_COMM_KEY);
-            this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.LIST_DEVICE_USB_HARDWARE);
+            this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.LIST_DEVICE_HARDWARE);
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.BUTTON_REFRESH_USB_LIST);
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.CHECK_VIA_USB);
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.CHECK_VIA_NET);
@@ -147,13 +151,25 @@
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.VALUE_DEVICE_ADDRESS);
             this.PANEL_DEVICE_NET_SETTING.Location = new System.Drawing.Point(0, 0);
             this.PANEL_DEVICE_NET_SETTING.Name = "PANEL_DEVICE_NET_SETTING";
-            this.PANEL_DEVICE_NET_SETTING.Size = new System.Drawing.Size(371, 364);
+            this.PANEL_DEVICE_NET_SETTING.Size = new System.Drawing.Size(371, 395);
             this.PANEL_DEVICE_NET_SETTING.TabIndex = 7;
             this.PANEL_DEVICE_NET_SETTING.Tag = "PANEL_DEVICE_NET_SETTING";
             // 
+            // BUTTON_CLEAR_LOGS
+            // 
+            this.BUTTON_CLEAR_LOGS.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.BUTTON_CLEAR_LOGS.Location = new System.Drawing.Point(52, 230);
+            this.BUTTON_CLEAR_LOGS.Name = "BUTTON_CLEAR_LOGS";
+            this.BUTTON_CLEAR_LOGS.Size = new System.Drawing.Size(68, 30);
+            this.BUTTON_CLEAR_LOGS.TabIndex = 16;
+            this.BUTTON_CLEAR_LOGS.Tag = "BUTTON_CLEAR_LOGS";
+            this.BUTTON_CLEAR_LOGS.Text = global::NicaBiometrics.Properties.Resources.LABEL_CLEAR_LOGS;
+            this.BUTTON_CLEAR_LOGS.UseVisualStyleBackColor = true;
+            this.BUTTON_CLEAR_LOGS.Click += new System.EventHandler(this.BUTTON_CLEAR_LOGS_Click);
+            // 
             // VALUE_DEVICE_ID
             // 
-            this.VALUE_DEVICE_ID.Location = new System.Drawing.Point(111, 216);
+            this.VALUE_DEVICE_ID.Location = new System.Drawing.Point(111, 173);
             this.VALUE_DEVICE_ID.Name = "VALUE_DEVICE_ID";
             this.VALUE_DEVICE_ID.Size = new System.Drawing.Size(106, 20);
             this.VALUE_DEVICE_ID.TabIndex = 15;
@@ -163,7 +179,7 @@
             // LABEL_DEVICE_ID
             // 
             this.LABEL_DEVICE_ID.AutoSize = true;
-            this.LABEL_DEVICE_ID.Location = new System.Drawing.Point(49, 219);
+            this.LABEL_DEVICE_ID.Location = new System.Drawing.Point(49, 176);
             this.LABEL_DEVICE_ID.Name = "LABEL_DEVICE_ID";
             this.LABEL_DEVICE_ID.Size = new System.Drawing.Size(52, 13);
             this.LABEL_DEVICE_ID.TabIndex = 14;
@@ -173,7 +189,7 @@
             // LABEL_COMM_KEY
             // 
             this.LABEL_COMM_KEY.AutoSize = true;
-            this.LABEL_COMM_KEY.Location = new System.Drawing.Point(49, 188);
+            this.LABEL_COMM_KEY.Location = new System.Drawing.Point(49, 202);
             this.LABEL_COMM_KEY.Name = "LABEL_COMM_KEY";
             this.LABEL_COMM_KEY.Size = new System.Drawing.Size(56, 13);
             this.LABEL_COMM_KEY.TabIndex = 13;
@@ -182,26 +198,30 @@
             // 
             // VALUE_COMM_KEY
             // 
-            this.VALUE_COMM_KEY.Location = new System.Drawing.Point(111, 185);
+            this.VALUE_COMM_KEY.Location = new System.Drawing.Point(111, 199);
             this.VALUE_COMM_KEY.Name = "VALUE_COMM_KEY";
             this.VALUE_COMM_KEY.Size = new System.Drawing.Size(106, 20);
             this.VALUE_COMM_KEY.TabIndex = 12;
             this.VALUE_COMM_KEY.Tag = "VALUE_COMM_KEY";
             this.VALUE_COMM_KEY.TextChanged += new System.EventHandler(this.VALUE_COMM_KEY_TextChanged);
             // 
-            // LIST_DEVICE_USB_HARDWARE
+            // LIST_DEVICE_HARDWARE
             // 
-            this.LIST_DEVICE_USB_HARDWARE.FormattingEnabled = true;
-            this.LIST_DEVICE_USB_HARDWARE.Location = new System.Drawing.Point(111, 246);
-            this.LIST_DEVICE_USB_HARDWARE.Name = "LIST_DEVICE_USB_HARDWARE";
-            this.LIST_DEVICE_USB_HARDWARE.Size = new System.Drawing.Size(227, 108);
-            this.LIST_DEVICE_USB_HARDWARE.TabIndex = 11;
-            this.LIST_DEVICE_USB_HARDWARE.Tag = "LIST_DEVICE_USB_HARDWARE";
+            this.LIST_DEVICE_HARDWARE.BackColor = System.Drawing.SystemColors.WindowText;
+            this.LIST_DEVICE_HARDWARE.ForeColor = System.Drawing.SystemColors.Window;
+            this.LIST_DEVICE_HARDWARE.FormattingEnabled = true;
+            this.LIST_DEVICE_HARDWARE.HorizontalScrollbar = true;
+            this.LIST_DEVICE_HARDWARE.Location = new System.Drawing.Point(52, 266);
+            this.LIST_DEVICE_HARDWARE.Name = "LIST_DEVICE_HARDWARE";
+            this.LIST_DEVICE_HARDWARE.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.LIST_DEVICE_HARDWARE.Size = new System.Drawing.Size(286, 121);
+            this.LIST_DEVICE_HARDWARE.TabIndex = 11;
+            this.LIST_DEVICE_HARDWARE.Tag = "LIST_DEVICE_HARDWARE";
             // 
             // BUTTON_REFRESH_USB_LIST
             // 
             this.BUTTON_REFRESH_USB_LIST.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_REFRESH_USB_LIST.Location = new System.Drawing.Point(263, 154);
+            this.BUTTON_REFRESH_USB_LIST.Location = new System.Drawing.Point(263, 189);
             this.BUTTON_REFRESH_USB_LIST.Name = "BUTTON_REFRESH_USB_LIST";
             this.BUTTON_REFRESH_USB_LIST.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_REFRESH_USB_LIST.TabIndex = 10;
@@ -213,7 +233,7 @@
             // CHECK_VIA_USB
             // 
             this.CHECK_VIA_USB.AutoSize = true;
-            this.CHECK_VIA_USB.Location = new System.Drawing.Point(111, 161);
+            this.CHECK_VIA_USB.Location = new System.Drawing.Point(111, 150);
             this.CHECK_VIA_USB.Name = "CHECK_VIA_USB";
             this.CHECK_VIA_USB.Size = new System.Drawing.Size(108, 17);
             this.CHECK_VIA_USB.TabIndex = 8;
@@ -306,7 +326,7 @@
             this.TAB_SERVER_SETTING.Location = new System.Drawing.Point(4, 22);
             this.TAB_SERVER_SETTING.Name = "TAB_SERVER_SETTING";
             this.TAB_SERVER_SETTING.Padding = new System.Windows.Forms.Padding(3);
-            this.TAB_SERVER_SETTING.Size = new System.Drawing.Size(374, 364);
+            this.TAB_SERVER_SETTING.Size = new System.Drawing.Size(374, 395);
             this.TAB_SERVER_SETTING.TabIndex = 1;
             this.TAB_SERVER_SETTING.Text = global::NicaBiometrics.Properties.Settings.Default.LABEL_SERVER_SETTING;
             // 
@@ -414,6 +434,13 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
+            // 
             // TRAY_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -476,12 +503,14 @@
         private System.Windows.Forms.CheckBox CHECK_VIA_NET;
         private System.Windows.Forms.CheckBox CHECK_VIA_USB;
         private System.Windows.Forms.Button BUTTON_REFRESH_USB_LIST;
-        private System.Windows.Forms.ListBox LIST_DEVICE_USB_HARDWARE;
+        private System.Windows.Forms.ListBox LIST_DEVICE_HARDWARE;
         private System.Windows.Forms.TextBox VALUE_COMM_KEY;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label LABEL_COMM_KEY;
         private System.Windows.Forms.Label LABEL_DEVICE_ID;
         private System.Windows.Forms.TextBox VALUE_DEVICE_ID;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button BUTTON_CLEAR_LOGS;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
     }
 }

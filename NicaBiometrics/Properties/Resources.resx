@@ -136,7 +136,7 @@
     <value>Save</value>
   </data>
   <data name="LABEL_NO_USB_DEVICE_FOUND" xml:space="preserve">
-    <value>No biometric device found.</value>
+    <value>No fingerprint device found.</value>
   </data>
   <data name="LABEL_COMM_KEY_REQUIRED" xml:space="preserve">
     <value>*deviceid, commkey cannot be null !</value>
@@ -154,6 +154,15 @@
     <value>Device connected!</value>
   </data>
   <data name="LABEL_UNABLE_TO_CONNECT_VIA_USB" xml:space="preserve">
-    <value>Unable to connect to the device, ErrorCode=</value>
+    <value>Unable to connect to the device. ErrorCode=</value>
+  </data>
+  <data name="LABEL_ILLEGAL_PORT" xml:space="preserve">
+    <value>*Port illegal!</value>
+  </data>
+  <data name="LABEL_UNABLE_TO_CONNECT_VIA_NET" xml:space="preserve">
+    <value>Unable to connect to the network. ErrorCode=</value>
+  </data>
+  <data name="LABEL_CLEAR_LOGS" xml:space="preserve">
+    <value>Clear logs</value>
   </data>
 </root>

@@ -61,32 +61,63 @@ namespace NicaBiometrics.models
             return _connected;
         }
 
-        public void Connect(out string message)
+        public void ConnectViaNet(List<string> messages)
         {
-            message = null;
             if (ValidateIpAddress())
             {
-                var connected = _czkem.Connect_Net(Settings.Default._deviceIpAddress,
-                    Settings.Default._devicePort);
-                if (!connected)
+                int port = Settings.Default._devicePort;
+
+                if (port <= 0 || port > 65535)
                 {
-                    _connected = false;
-                    message = Resources.LABEL_DEVICE_CONNECTION_FAILED;
+                    messages.Add(Resources.LABEL_ILLEGAL_PORT);
+                }
+
+                int iCommkey = Convert.ToInt32(Settings.Default._commKey);
+                _czkem.SetCommPassword(iCommkey);
+                if (Settings.Default._connected)
+                {
+                    _czkem.Disconnect();
+                    // un reg all events
+                    SetConnected(false);
+                    messages.Add(Resources.LABEL_DISCONNECT_WITH_DEVICE);
+                }
+
+                if (_czkem.Connect_Net(Settings.Default._deviceIpAddress,
+                    Settings.Default._devicePort))
+                {
+                    SetConnected(true);
+                    messages.Add(Resources.LABEL_DEVICE_CONNECTED);
                 }
                 else
                 {
-                    _connected = true;
+                    int idwErrorCode = 0;
+                    _czkem.GetLastError(ref idwErrorCode);
+                    messages.Add(Resources.LABEL_UNABLE_TO_CONNECT_VIA_NET + idwErrorCode);
                 }
             }
             else
             {
-                message = Resources.LABEL_INVALID_DEVICE_IP_ADDRESS;
+                messages.Add(Resources.LABEL_INVALID_DEVICE_IP_ADDRESS);
             }
         }
 
-        public void ConnectViaUsb(out List<string> messages)
+        public void ConnectViaUsb(List<string> messages)
         {
-            messages = new List<string>();
+            try
+            {
+                if (Convert.ToInt32(Settings.Default._deviceId) < 0 ||
+                    Convert.ToInt32(Settings.Default._deviceId) > 256)
+                {
+                    messages.Add(Resources.LABEL_ILLEGAL_DEVICE);
+                    return;
+                }
+            }
+            catch (FormatException)
+            {
+                messages.Add(Resources.LABEL_ILLEGAL_DEVICE);
+                return;
+            }
+
             int idwErrorCode = 0;
             int iPort = 0;
             int iBaudrate = 115200;
@@ -120,6 +151,43 @@ namespace NicaBiometrics.models
             {
                 _czkem.GetLastError(ref idwErrorCode);
                 messages.Add(Resources.LABEL_UNABLE_TO_CONNECT_VIA_USB + idwErrorCode);
+            }
+        }
+
+        public void Connect(out List<string> messages)
+        {
+            messages = new List<string>();
+
+            string deviceid = Settings.Default._deviceId;
+            string commkey = Settings.Default._commKey;
+
+            if (deviceid == "" || commkey == "")
+            {
+                messages.Add(Resources.LABEL_COMM_KEY_REQUIRED);
+                return;
+            }
+
+            try
+            {
+                if (Convert.ToInt32(commkey) < 0 || Convert.ToInt32(commkey) > 999999)
+                {
+                    messages.Add(Resources.LABEL_ILLEGAL_COMMKEY);
+                    return;
+                }
+            }
+            catch (FormatException)
+            {
+                messages.Add(Resources.LABEL_ILLEGAL_COMMKEY);
+                return;
+            }
+
+            if (Settings.Default._connectViaNet)
+            {
+                ConnectViaNet(messages);
+            }
+            else if (Settings.Default._connectViaUSB)
+            {
+                ConnectViaUsb(messages);
             }
         }
     }
