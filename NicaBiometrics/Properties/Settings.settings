@@ -1,0 +1,93 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NicaBiometrics.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LABEL_SAVE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Save</Value>
+    </Setting>
+    <Setting Name="LABEL_REFRESH" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Refresh</Value>
+    </Setting>
+    <Setting Name="LABEL_PORT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Port</Value>
+    </Setting>
+    <Setting Name="LABEL_EXIT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Exit</Value>
+    </Setting>
+    <Setting Name="Connect" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LABEL_CONNECT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Connect</Value>
+    </Setting>
+    <Setting Name="Device" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LABEL_DEVICE</Value>
+    </Setting>
+    <Setting Name="LABEL_DEVICE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Device</Value>
+    </Setting>
+    <Setting Name="LABEL_DEVICE_SETTING" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Device Setting</Value>
+    </Setting>
+    <Setting Name="LABEL_SERVER_SETTING" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Server Setting</Value>
+    </Setting>
+    <Setting Name="LABEL_DEVICE_ADDRESS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Device IP Address</Value>
+    </Setting>
+    <Setting Name="LABEL_SERVER_IPADDRESS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Server IP Address</Value>
+    </Setting>
+    <Setting Name="LABEL_NB" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NB</Value>
+    </Setting>
+    <Setting Name="LABEL_APP_NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Nica Biometrics</Value>
+    </Setting>
+    <Setting Name="LABEL_CONNECT_VIA_NETWORK" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Connect via network</Value>
+    </Setting>
+    <Setting Name="_deviceIpAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="_devicePort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8080</Value>
+    </Setting>
+    <Setting Name="_serverIpAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="_serverPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8080</Value>
+    </Setting>
+    <Setting Name="_connectViaNet" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="_connectViaUSB" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LABEL_CONNECT_VIA_USB" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Connect via USB</Value>
+    </Setting>
+    <Setting Name="_usbDevice" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="_connected" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LABEL_COMM_KEY" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Comm key</Value>
+    </Setting>
+    <Setting Name="LABEL_DEVICE_ID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Device id</Value>
+    </Setting>
+    <Setting Name="_commKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="_deviceId" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LABEL_CONNECTING_TO_DEVICE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Connecting to device...</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
