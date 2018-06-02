@@ -33,6 +33,7 @@ namespace NicaBiometrics.forms
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ContextMenuStrip APP_CONTEXT_MENU;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TRAY_FORM));
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -62,11 +63,21 @@ namespace NicaBiometrics.forms
             this.BUTTON_CONNECT_SERVER = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.LABEL_SERVER_IPADDRESS = new System.Windows.Forms.Label();
+            this.TAB_REMOTE_CONTROL = new System.Windows.Forms.TabPage();
+            this.VALUE_BIOTMETRIC_TYPE = new System.Windows.Forms.TextBox();
+            this.LABEL_BIOMETRIC_TYPE = new System.Windows.Forms.Label();
+            this.VALUE_MAC_ADD = new System.Windows.Forms.TextBox();
+            this.LABEL_MAC_ADDRESS = new System.Windows.Forms.Label();
+            this.BUTTON_RESTART = new System.Windows.Forms.Button();
+            this.VALUE_SERIAL = new System.Windows.Forms.TextBox();
+            this.LABEL_SERIAL = new System.Windows.Forms.Label();
+            this.VALUE_DEVICE_NAME = new System.Windows.Forms.TextBox();
+            this.LABEL_DEVICE_NAME = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.LABEL_NB = new System.Windows.Forms.LinkLabel();
             this.APP_TRAY_ICON = new System.Windows.Forms.NotifyIcon(this.components);
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             APP_CONTEXT_MENU = new System.Windows.Forms.ContextMenuStrip(this.components);
             APP_CONTEXT_MENU.SuspendLayout();
             this.TAB_FORM_TRAY.SuspendLayout();
@@ -74,6 +85,7 @@ namespace NicaBiometrics.forms
             this.PANEL_DEVICE_NET_SETTING.SuspendLayout();
             this.TAB_SERVER_SETTING.SuspendLayout();
             this.PANEL_SERVER_SETTING.SuspendLayout();
+            this.TAB_REMOTE_CONTROL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,19 +96,27 @@ namespace NicaBiometrics.forms
             this.refreshToolStripMenuItem,
             this.exitToolStripMenuItem});
             APP_CONTEXT_MENU.Name = "APPI_CONTEXT_MENU";
-            APP_CONTEXT_MENU.Size = new System.Drawing.Size(181, 92);
+            APP_CONTEXT_MENU.Size = new System.Drawing.Size(114, 70);
             APP_CONTEXT_MENU.Click += new System.EventHandler(this.APP_CONTEXT_MENU_Click);
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -113,10 +133,11 @@ namespace NicaBiometrics.forms
             // 
             this.TAB_FORM_TRAY.Controls.Add(this.TAB_DEVICE_SETTING);
             this.TAB_FORM_TRAY.Controls.Add(this.TAB_SERVER_SETTING);
-            this.TAB_FORM_TRAY.Location = new System.Drawing.Point(79, 12);
+            this.TAB_FORM_TRAY.Controls.Add(this.TAB_REMOTE_CONTROL);
+            this.TAB_FORM_TRAY.Location = new System.Drawing.Point(113, -1);
             this.TAB_FORM_TRAY.Name = "TAB_FORM_TRAY";
             this.TAB_FORM_TRAY.SelectedIndex = 0;
-            this.TAB_FORM_TRAY.Size = new System.Drawing.Size(382, 421);
+            this.TAB_FORM_TRAY.Size = new System.Drawing.Size(382, 440);
             this.TAB_FORM_TRAY.TabIndex = 5;
             // 
             // TAB_DEVICE_SETTING
@@ -126,7 +147,7 @@ namespace NicaBiometrics.forms
             this.TAB_DEVICE_SETTING.Location = new System.Drawing.Point(4, 22);
             this.TAB_DEVICE_SETTING.Name = "TAB_DEVICE_SETTING";
             this.TAB_DEVICE_SETTING.Padding = new System.Windows.Forms.Padding(3);
-            this.TAB_DEVICE_SETTING.Size = new System.Drawing.Size(374, 395);
+            this.TAB_DEVICE_SETTING.Size = new System.Drawing.Size(374, 414);
             this.TAB_DEVICE_SETTING.TabIndex = 0;
             this.TAB_DEVICE_SETTING.Text = global::NicaBiometrics.Properties.Settings.Default.LABEL_DEVICE_SETTING;
             // 
@@ -151,7 +172,7 @@ namespace NicaBiometrics.forms
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.VALUE_DEVICE_ADDRESS);
             this.PANEL_DEVICE_NET_SETTING.Location = new System.Drawing.Point(0, 0);
             this.PANEL_DEVICE_NET_SETTING.Name = "PANEL_DEVICE_NET_SETTING";
-            this.PANEL_DEVICE_NET_SETTING.Size = new System.Drawing.Size(371, 395);
+            this.PANEL_DEVICE_NET_SETTING.Size = new System.Drawing.Size(378, 414);
             this.PANEL_DEVICE_NET_SETTING.TabIndex = 7;
             this.PANEL_DEVICE_NET_SETTING.Tag = "PANEL_DEVICE_NET_SETTING";
             // 
@@ -326,7 +347,7 @@ namespace NicaBiometrics.forms
             this.TAB_SERVER_SETTING.Location = new System.Drawing.Point(4, 22);
             this.TAB_SERVER_SETTING.Name = "TAB_SERVER_SETTING";
             this.TAB_SERVER_SETTING.Padding = new System.Windows.Forms.Padding(3);
-            this.TAB_SERVER_SETTING.Size = new System.Drawing.Size(374, 395);
+            this.TAB_SERVER_SETTING.Size = new System.Drawing.Size(374, 414);
             this.TAB_SERVER_SETTING.TabIndex = 1;
             this.TAB_SERVER_SETTING.Text = global::NicaBiometrics.Properties.Settings.Default.LABEL_SERVER_SETTING;
             // 
@@ -342,7 +363,7 @@ namespace NicaBiometrics.forms
             this.PANEL_SERVER_SETTING.Controls.Add(this.LABEL_SERVER_IPADDRESS);
             this.PANEL_SERVER_SETTING.Location = new System.Drawing.Point(0, 0);
             this.PANEL_SERVER_SETTING.Name = "PANEL_SERVER_SETTING";
-            this.PANEL_SERVER_SETTING.Size = new System.Drawing.Size(371, 364);
+            this.PANEL_SERVER_SETTING.Size = new System.Drawing.Size(374, 414);
             this.PANEL_SERVER_SETTING.TabIndex = 9;
             // 
             // VALUE_SERVER_PORT
@@ -404,18 +425,143 @@ namespace NicaBiometrics.forms
             this.LABEL_SERVER_IPADDRESS.TabIndex = 2;
             this.LABEL_SERVER_IPADDRESS.Text = global::NicaBiometrics.Properties.Settings.Default.LABEL_SERVER_IPADDRESS;
             // 
+            // TAB_REMOTE_CONTROL
+            // 
+            this.TAB_REMOTE_CONTROL.BackColor = System.Drawing.Color.OldLace;
+            this.TAB_REMOTE_CONTROL.Controls.Add(this.VALUE_BIOTMETRIC_TYPE);
+            this.TAB_REMOTE_CONTROL.Controls.Add(this.LABEL_BIOMETRIC_TYPE);
+            this.TAB_REMOTE_CONTROL.Controls.Add(this.VALUE_MAC_ADD);
+            this.TAB_REMOTE_CONTROL.Controls.Add(this.LABEL_MAC_ADDRESS);
+            this.TAB_REMOTE_CONTROL.Controls.Add(this.BUTTON_RESTART);
+            this.TAB_REMOTE_CONTROL.Controls.Add(this.VALUE_SERIAL);
+            this.TAB_REMOTE_CONTROL.Controls.Add(this.LABEL_SERIAL);
+            this.TAB_REMOTE_CONTROL.Controls.Add(this.VALUE_DEVICE_NAME);
+            this.TAB_REMOTE_CONTROL.Controls.Add(this.LABEL_DEVICE_NAME);
+            this.TAB_REMOTE_CONTROL.Controls.Add(this.panel2);
+            this.TAB_REMOTE_CONTROL.Location = new System.Drawing.Point(4, 22);
+            this.TAB_REMOTE_CONTROL.Name = "TAB_REMOTE_CONTROL";
+            this.TAB_REMOTE_CONTROL.Padding = new System.Windows.Forms.Padding(3);
+            this.TAB_REMOTE_CONTROL.Size = new System.Drawing.Size(374, 414);
+            this.TAB_REMOTE_CONTROL.TabIndex = 2;
+            this.TAB_REMOTE_CONTROL.Tag = "TAB_REMOTE_CONTROL";
+            this.TAB_REMOTE_CONTROL.Text = global::NicaBiometrics.Properties.Resources.LABEL_REMOTE;
+            // 
+            // VALUE_BIOTMETRIC_TYPE
+            // 
+            this.VALUE_BIOTMETRIC_TYPE.Location = new System.Drawing.Point(232, 103);
+            this.VALUE_BIOTMETRIC_TYPE.Name = "VALUE_BIOTMETRIC_TYPE";
+            this.VALUE_BIOTMETRIC_TYPE.ReadOnly = true;
+            this.VALUE_BIOTMETRIC_TYPE.Size = new System.Drawing.Size(136, 20);
+            this.VALUE_BIOTMETRIC_TYPE.TabIndex = 10;
+            this.VALUE_BIOTMETRIC_TYPE.Tag = "VALUE_BIOTMETRIC_TYPE";
+            // 
+            // LABEL_BIOMETRIC_TYPE
+            // 
+            this.LABEL_BIOMETRIC_TYPE.AutoSize = true;
+            this.LABEL_BIOMETRIC_TYPE.Location = new System.Drawing.Point(170, 106);
+            this.LABEL_BIOMETRIC_TYPE.Name = "LABEL_BIOMETRIC_TYPE";
+            this.LABEL_BIOMETRIC_TYPE.Size = new System.Drawing.Size(55, 13);
+            this.LABEL_BIOMETRIC_TYPE.TabIndex = 9;
+            this.LABEL_BIOMETRIC_TYPE.Tag = "LABEL_BIOMETRIC_TYPE";
+            this.LABEL_BIOMETRIC_TYPE.Text = "Biometrics";
+            // 
+            // VALUE_MAC_ADD
+            // 
+            this.VALUE_MAC_ADD.Location = new System.Drawing.Point(232, 72);
+            this.VALUE_MAC_ADD.Name = "VALUE_MAC_ADD";
+            this.VALUE_MAC_ADD.ReadOnly = true;
+            this.VALUE_MAC_ADD.Size = new System.Drawing.Size(136, 20);
+            this.VALUE_MAC_ADD.TabIndex = 8;
+            this.VALUE_MAC_ADD.Tag = "VALUE_MAC_ADD";
+            // 
+            // LABEL_MAC_ADDRESS
+            // 
+            this.LABEL_MAC_ADDRESS.AutoSize = true;
+            this.LABEL_MAC_ADDRESS.Location = new System.Drawing.Point(154, 76);
+            this.LABEL_MAC_ADDRESS.Name = "LABEL_MAC_ADDRESS";
+            this.LABEL_MAC_ADDRESS.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.LABEL_MAC_ADDRESS.Size = new System.Drawing.Size(68, 13);
+            this.LABEL_MAC_ADDRESS.TabIndex = 7;
+            this.LABEL_MAC_ADDRESS.Tag = "LABEL_MAC_ADDRESS";
+            this.LABEL_MAC_ADDRESS.Text = "Mac address";
+            // 
+            // BUTTON_RESTART
+            // 
+            this.BUTTON_RESTART.Location = new System.Drawing.Point(158, 129);
+            this.BUTTON_RESTART.Name = "BUTTON_RESTART";
+            this.BUTTON_RESTART.Size = new System.Drawing.Size(75, 23);
+            this.BUTTON_RESTART.TabIndex = 6;
+            this.BUTTON_RESTART.Tag = "BUTTON_RESTART";
+            this.BUTTON_RESTART.Text = global::NicaBiometrics.Properties.Resources.LABEL_RESTART;
+            this.BUTTON_RESTART.UseVisualStyleBackColor = true;
+            this.BUTTON_RESTART.Click += new System.EventHandler(this.BUTTON_RESTART_Click);
+            // 
+            // VALUE_SERIAL
+            // 
+            this.VALUE_SERIAL.Location = new System.Drawing.Point(232, 45);
+            this.VALUE_SERIAL.Name = "VALUE_SERIAL";
+            this.VALUE_SERIAL.ReadOnly = true;
+            this.VALUE_SERIAL.Size = new System.Drawing.Size(136, 20);
+            this.VALUE_SERIAL.TabIndex = 4;
+            this.VALUE_SERIAL.Tag = "VALUE_SERIAL";
+            // 
+            // LABEL_SERIAL
+            // 
+            this.LABEL_SERIAL.AutoSize = true;
+            this.LABEL_SERIAL.Location = new System.Drawing.Point(189, 48);
+            this.LABEL_SERIAL.Name = "LABEL_SERIAL";
+            this.LABEL_SERIAL.Size = new System.Drawing.Size(33, 13);
+            this.LABEL_SERIAL.TabIndex = 3;
+            this.LABEL_SERIAL.Tag = "LABEL_SERIAL";
+            this.LABEL_SERIAL.Text = "Serial";
+            // 
+            // VALUE_DEVICE_NAME
+            // 
+            this.VALUE_DEVICE_NAME.Location = new System.Drawing.Point(232, 19);
+            this.VALUE_DEVICE_NAME.Name = "VALUE_DEVICE_NAME";
+            this.VALUE_DEVICE_NAME.ReadOnly = true;
+            this.VALUE_DEVICE_NAME.Size = new System.Drawing.Size(136, 20);
+            this.VALUE_DEVICE_NAME.TabIndex = 2;
+            this.VALUE_DEVICE_NAME.Tag = "VALUE_DEVICE_NAME";
+            this.VALUE_DEVICE_NAME.Text = global::NicaBiometrics.Properties.Settings.Default.VALUE_DEVICE_NAME;
+            // 
+            // LABEL_DEVICE_NAME
+            // 
+            this.LABEL_DEVICE_NAME.AutoSize = true;
+            this.LABEL_DEVICE_NAME.Location = new System.Drawing.Point(155, 22);
+            this.LABEL_DEVICE_NAME.Name = "LABEL_DEVICE_NAME";
+            this.LABEL_DEVICE_NAME.Size = new System.Drawing.Size(70, 13);
+            this.LABEL_DEVICE_NAME.TabIndex = 1;
+            this.LABEL_DEVICE_NAME.Tag = "LABEL_DEVICE_NAME";
+            this.LABEL_DEVICE_NAME.Text = "Device name";
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Location = new System.Drawing.Point(15, 19);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(134, 133);
+            this.panel2.TabIndex = 0;
+            this.panel2.Tag = "s";
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // LABEL_NB
             // 
             this.LABEL_NB.AutoSize = true;
             this.LABEL_NB.BackColor = System.Drawing.Color.Transparent;
             this.LABEL_NB.Font = new System.Drawing.Font("Magneto", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LABEL_NB.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LABEL_NB.Location = new System.Drawing.Point(12, 7);
+            this.LABEL_NB.LinkColor = System.Drawing.Color.Red;
+            this.LABEL_NB.Location = new System.Drawing.Point(23, 9);
             this.LABEL_NB.Name = "LABEL_NB";
             this.LABEL_NB.Size = new System.Drawing.Size(67, 35);
             this.LABEL_NB.TabIndex = 4;
@@ -429,17 +575,6 @@ namespace NicaBiometrics.forms
             this.APP_TRAY_ICON.Text = global::NicaBiometrics.Properties.Settings.Default.LABEL_APP_NAME;
             this.APP_TRAY_ICON.Visible = true;
             this.APP_TRAY_ICON.DoubleClick += new System.EventHandler(this.APP_TRAY_ICON_DoubleClick);
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // showToolStripMenuItem
-            // 
-            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.showToolStripMenuItem.Text = "Show";
-            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // TRAY_FORM
             // 
@@ -470,6 +605,8 @@ namespace NicaBiometrics.forms
             this.TAB_SERVER_SETTING.ResumeLayout(false);
             this.PANEL_SERVER_SETTING.ResumeLayout(false);
             this.PANEL_SERVER_SETTING.PerformLayout();
+            this.TAB_REMOTE_CONTROL.ResumeLayout(false);
+            this.TAB_REMOTE_CONTROL.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -512,5 +649,16 @@ namespace NicaBiometrics.forms
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button BUTTON_CLEAR_LOGS;
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
+        private System.Windows.Forms.TabPage TAB_REMOTE_CONTROL;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label LABEL_DEVICE_NAME;
+        private System.Windows.Forms.TextBox VALUE_DEVICE_NAME;
+        private System.Windows.Forms.Label LABEL_SERIAL;
+        private System.Windows.Forms.TextBox VALUE_SERIAL;
+        private System.Windows.Forms.Button BUTTON_RESTART;
+        private System.Windows.Forms.TextBox VALUE_MAC_ADD;
+        private System.Windows.Forms.Label LABEL_MAC_ADDRESS;
+        private System.Windows.Forms.TextBox VALUE_BIOTMETRIC_TYPE;
+        private System.Windows.Forms.Label LABEL_BIOMETRIC_TYPE;
     }
 }

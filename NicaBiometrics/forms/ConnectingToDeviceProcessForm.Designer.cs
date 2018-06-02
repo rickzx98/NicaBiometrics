@@ -45,11 +45,12 @@
             this.PROGRESS_CONNECTING_TO_DEVICE.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.PROGRESS_CONNECTING_TO_DEVICE.TabIndex = 1;
             this.PROGRESS_CONNECTING_TO_DEVICE.Tag = "PROGRESS_CONNECTING_TO_DEVICE";
+            this.PROGRESS_CONNECTING_TO_DEVICE.Text = global::NicaBiometrics.Properties.Settings.Default.LABEL_CONNECTING_TO_DEVICE;
             // 
             // LABEL_CONNECTING_TO_DEVICE
             // 
             this.LABEL_CONNECTING_TO_DEVICE.AutoSize = true;
-            this.LABEL_CONNECTING_TO_DEVICE.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.LABEL_CONNECTING_TO_DEVICE.BackColor = System.Drawing.Color.Transparent;
             this.LABEL_CONNECTING_TO_DEVICE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LABEL_CONNECTING_TO_DEVICE.ForeColor = System.Drawing.SystemColors.ControlText;
             this.LABEL_CONNECTING_TO_DEVICE.Location = new System.Drawing.Point(93, 39);
@@ -66,10 +67,10 @@
             // LABEL_NB
             // 
             this.LABEL_NB.AutoSize = true;
-            this.LABEL_NB.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.LABEL_NB.BackColor = System.Drawing.Color.Transparent;
             this.LABEL_NB.Font = new System.Drawing.Font("Magneto", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LABEL_NB.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LABEL_NB.Location = new System.Drawing.Point(12, 43);
+            this.LABEL_NB.Location = new System.Drawing.Point(2, 9);
             this.LABEL_NB.Name = "LABEL_NB";
             this.LABEL_NB.Size = new System.Drawing.Size(67, 35);
             this.LABEL_NB.TabIndex = 5;

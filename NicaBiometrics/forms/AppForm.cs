@@ -33,7 +33,7 @@ namespace NicaBiometrics.forms
         private void Connect(object sender)
         {
             Connect();
-            if (_deviceSetting.IsConnected())
+            if (Settings.Default._connected)
             {
                 var connect = (Button) sender;
                 connect.Enabled = false;
@@ -84,7 +84,7 @@ namespace NicaBiometrics.forms
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _shutdown = true;
-            Application.Exit();
+            Close();
         }
 
         private void APP_TRAY_ICON_DoubleClick(object sender, EventArgs e)
@@ -108,6 +108,8 @@ namespace NicaBiometrics.forms
                 {
                     case DialogResult.Yes:
                         e.Cancel = false;
+                        new ConnectingToDeviceProcessForm(() => { _deviceSetting.Disconnect(); },
+                            Resources.LABEL_DISCONNECTING_DEVICE).ShowDialog(this);
                         break;
                     default:
                         e.Cancel = true;
@@ -140,10 +142,7 @@ namespace NicaBiometrics.forms
             if (Settings.Default._consoleLogs != null)
             {
                 LIST_DEVICE_HARDWARE.Items.Clear();
-                foreach (var consoleLog in Settings.Default._consoleLogs)
-                {
-                    LIST_DEVICE_HARDWARE.Items.Add(consoleLog);
-                }
+                foreach (var consoleLog in Settings.Default._consoleLogs) LIST_DEVICE_HARDWARE.Items.Add(consoleLog);
             }
         }
 
@@ -199,8 +198,10 @@ namespace NicaBiometrics.forms
             string device = null;
             var found = new SearchforUsbCom().SearchforCom(ref device);
             if (!found)
+            {
                 MessageBox.Show(Resources.LABEL_NO_USB_DEVICE_FOUND, Resources.LABEL_APP_NAME, MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
+            }
             else
             {
                 Settings.Default._usbDevice = device;
@@ -224,14 +225,13 @@ namespace NicaBiometrics.forms
 
             foreach (var message in _messages)
             {
-                if (Settings.Default._consoleLogs == null)
-                {
-                    Settings.Default._consoleLogs = new StringCollection();
-                }
+                if (Settings.Default._consoleLogs == null) Settings.Default._consoleLogs = new StringCollection();
 
                 Settings.Default._consoleLogs.Add(message);
                 LIST_DEVICE_HARDWARE.Items.Add(message);
             }
+
+            RefreshRemoteControl();
         }
 
         private void ConnectDevice()
@@ -261,12 +261,31 @@ namespace NicaBiometrics.forms
 
         private void APP_CONTEXT_MENU_Click(object sender, EventArgs e)
         {
-            this.Show();
+            Show();
         }
 
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Show();
+            Show();
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Connect();
+        }
+
+        private void BUTTON_RESTART_Click(object sender, EventArgs e)
+        {
+            new ConnectingToDeviceProcessForm(() => { _deviceSetting.Restart(); }, Resources.LABEL_RESTARTING_DEVICE)
+                .ShowDialog(this);
+        }
+
+        private void RefreshRemoteControl()
+        {
+
+            VALUE_SERIAL.Text = Settings.Default._serialNumber;
+            VALUE_MAC_ADD.Text = Settings.Default._macAddress;
+            VALUE_BIOTMETRIC_TYPE.Text = Settings.Default._biometricType;
         }
     }
 }

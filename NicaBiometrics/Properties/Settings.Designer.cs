@@ -97,7 +97,7 @@ namespace NicaBiometrics.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Device Setting")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Device")]
         public string LABEL_DEVICE_SETTING {
             get {
                 return ((string)(this["LABEL_DEVICE_SETTING"]));
@@ -106,7 +106,7 @@ namespace NicaBiometrics.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server Setting")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server")]
         public string LABEL_SERVER_SETTING {
             get {
                 return ((string)(this["LABEL_SERVER_SETTING"]));
@@ -322,6 +322,63 @@ namespace NicaBiometrics.Properties {
             }
             set {
                 this["_consoleLogs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int _machineNo {
+            get {
+                return ((int)(this["_machineNo"]));
+            }
+            set {
+                this["_machineNo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ZKT 629")]
+        public string VALUE_DEVICE_NAME {
+            get {
+                return ((string)(this["VALUE_DEVICE_NAME"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _serialNumber {
+            get {
+                return ((string)(this["_serialNumber"]));
+            }
+            set {
+                this["_serialNumber"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _macAddress {
+            get {
+                return ((string)(this["_macAddress"]));
+            }
+            set {
+                this["_macAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _biometricType {
+            get {
+                return ((string)(this["_biometricType"]));
+            }
+            set {
+                this["_biometricType"] = value;
             }
         }
     }

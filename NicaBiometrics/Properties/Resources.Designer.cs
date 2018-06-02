@@ -79,6 +79,33 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Biometrics.
+        /// </summary>
+        internal static string LABEL_BIOMETRICS {
+            get {
+                return ResourceManager.GetString("LABEL_BIOMETRICS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string LABEL_CANCEL {
+            get {
+                return ResourceManager.GetString("LABEL_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel operation.
+        /// </summary>
+        internal static string LABEL_CANCEL_OPERATION {
+            get {
+                return ResourceManager.GetString("LABEL_CANCEL_OPERATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear logs.
         /// </summary>
         internal static string LABEL_CLEAR_LOGS {
@@ -106,6 +133,15 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connecting to device....
+        /// </summary>
+        internal static string LABEL_CONNECTING_TO_DEVICE {
+            get {
+                return ResourceManager.GetString("LABEL_CONNECTING_TO_DEVICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Device connected!.
         /// </summary>
         internal static string LABEL_DEVICE_CONNECTED {
@@ -124,11 +160,47 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Device name.
+        /// </summary>
+        internal static string LABEL_DEVICE_NAME {
+            get {
+                return ResourceManager.GetString("LABEL_DEVICE_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable.
+        /// </summary>
+        internal static string LABEL_DISABLE {
+            get {
+                return ResourceManager.GetString("LABEL_DISABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Device is disconnected!.
         /// </summary>
         internal static string LABEL_DISCONNECT_WITH_DEVICE {
             get {
                 return ResourceManager.GetString("LABEL_DISCONNECT_WITH_DEVICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnecting device....
+        /// </summary>
+        internal static string LABEL_DISCONNECTING_DEVICE {
+            get {
+                return ResourceManager.GetString("LABEL_DISCONNECTING_DEVICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable.
+        /// </summary>
+        internal static string LABEL_ENABLE {
+            get {
+                return ResourceManager.GetString("LABEL_ENABLE", resourceCulture);
             }
         }
         
@@ -169,6 +241,24 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mac address.
+        /// </summary>
+        internal static string LABEL_MAC_ADDRESS {
+            get {
+                return ResourceManager.GetString("LABEL_MAC_ADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *No data from terminal returns!.
+        /// </summary>
+        internal static string LABEL_NO_DATA_TERMINAL {
+            get {
+                return ResourceManager.GetString("LABEL_NO_DATA_TERMINAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No fingerprint device found..
         /// </summary>
         internal static string LABEL_NO_USB_DEVICE_FOUND {
@@ -178,11 +268,101 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to *RegEvent failed,ErrorCode: .
+        /// </summary>
+        internal static string LABEL_REG_EVENT_FAILED {
+            get {
+                return ResourceManager.GetString("LABEL_REG_EVENT_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registered events.
+        /// </summary>
+        internal static string LABEL_REGISTERED_EVENTS {
+            get {
+                return ResourceManager.GetString("LABEL_REGISTERED_EVENTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remote.
+        /// </summary>
+        internal static string LABEL_REMOTE {
+            get {
+                return ResourceManager.GetString("LABEL_REMOTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart.
+        /// </summary>
+        internal static string LABEL_RESTART {
+            get {
+                return ResourceManager.GetString("LABEL_RESTART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device is restarting....
+        /// </summary>
+        internal static string LABEL_RESTARTING_DEVICE {
+            get {
+                return ResourceManager.GetString("LABEL_RESTARTING_DEVICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string LABEL_SAVE {
             get {
                 return ResourceManager.GetString("LABEL_SAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serial.
+        /// </summary>
+        internal static string LABEL_SERIAL {
+            get {
+                return ResourceManager.GetString("LABEL_SERIAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shutdown.
+        /// </summary>
+        internal static string LABEL_SHUTDOWN {
+            get {
+                return ResourceManager.GetString("LABEL_SHUTDOWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shutting down device....
+        /// </summary>
+        internal static string LABEL_SHUTTING_DOWN {
+            get {
+                return ResourceManager.GetString("LABEL_SHUTTING_DOWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string LABEL_START {
+            get {
+                return ResourceManager.GetString("LABEL_START", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting device....
+        /// </summary>
+        internal static string LABEL_STARTING_DEVICE {
+            get {
+                return ResourceManager.GetString("LABEL_STARTING_DEVICE", resourceCulture);
             }
         }
         

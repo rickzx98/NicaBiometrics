@@ -165,4 +165,64 @@
   <data name="LABEL_CLEAR_LOGS" xml:space="preserve">
     <value>Clear logs</value>
   </data>
+  <data name="LABEL_CONNECTING_TO_DEVICE" xml:space="preserve">
+    <value>Connecting to device...</value>
+  </data>
+  <data name="LABEL_DISCONNECTING_DEVICE" xml:space="preserve">
+    <value>Disconnecting device...</value>
+  </data>
+  <data name="LABEL_REG_EVENT_FAILED" xml:space="preserve">
+    <value>*RegEvent failed,ErrorCode: </value>
+  </data>
+  <data name="LABEL_NO_DATA_TERMINAL" xml:space="preserve">
+    <value>*No data from terminal returns!</value>
+  </data>
+  <data name="LABEL_REMOTE" xml:space="preserve">
+    <value>Remote</value>
+  </data>
+  <data name="LABEL_DEVICE_NAME" xml:space="preserve">
+    <value>Device name</value>
+  </data>
+  <data name="LABEL_CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="LABEL_CANCEL_OPERATION" xml:space="preserve">
+    <value>Cancel operation</value>
+  </data>
+  <data name="LABEL_DISABLE" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="LABEL_ENABLE" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="LABEL_RESTART" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="LABEL_RESTARTING_DEVICE" xml:space="preserve">
+    <value>Device is restarting...</value>
+  </data>
+  <data name="LABEL_SERIAL" xml:space="preserve">
+    <value>Serial</value>
+  </data>
+  <data name="LABEL_SHUTDOWN" xml:space="preserve">
+    <value>Shutdown</value>
+  </data>
+  <data name="LABEL_SHUTTING_DOWN" xml:space="preserve">
+    <value>Shutting down device...</value>
+  </data>
+  <data name="LABEL_START" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="LABEL_STARTING_DEVICE" xml:space="preserve">
+    <value>Starting device...</value>
+  </data>
+  <data name="LABEL_REGISTERED_EVENTS" xml:space="preserve">
+    <value>Registered events</value>
+  </data>
+  <data name="LABEL_BIOMETRICS" xml:space="preserve">
+    <value>Biometrics</value>
+  </data>
+  <data name="LABEL_MAC_ADDRESS" xml:space="preserve">
+    <value>Mac address</value>
+  </data>
 </root>
