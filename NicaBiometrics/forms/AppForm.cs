@@ -13,6 +13,7 @@ namespace NicaBiometrics.forms
         private readonly DeviceSetting _deviceSetting;
         private readonly ServerSetting _serverSetting;
         private List<string> _messages;
+        private List<string> _serverMessages;
         private bool _shutdown;
 
         public TRAY_FORM()
@@ -135,6 +136,9 @@ namespace NicaBiometrics.forms
             RefreshDeviceSettingNet();
             RefreshDeviceSettingUsb();
             Connect();
+            ConnectServer();
+            RefreshServerSettingComponents();
+            RefreshServerLogs();
         }
 
         private void LoadConsoleLogs()
@@ -144,17 +148,26 @@ namespace NicaBiometrics.forms
                 LIST_DEVICE_HARDWARE.Items.Clear();
                 foreach (var consoleLog in Settings.Default._consoleLogs) LIST_DEVICE_HARDWARE.Items.Add(consoleLog);
             }
+
+            if (Settings.Default._serverLogs != null)
+            {
+                LIST_SERVER_LOGS.Items.Clear();
+                foreach (var serverLog in Settings.Default._serverLogs) LIST_SERVER_LOGS.Items.Add(serverLog);
+            }
         }
 
         private void BUTTON_CONNECT_SERVER_Click(object sender, EventArgs e)
         {
-            _serverSetting.Connect();
+            new ConnectingToDeviceProcessForm(ConnectServer, Resources.LABEL_ESTABLISHING_SERVER_CONNECTION)
+                .ShowDialog(this);
+            RefreshServerSettingComponents();
+            RefreshServerLogs();
         }
 
         private void VALUE_SERVER_ADDRESS_TextChanged(object sender, EventArgs e)
         {
             var textBox = (TextBox) sender;
-            _serverSetting.SetIpAddress(textBox.Text);
+            _serverSetting.SetServerAddress(textBox.Text);
         }
 
         private void CHECK_VIA_NET_CheckedChanged(object sender, EventArgs e)
@@ -223,21 +236,21 @@ namespace NicaBiometrics.forms
                 deviceProgress.ShowDialog(this);
             }
 
+            if (Settings.Default._consoleLogs == null) Settings.Default._consoleLogs = new StringCollection();
+
             foreach (var message in _messages)
             {
-                if (Settings.Default._consoleLogs == null) Settings.Default._consoleLogs = new StringCollection();
-
                 Settings.Default._consoleLogs.Add(message);
                 LIST_DEVICE_HARDWARE.Items.Add(message);
             }
 
             RefreshRemoteControl();
+            TIME_LISTENER_LOG.Start();
         }
 
         private void ConnectDevice()
         {
-            _deviceSetting.Connect(out var messages);
-            _messages = messages;
+            _deviceSetting.Connect(out _messages);
         }
 
 
@@ -282,10 +295,91 @@ namespace NicaBiometrics.forms
 
         private void RefreshRemoteControl()
         {
-
             VALUE_SERIAL.Text = Settings.Default._serialNumber;
             VALUE_MAC_ADD.Text = Settings.Default._macAddress;
             VALUE_BIOTMETRIC_TYPE.Text = Settings.Default._biometricType;
+            VALUE_DEVICE_NAME.Text = Settings.Default._deviceName;
+        }
+
+        private void TIME_LISTENER_LOG_Tick(object sender, EventArgs e)
+        {
+            if (Settings.Default._connected)
+            {
+                _deviceSetting.SendNewLog(out var message);
+                if (!string.IsNullOrEmpty(message))
+                {
+                    LIST_DEVICE_HARDWARE.Items.Add(message);
+                    var latestMessage = Settings.Default._serverLogs[Settings.Default._serverLogs.Count - 1];
+                    LIST_SERVER_LOGS.Items.Add(latestMessage);
+                }
+
+                ;
+            }
+        }
+
+        private void ConnectServer()
+        {
+            _serverSetting.Connect(out var messages);
+            _serverMessages = messages;
+        }
+
+        private void RefreshServerSettingComponents()
+        {
+            VALUE_SERVER_ADDRESS.Text = Settings.Default._serverAddress;
+            VALUE_TIMEIN_URL.Text = Settings.Default._serverTimeinUrl;
+            VALUE_TIMEOUT_URL.Text = Settings.Default._serverTimeoutUrl;
+            VALUE_EMPLOYEE_URL.Text = Settings.Default._serverEmployeeUrl;
+            BUTTON_CONNECT_SERVER.Enabled = !Settings.Default._connectedServer || !Settings.Default._serverCompanyValid;
+            BUTTON_REFRESH_SERVER.Enabled = Settings.Default._connectedServer && Settings.Default._serverCompanyValid;
+            VALUE_TIMEIN_URL.Enabled = Settings.Default._connectedServer && Settings.Default._serverCompanyValid;
+            VALUE_TIMEOUT_URL.Enabled = Settings.Default._connectedServer && Settings.Default._serverCompanyValid;
+            VALUE_EMPLOYEE_URL.Enabled = Settings.Default._connectedServer && Settings.Default._serverCompanyValid;
+        }
+
+        private void BUTTON_REFRESH_SERVER_Click(object sender, EventArgs e)
+        {
+            new ConnectingToDeviceProcessForm(ConnectServer, Resources.LABEL_REFRESHING_SERVER_CONNECTION)
+                .ShowDialog(this);
+            RefreshServerSettingComponents();
+            RefreshServerLogs();
+        }
+
+        private void RefreshServerLogs()
+        {
+            foreach (var log in _serverMessages)
+            {
+                if (Settings.Default._serverLogs == null) Settings.Default._serverLogs = new StringCollection();
+
+                Settings.Default._serverLogs.Add(log);
+                LIST_SERVER_LOGS.Items.Add(log);
+            }
+        }
+
+        private void BUTTON_CLEAR_SERVER_LOGS_Click(object sender, EventArgs e)
+        {
+            if (Settings.Default._serverLogs != null) Settings.Default._serverLogs.Clear();
+            LIST_SERVER_LOGS.Items.Clear();
+        }
+
+        private void VALUE_COMPANY_TextChanged(object sender, EventArgs e)
+        {
+            var value = (TextBox) sender;
+            _serverSetting.SetCompany(value.Text);
+        }
+
+        private void VALUE_TIMEIN_URL_TextChanged(object sender, EventArgs e)
+        {
+            _serverSetting.SetTimeInUrl(((TextBox) sender).Text);
+        }
+
+        private void VALUE_TIMEOUT_URL_TextChanged(object sender, EventArgs e)
+        {
+            _serverSetting.SetTimeOutUrl(((TextBox) sender).Text);
+        }
+
+        private void VALUE_EMPLOYEE_URL_TextChanged(object sender, EventArgs e)
+        {
+            _serverSetting.SetEmployeeUrl(((TextBox) sender).Text);
         }
     }
 }

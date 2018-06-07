@@ -124,7 +124,7 @@ namespace NicaBiometrics.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server IP Address")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server  domain")]
         public string LABEL_SERVER_IPADDRESS {
             get {
                 return ((string)(this["LABEL_SERVER_IPADDRESS"]));
@@ -379,6 +379,137 @@ namespace NicaBiometrics.Properties {
             }
             set {
                 this["_biometricType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _deviceName {
+            get {
+                return ((string)(this["_deviceName"]));
+            }
+            set {
+                this["_deviceName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool _connectedServer {
+            get {
+                return ((bool)(this["_connectedServer"]));
+            }
+            set {
+                this["_connectedServer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _serverAddress {
+            get {
+                return ((string)(this["_serverAddress"]));
+            }
+            set {
+                this["_serverAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _serverMessage {
+            get {
+                return ((string)(this["_serverMessage"]));
+            }
+            set {
+                this["_serverMessage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _serverTimeinUrl {
+            get {
+                return ((string)(this["_serverTimeinUrl"]));
+            }
+            set {
+                this["_serverTimeinUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _serverTimeoutUrl {
+            get {
+                return ((string)(this["_serverTimeoutUrl"]));
+            }
+            set {
+                this["_serverTimeoutUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _serverEmployeeUrl {
+            get {
+                return ((string)(this["_serverEmployeeUrl"]));
+            }
+            set {
+                this["_serverEmployeeUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection _serverLogs {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["_serverLogs"]));
+            }
+            set {
+                this["_serverLogs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _serverCompany {
+            get {
+                return ((string)(this["_serverCompany"]));
+            }
+            set {
+                this["_serverCompany"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int _serverCompanyId {
+            get {
+                return ((int)(this["_serverCompanyId"]));
+            }
+            set {
+                this["_serverCompanyId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool _serverCompanyValid {
+            get {
+                return ((bool)(this["_serverCompanyValid"]));
+            }
+            set {
+                this["_serverCompanyValid"] = value;
             }
         }
     }

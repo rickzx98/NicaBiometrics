@@ -30,35 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectingToDeviceProcessForm));
-            this.PROGRESS_CONNECTING_TO_DEVICE = new System.Windows.Forms.ProgressBar();
-            this.LABEL_CONNECTING_TO_DEVICE = new System.Windows.Forms.Label();
             this.TIMER_PROGRESS_TICK = new System.Windows.Forms.Timer(this.components);
             this.LABEL_NB = new System.Windows.Forms.LinkLabel();
+            this.PROGRESS_CONNECTING_TO_DEVICE = new System.Windows.Forms.ProgressBar();
+            this.LABEL_CONNECTING_TO_DEVICE = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // PROGRESS_CONNECTING_TO_DEVICE
-            // 
-            this.PROGRESS_CONNECTING_TO_DEVICE.Location = new System.Drawing.Point(90, 61);
-            this.PROGRESS_CONNECTING_TO_DEVICE.Name = "PROGRESS_CONNECTING_TO_DEVICE";
-            this.PROGRESS_CONNECTING_TO_DEVICE.Size = new System.Drawing.Size(289, 23);
-            this.PROGRESS_CONNECTING_TO_DEVICE.Step = 1;
-            this.PROGRESS_CONNECTING_TO_DEVICE.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.PROGRESS_CONNECTING_TO_DEVICE.TabIndex = 1;
-            this.PROGRESS_CONNECTING_TO_DEVICE.Tag = "PROGRESS_CONNECTING_TO_DEVICE";
-            this.PROGRESS_CONNECTING_TO_DEVICE.Text = global::NicaBiometrics.Properties.Settings.Default.LABEL_CONNECTING_TO_DEVICE;
-            // 
-            // LABEL_CONNECTING_TO_DEVICE
-            // 
-            this.LABEL_CONNECTING_TO_DEVICE.AutoSize = true;
-            this.LABEL_CONNECTING_TO_DEVICE.BackColor = System.Drawing.Color.Transparent;
-            this.LABEL_CONNECTING_TO_DEVICE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LABEL_CONNECTING_TO_DEVICE.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.LABEL_CONNECTING_TO_DEVICE.Location = new System.Drawing.Point(93, 39);
-            this.LABEL_CONNECTING_TO_DEVICE.Name = "LABEL_CONNECTING_TO_DEVICE";
-            this.LABEL_CONNECTING_TO_DEVICE.Size = new System.Drawing.Size(169, 20);
-            this.LABEL_CONNECTING_TO_DEVICE.TabIndex = 0;
-            this.LABEL_CONNECTING_TO_DEVICE.Tag = "LABEL_CONNECTING_TO_DEVICE";
-            this.LABEL_CONNECTING_TO_DEVICE.Text = global::NicaBiometrics.Properties.Settings.Default.LABEL_CONNECTING_TO_DEVICE;
             // 
             // TIMER_PROGRESS_TICK
             // 
@@ -75,7 +51,31 @@
             this.LABEL_NB.Size = new System.Drawing.Size(67, 35);
             this.LABEL_NB.TabIndex = 5;
             this.LABEL_NB.TabStop = true;
-            this.LABEL_NB.Text = global::NicaBiometrics.Properties.Settings.Default.LABEL_NB;
+            this.LABEL_NB.Text = "NB";
+            // 
+            // PROGRESS_CONNECTING_TO_DEVICE
+            // 
+            this.PROGRESS_CONNECTING_TO_DEVICE.Location = new System.Drawing.Point(90, 61);
+            this.PROGRESS_CONNECTING_TO_DEVICE.Name = "PROGRESS_CONNECTING_TO_DEVICE";
+            this.PROGRESS_CONNECTING_TO_DEVICE.Size = new System.Drawing.Size(289, 23);
+            this.PROGRESS_CONNECTING_TO_DEVICE.Step = 1;
+            this.PROGRESS_CONNECTING_TO_DEVICE.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.PROGRESS_CONNECTING_TO_DEVICE.TabIndex = 1;
+            this.PROGRESS_CONNECTING_TO_DEVICE.Tag = "PROGRESS_CONNECTING_TO_DEVICE";
+            this.PROGRESS_CONNECTING_TO_DEVICE.Text = "Connecting to device...";
+            // 
+            // LABEL_CONNECTING_TO_DEVICE
+            // 
+            this.LABEL_CONNECTING_TO_DEVICE.AutoSize = true;
+            this.LABEL_CONNECTING_TO_DEVICE.BackColor = System.Drawing.Color.Transparent;
+            this.LABEL_CONNECTING_TO_DEVICE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LABEL_CONNECTING_TO_DEVICE.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.LABEL_CONNECTING_TO_DEVICE.Location = new System.Drawing.Point(93, 39);
+            this.LABEL_CONNECTING_TO_DEVICE.Name = "LABEL_CONNECTING_TO_DEVICE";
+            this.LABEL_CONNECTING_TO_DEVICE.Size = new System.Drawing.Size(169, 20);
+            this.LABEL_CONNECTING_TO_DEVICE.TabIndex = 0;
+            this.LABEL_CONNECTING_TO_DEVICE.Tag = "LABEL_CONNECTING_TO_DEVICE";
+            this.LABEL_CONNECTING_TO_DEVICE.Text = "Connecting to device...";
             // 
             // ConnectingToDeviceProcessForm
             // 
@@ -89,9 +89,11 @@
             this.Controls.Add(this.LABEL_CONNECTING_TO_DEVICE);
             this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConnectingToDeviceProcessForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ConnectingToDeviceProcessForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConnectingToDeviceProcessForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

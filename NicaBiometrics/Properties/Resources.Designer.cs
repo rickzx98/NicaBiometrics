@@ -61,6 +61,16 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap appicon {
+            get {
+                object obj = ResourceManager.GetObject("appicon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nica Biometrics.
         /// </summary>
         internal static string LABEL_APP_NAME {
@@ -120,6 +130,15 @@ namespace NicaBiometrics.Properties {
         internal static string LABEL_COMM_KEY_REQUIRED {
             get {
                 return ResourceManager.GetString("LABEL_COMM_KEY_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        internal static string LABEL_COMPANY {
+            get {
+                return ResourceManager.GetString("LABEL_COMPANY", resourceCulture);
             }
         }
         
@@ -196,11 +215,29 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee URL.
+        /// </summary>
+        internal static string LABEL_EMPLOYEE_URL {
+            get {
+                return ResourceManager.GetString("LABEL_EMPLOYEE_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable.
         /// </summary>
         internal static string LABEL_ENABLE {
             get {
                 return ResourceManager.GetString("LABEL_ENABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Establishing a connection to the server....
+        /// </summary>
+        internal static string LABEL_ESTABLISHING_SERVER_CONNECTION {
+            get {
+                return ResourceManager.GetString("LABEL_ESTABLISHING_SERVER_CONNECTION", resourceCulture);
             }
         }
         
@@ -264,6 +301,15 @@ namespace NicaBiometrics.Properties {
         internal static string LABEL_NO_USB_DEVICE_FOUND {
             get {
                 return ResourceManager.GetString("LABEL_NO_USB_DEVICE_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refreshing server connection....
+        /// </summary>
+        internal static string LABEL_REFRESHING_SERVER_CONNECTION {
+            get {
+                return ResourceManager.GetString("LABEL_REFRESHING_SERVER_CONNECTION", resourceCulture);
             }
         }
         
@@ -367,6 +413,24 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time in URL.
+        /// </summary>
+        internal static string LABEL_TIME_IN_URL {
+            get {
+                return ResourceManager.GetString("LABEL_TIME_IN_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time out URL.
+        /// </summary>
+        internal static string LABEL_TIME_OUT_URL {
+            get {
+                return ResourceManager.GetString("LABEL_TIME_OUT_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to connect to the network. ErrorCode=.
         /// </summary>
         internal static string LABEL_UNABLE_TO_CONNECT_VIA_NET {
@@ -381,6 +445,69 @@ namespace NicaBiometrics.Properties {
         internal static string LABEL_UNABLE_TO_CONNECT_VIA_USB {
             get {
                 return ResourceManager.GetString("LABEL_UNABLE_TO_CONNECT_VIA_USB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update employee records.
+        /// </summary>
+        internal static string LABEL_UPDATE_EMPLOYEE_RECORD {
+            get {
+                return ResourceManager.GetString("LABEL_UPDATE_EMPLOYEE_RECORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checked out employee id: .
+        /// </summary>
+        internal static string MESESAGE_CHECKED_OUT {
+            get {
+                return ResourceManager.GetString("MESESAGE_CHECKED_OUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CheckedIn employee id: .
+        /// </summary>
+        internal static string MESSAGE_CHECKED_IN {
+            get {
+                return ResourceManager.GetString("MESSAGE_CHECKED_IN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to checked out employee id: .
+        /// </summary>
+        internal static string MESSAGE_FAILED_TO_CHECKED_OUT {
+            get {
+                return ResourceManager.GetString("MESSAGE_FAILED_TO_CHECKED_OUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to checked In employee id: .
+        /// </summary>
+        internal static string MESSAGE_FAILED_TO_CHEKED_IN {
+            get {
+                return ResourceManager.GetString("MESSAGE_FAILED_TO_CHEKED_IN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to get company.
+        /// </summary>
+        internal static string MESSAGE_FAILED_TO_GET_COMPANY {
+            get {
+                return ResourceManager.GetString("MESSAGE_FAILED_TO_GET_COMPANY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to establish connection.
+        /// </summary>
+        internal static string MESSAGE_INVALID_SERVER_ADDRESS {
+            get {
+                return ResourceManager.GetString("MESSAGE_INVALID_SERVER_ADDRESS", resourceCulture);
             }
         }
     }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Security.Cryptography;
 using NicaBiometrics.Properties;
 using zkemkeeper;
 
@@ -9,11 +8,19 @@ namespace NicaBiometrics.models
 {
     internal class DeviceSetting
     {
-        private readonly CZKEM _czkem;
+        private const int CheckedIn = 0;
+        private const int CheckedOut = 1;
+        private const int OvertimeIn = 4;
+        private const int OvertimeOut = 5;
+        private const int VerfiyFingerprint = 1;
+        private static CZKEM _czkem;
+        private readonly TimeReport _timeReport;
 
         public DeviceSetting()
         {
-            _czkem = new CZKEM();
+            if (_czkem == null)
+                _czkem = new CZKEM();
+            _timeReport = new TimeReport();
         }
 
         public void SetIpAddress(string ipAddress)
@@ -42,8 +49,14 @@ namespace NicaBiometrics.models
 
         private void SetBiometricType()
         {
-            String type = GetSystemOption("BiometricType");
+            var type = GetSystemOption("BiometricType");
             Settings.Default._biometricType = type;
+        }
+
+        private void SetDeviceName()
+        {
+            _czkem.GetProductCode(Settings.Default._machineNo, out var sDeviceName);
+            Settings.Default._deviceName = sDeviceName;
         }
 
         public void SetCommKey(string commKey)
@@ -61,15 +74,17 @@ namespace NicaBiometrics.models
             Settings.Default._connected = connected;
         }
 
+
         public bool ValidateIpAddress()
         {
-            return IPAddress.TryParse(Settings.Default._deviceIpAddress, out var IpAdd);
+            return IPAddress.TryParse(Settings.Default._deviceIpAddress, out var ipAdd);
         }
 
         public void ConnectViaNet(List<string> messages)
         {
             if (ValidateIpAddress())
             {
+                Settings.Default._machineNo = 1;
                 var port = Settings.Default._devicePort;
 
                 if (port <= 0 || port > 65535) messages.Add(Resources.LABEL_ILLEGAL_PORT);
@@ -157,38 +172,28 @@ namespace NicaBiometrics.models
         public void Connect(out List<string> messages)
         {
             messages = new List<string>();
-
             var deviceid = Settings.Default._deviceId;
             var commkey = Settings.Default._commKey;
 
-            if (deviceid == "" || commkey == "")
-            {
-                messages.Add(WriteLog(Resources.LABEL_COMM_KEY_REQUIRED));
-                return;
-            }
+            if (deviceid == "" || commkey == "") messages.Add(WriteLog(Resources.LABEL_COMM_KEY_REQUIRED));
 
             try
             {
                 if (Convert.ToInt32(commkey) < 0 || Convert.ToInt32(commkey) > 999999)
-                {
                     messages.Add(WriteLog(Resources.LABEL_ILLEGAL_COMMKEY));
-                    return;
-                }
             }
             catch (FormatException)
             {
                 messages.Add(WriteLog(Resources.LABEL_ILLEGAL_COMMKEY));
-                return;
             }
 
             if (Settings.Default._connectViaNet)
                 ConnectViaNet(messages);
             else if (Settings.Default._connectViaUSB) ConnectViaUsb(messages);
-
-
             SetSerial();
             SetMacAddress();
             SetBiometricType();
+            SetDeviceName();
         }
 
         private string WriteLog(string log)
@@ -200,17 +205,19 @@ namespace NicaBiometrics.models
         {
             if (Settings.Default._connected)
             {
+                SetConnected(false);
                 _czkem.Disconnect();
                 UnRegisterEvents();
-                SetConnected(false);
+                _czkem.EnableDevice(Settings.Default._machineNo, false);
             }
         }
 
         private void RegisterEvents(List<string> messages)
         {
+            _czkem.EnableDevice(Settings.Default._machineNo, Settings.Default._connected);
             if (_czkem.RegEvent(Settings.Default._machineNo, 65535))
             {
-                _czkem.OnFinger += HandleOnFinger;
+                // no fn events really worked
                 messages.Add(Resources.LABEL_REGISTERED_EVENTS);
             }
             else
@@ -227,18 +234,7 @@ namespace NicaBiometrics.models
 
         private void UnRegisterEvents()
         {
-            _czkem.OnFinger -= HandleOnFinger;
-            _czkem.OnFingerFeature -= HandleOnFingerFeature;
-        }
-
-        public void HandleOnFinger()
-        {
-            Console.WriteLine("Fingered");
-        }
-
-        private void HandleOnFingerFeature(int findgerId)
-        {
-            Console.WriteLine("finger" + findgerId);
+            // no fn events working
         }
 
         public void Restart()
@@ -249,9 +245,58 @@ namespace NicaBiometrics.models
 
         private string GetSystemOption(string option)
         {
-            string value = string.Empty;
+            var value = string.Empty;
             _czkem.GetSysOption(Settings.Default._machineNo, option, out value);
             return value;
+        }
+
+        public void SendNewLog(out string message)
+        {
+            message = "";
+            if (Settings.Default._connected)
+            {
+                int dwVerifyMode = 0,
+                    dwInOutMode = 0,
+                    dwYear = 0,
+                    dwMonth = 0,
+                    dwDay = 0,
+                    dwHour = 0,
+                    dwMMinute = 0,
+                    dwSecond = 0,
+                    dwWorkCode = 0;
+
+                var dwEnrollNumber = "";
+                _czkem.ReadGeneralLogData(Settings.Default._machineNo);
+                var found = _czkem.SSR_GetGeneralLogData(Settings.Default._machineNo,
+                    out dwEnrollNumber,
+                    out dwVerifyMode,
+                    out dwInOutMode,
+                    out dwYear,
+                    out dwMonth,
+                    out dwDay,
+                    out dwHour,
+                    out dwMMinute,
+                    out dwSecond,
+                    ref dwWorkCode);
+
+                if (found && !string.IsNullOrEmpty(dwEnrollNumber))
+
+                {
+                    switch (dwInOutMode)
+                    {
+                        case OvertimeIn:
+                        case CheckedIn:
+                            _timeReport.TimeIn(dwEnrollNumber, out message);
+                            break;
+                        case CheckedOut:
+                        case OvertimeOut:
+                            _timeReport.TimeOut(dwEnrollNumber, out message);
+                            break;
+                    }
+
+                    _czkem.ClearGLog(Settings.Default._machineNo);
+                }
+            }
         }
     }
 }

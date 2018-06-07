@@ -36,7 +36,7 @@
       <Value Profile="(Default)">Device IP Address</Value>
     </Setting>
     <Setting Name="LABEL_SERVER_IPADDRESS" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Server IP Address</Value>
+      <Value Profile="(Default)">Server  domain</Value>
     </Setting>
     <Setting Name="LABEL_NB" Type="System.String" Scope="Application">
       <Value Profile="(Default)">NB</Value>
@@ -106,6 +106,39 @@
     </Setting>
     <Setting Name="_biometricType" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="_deviceName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="_connectedServer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="_serverAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="_serverMessage" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="_serverTimeinUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="_serverTimeoutUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="_serverEmployeeUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="_serverLogs" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="_serverCompany" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="_serverCompanyId" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="_serverCompanyValid" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

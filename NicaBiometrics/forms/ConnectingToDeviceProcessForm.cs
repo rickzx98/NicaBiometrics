@@ -7,6 +7,11 @@ namespace NicaBiometrics.forms
 {
     public partial class ConnectingToDeviceProcessForm : Form
     {
+        public ConnectingToDeviceProcessForm()
+        {
+            InitializeComponent();
+        }
+
         public ConnectingToDeviceProcessForm(Action worker)
         {
             InitializeComponent();
@@ -29,12 +34,14 @@ namespace NicaBiometrics.forms
             base.OnLoad(e);
             TIMER_PROGRESS_TICK.Start();
             if (Message != null) LABEL_CONNECTING_TO_DEVICE.Text = Message;
-            Task.Factory.StartNew(Worker)
-                .ContinueWith(t =>
-                {
-                    TIMER_PROGRESS_TICK.Stop();
-                    Close();
-                }, TaskScheduler.FromCurrentSynchronizationContext());
+            if (Worker != null)
+            {
+                Task.Factory.StartNew(Worker)
+                    .ContinueWith(t =>
+                    {
+                        Close();
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+            }
         }
 
         private void TIMER_PROGRESS_TICK_Tick(object sender, EventArgs e)
@@ -42,6 +49,12 @@ namespace NicaBiometrics.forms
             if (PROGRESS_CONNECTING_TO_DEVICE.Value == 100) PROGRESS_CONNECTING_TO_DEVICE.Value = 0;
 
             PROGRESS_CONNECTING_TO_DEVICE.Increment(1);
+        }
+
+        private void ConnectingToDeviceProcessForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+            TIMER_PROGRESS_TICK.Stop();
         }
     }
 }

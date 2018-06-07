@@ -1,56 +1,127 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
+using System.Web.Script.Serialization;
+using NicaBiometrics.Properties;
 
 namespace NicaBiometrics.models
 {
-    class ServerSetting
+    internal class ServerSetting
     {
-        private int _port;
-
-        public void SetIpAddress(String ipAddress)
+        public void SetServerAddress(string serverAddress)
         {
-            Properties.Settings.Default._serverIpAddress = ipAddress;
+            Settings.Default._serverAddress = serverAddress;
         }
 
-        public void SetPort(int port)
+        public void SetCompany(string company)
         {
-            Properties.Settings.Default._serverPort = port;
+            Settings.Default._serverCompany = company;
+        }
+
+        public void SetTimeInUrl(string timeInUrl)
+        {
+            Settings.Default._serverTimeinUrl = timeInUrl;
+        }
+
+        public void SetTimeOutUrl(string timeOutUrl)
+        {
+            Settings.Default._serverTimeoutUrl = timeOutUrl;
         }
 
 
-        public Boolean ValidateIpAddress()
+        public void SetEmployeeUrl(string employeeUrl)
         {
-            IPAddress IpAdd;
-            return IPAddress.TryParse(Properties.Settings.Default._serverIpAddress, out IpAdd);
+            Settings.Default._serverEmployeeUrl = employeeUrl;
         }
 
-        public void Connect()
+        public void Connect(out List<string> messages)
         {
-            var request =
-                (HttpWebRequest) WebRequest.Create("https://api.github.com/repos/restsharp/restsharp/releases");
+            messages = new List<string>();
 
-            request.Method = "GET";
-            request.UserAgent =
-                "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
-            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-
-            var response = (HttpWebResponse) request.GetResponse();
-
-            string content = string.Empty;
-            using (var stream = response.GetResponseStream())
+            if (string.IsNullOrEmpty(Settings.Default._serverCompany))
             {
-                using (var sr = new StreamReader(stream))
-                {
-                    content = sr.ReadToEnd();
-                }
+                messages.Add("Company is required");
+                return;
             }
 
-            Console.WriteLine(content);
+            if (!string.IsNullOrWhiteSpace(Settings.Default._serverAddress))
+            {
+                try
+                {
+                    var request =
+                        (HttpWebRequest) WebRequest.Create(Settings.Default._serverAddress);
+
+                    request.Method = "GET";
+                    request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+
+                    var response = (HttpWebResponse) request.GetResponse();
+                    Settings.Default._connectedServer = response.StatusCode == HttpStatusCode.OK;
+                    messages.Add(WriteLog("Connected to server " + Settings.Default._serverAddress));
+                    GetCompanyId(messages);
+                }
+                catch (Exception exception)
+                {
+                    Settings.Default._connectedServer = false;
+                    messages.Add(WriteLog("Failed to connect to server " + Settings.Default._serverAddress));
+                    messages.Add(WriteLog(Resources.MESSAGE_INVALID_SERVER_ADDRESS));
+                    messages.Add(WriteLog(exception.Message));
+                }
+            }
+            else
+            {
+                Settings.Default._connectedServer = false;
+                messages.Add(WriteLog(Resources.MESSAGE_INVALID_SERVER_ADDRESS));
+            }
+        }
+
+        private void GetCompanyId(List<string> messages)
+        {
+            try
+            {
+                var request =
+                    (HttpWebRequest) WebRequest.Create(Settings.Default._serverAddress +
+                                                       "/companies/search/findByName?name=" +
+                                                       Settings.Default._serverCompany);
+
+                request.Method = "GET";
+                request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+                request.ContentType = "application/json";
+                var response = (HttpWebResponse) request.GetResponse();
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    Settings.Default._serverCompanyValid = true;
+                    using (var responseStream = response.GetResponseStream())
+                    {
+                        var reader = new StreamReader(responseStream ?? throw new InvalidOperationException(),
+                            Encoding.UTF8);
+                        var json =
+                            new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(reader.ReadToEnd());
+                        var embedded = (Dictionary<string, object>) json["_embedded"];
+                        var company = (Dictionary<string, object>) ((ArrayList) embedded["companies"])[0];
+                        Settings.Default._serverCompanyId = int.Parse(company["id"].ToString());
+                        messages.Add(WriteLog("Valid company ID: " + Settings.Default._serverCompanyId));
+                    }
+                }
+                else
+                {
+                    Settings.Default._serverCompanyValid = false;
+                    messages.Add(WriteLog(Resources.MESSAGE_FAILED_TO_GET_COMPANY));
+                }
+            }
+            catch (Exception exception)
+            {
+                Settings.Default._serverCompanyValid = false;
+                messages.Add(WriteLog(Resources.MESSAGE_FAILED_TO_GET_COMPANY));
+                messages.Add(WriteLog(exception.Message));
+            }
+        }
+
+        private string WriteLog(string log)
+        {
+            return DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": " + log;
         }
     }
 }

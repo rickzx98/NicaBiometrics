@@ -117,14 +117,128 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LABEL_RESTART" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="LABEL_NO_USB_DEVICE_FOUND" xml:space="preserve">
+    <value>No fingerprint device found.</value>
+  </data>
+  <data name="LABEL_CANCEL_OPERATION" xml:space="preserve">
+    <value>Cancel operation</value>
+  </data>
+  <data name="LABEL_UNABLE_TO_CONNECT_VIA_USB" xml:space="preserve">
+    <value>Unable to connect to the device. ErrorCode=</value>
+  </data>
+  <data name="LABEL_COMM_KEY_REQUIRED" xml:space="preserve">
+    <value>*deviceid, commkey cannot be null !</value>
+  </data>
+  <data name="LABEL_UNABLE_TO_CONNECT_VIA_NET" xml:space="preserve">
+    <value>Unable to connect to the network. ErrorCode=</value>
+  </data>
+  <data name="LABEL_DISABLE" xml:space="preserve">
+    <value>Disable</value>
+  </data>
   <data name="LABEL_DEVICE_CONNECTION_FAILED" xml:space="preserve">
     <value>Failed to connect to device. Check your IP Address or port.</value>
+  </data>
+  <data name="LABEL_APP_NAME" xml:space="preserve">
+    <value>Nica Biometrics</value>
+  </data>
+  <data name="LABEL_DEVICE_CONNECTED" xml:space="preserve">
+    <value>Device connected!</value>
+  </data>
+  <data name="LABEL_REMOTE" xml:space="preserve">
+    <value>Remote</value>
+  </data>
+  <data name="LABEL_REGISTERED_EVENTS" xml:space="preserve">
+    <value>Registered events</value>
+  </data>
+  <data name="LABEL_COMPANY" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="LABEL_SAVE" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="LABEL_MAC_ADDRESS" xml:space="preserve">
+    <value>Mac address</value>
+  </data>
+  <data name="LABEL_SHUTDOWN" xml:space="preserve">
+    <value>Shutdown</value>
+  </data>
+  <data name="LABEL_CLEAR_LOGS" xml:space="preserve">
+    <value>Clear logs</value>
+  </data>
+  <data name="LABEL_TIME_OUT_URL" xml:space="preserve">
+    <value>Time out URL</value>
+  </data>
+  <data name="LABEL_NO_DATA_TERMINAL" xml:space="preserve">
+    <value>*No data from terminal returns!</value>
+  </data>
+  <data name="LABEL_ILLEGAL_DEVICE" xml:space="preserve">
+    <value>*Device illegal!</value>
   </data>
   <data name="LABEL_CONFIRM_EXIT" xml:space="preserve">
     <value>Do you to exit application?</value>
   </data>
-  <data name="LABEL_APP_NAME" xml:space="preserve">
-    <value>Nica Biometrics</value>
+  <data name="LABEL_ESTABLISHING_SERVER_CONNECTION" xml:space="preserve">
+    <value>Establishing a connection to the server...</value>
+  </data>
+  <data name="LABEL_DISCONNECTING_DEVICE" xml:space="preserve">
+    <value>Disconnecting device...</value>
+  </data>
+  <data name="LABEL_ENABLE" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="LABEL_REG_EVENT_FAILED" xml:space="preserve">
+    <value>*RegEvent failed,ErrorCode: </value>
+  </data>
+  <data name="LABEL_UPDATE_EMPLOYEE_RECORD" xml:space="preserve">
+    <value>Update employee records</value>
+  </data>
+  <data name="LABEL_DISCONNECT_WITH_DEVICE" xml:space="preserve">
+    <value>Device is disconnected!</value>
+  </data>
+  <data name="LABEL_RESTARTING_DEVICE" xml:space="preserve">
+    <value>Device is restarting...</value>
+  </data>
+  <data name="LABEL_REFRESHING_SERVER_CONNECTION" xml:space="preserve">
+    <value>Refreshing server connection...</value>
+  </data>
+  <data name="LABEL_EMPLOYEE_URL" xml:space="preserve">
+    <value>Employee URL</value>
+  </data>
+  <data name="LABEL_ILLEGAL_PORT" xml:space="preserve">
+    <value>*Port illegal!</value>
+  </data>
+  <data name="LABEL_ILLEGAL_COMMKEY" xml:space="preserve">
+    <value>*CommKey illegal!</value>
+  </data>
+  <data name="LABEL_SHUTTING_DOWN" xml:space="preserve">
+    <value>Shutting down device...</value>
+  </data>
+  <data name="LABEL_STARTING_DEVICE" xml:space="preserve">
+    <value>Starting device...</value>
+  </data>
+  <data name="LABEL_DEVICE_NAME" xml:space="preserve">
+    <value>Device name</value>
+  </data>
+  <data name="LABEL_CONNECTING_TO_DEVICE" xml:space="preserve">
+    <value>Connecting to device...</value>
+  </data>
+  <data name="LABEL_SERIAL" xml:space="preserve">
+    <value>Serial</value>
+  </data>
+  <data name="MESSAGE_INVALID_SERVER_ADDRESS" xml:space="preserve">
+    <value>Failed to establish connection</value>
+  </data>
+  <data name="LABEL_START" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="LABEL_BIOMETRICS" xml:space="preserve">
+    <value>Biometrics</value>
+  </data>
+  <data name="LABEL_CANCEL" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="LABEL_INVALID_DEVICE_IP_ADDRESS" xml:space="preserve">
     <value>Invalid device IP address</value>
@@ -132,97 +246,26 @@
   <data name="LABEL_APPLICATION_RUNNING_BACKGROUND" xml:space="preserve">
     <value>Application is running in the background.</value>
   </data>
-  <data name="LABEL_SAVE" xml:space="preserve">
-    <value>Save</value>
+  <data name="LABEL_TIME_IN_URL" xml:space="preserve">
+    <value>Time in URL</value>
   </data>
-  <data name="LABEL_NO_USB_DEVICE_FOUND" xml:space="preserve">
-    <value>No fingerprint device found.</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="appicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\appicon.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LABEL_COMM_KEY_REQUIRED" xml:space="preserve">
-    <value>*deviceid, commkey cannot be null !</value>
+  <data name="MESSAGE_FAILED_TO_GET_COMPANY" xml:space="preserve">
+    <value>Failed to get company</value>
   </data>
-  <data name="LABEL_ILLEGAL_DEVICE" xml:space="preserve">
-    <value>*Device illegal!</value>
+  <data name="MESSAGE_CHECKED_IN" xml:space="preserve">
+    <value>CheckedIn employee id: </value>
   </data>
-  <data name="LABEL_ILLEGAL_COMMKEY" xml:space="preserve">
-    <value>*CommKey illegal!</value>
+  <data name="MESSAGE_FAILED_TO_CHEKED_IN" xml:space="preserve">
+    <value>Failed to checked In employee id: </value>
   </data>
-  <data name="LABEL_DISCONNECT_WITH_DEVICE" xml:space="preserve">
-    <value>Device is disconnected!</value>
+  <data name="MESSAGE_FAILED_TO_CHECKED_OUT" xml:space="preserve">
+    <value>Failed to checked out employee id: </value>
   </data>
-  <data name="LABEL_DEVICE_CONNECTED" xml:space="preserve">
-    <value>Device connected!</value>
-  </data>
-  <data name="LABEL_UNABLE_TO_CONNECT_VIA_USB" xml:space="preserve">
-    <value>Unable to connect to the device. ErrorCode=</value>
-  </data>
-  <data name="LABEL_ILLEGAL_PORT" xml:space="preserve">
-    <value>*Port illegal!</value>
-  </data>
-  <data name="LABEL_UNABLE_TO_CONNECT_VIA_NET" xml:space="preserve">
-    <value>Unable to connect to the network. ErrorCode=</value>
-  </data>
-  <data name="LABEL_CLEAR_LOGS" xml:space="preserve">
-    <value>Clear logs</value>
-  </data>
-  <data name="LABEL_CONNECTING_TO_DEVICE" xml:space="preserve">
-    <value>Connecting to device...</value>
-  </data>
-  <data name="LABEL_DISCONNECTING_DEVICE" xml:space="preserve">
-    <value>Disconnecting device...</value>
-  </data>
-  <data name="LABEL_REG_EVENT_FAILED" xml:space="preserve">
-    <value>*RegEvent failed,ErrorCode: </value>
-  </data>
-  <data name="LABEL_NO_DATA_TERMINAL" xml:space="preserve">
-    <value>*No data from terminal returns!</value>
-  </data>
-  <data name="LABEL_REMOTE" xml:space="preserve">
-    <value>Remote</value>
-  </data>
-  <data name="LABEL_DEVICE_NAME" xml:space="preserve">
-    <value>Device name</value>
-  </data>
-  <data name="LABEL_CANCEL" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="LABEL_CANCEL_OPERATION" xml:space="preserve">
-    <value>Cancel operation</value>
-  </data>
-  <data name="LABEL_DISABLE" xml:space="preserve">
-    <value>Disable</value>
-  </data>
-  <data name="LABEL_ENABLE" xml:space="preserve">
-    <value>Enable</value>
-  </data>
-  <data name="LABEL_RESTART" xml:space="preserve">
-    <value>Restart</value>
-  </data>
-  <data name="LABEL_RESTARTING_DEVICE" xml:space="preserve">
-    <value>Device is restarting...</value>
-  </data>
-  <data name="LABEL_SERIAL" xml:space="preserve">
-    <value>Serial</value>
-  </data>
-  <data name="LABEL_SHUTDOWN" xml:space="preserve">
-    <value>Shutdown</value>
-  </data>
-  <data name="LABEL_SHUTTING_DOWN" xml:space="preserve">
-    <value>Shutting down device...</value>
-  </data>
-  <data name="LABEL_START" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="LABEL_STARTING_DEVICE" xml:space="preserve">
-    <value>Starting device...</value>
-  </data>
-  <data name="LABEL_REGISTERED_EVENTS" xml:space="preserve">
-    <value>Registered events</value>
-  </data>
-  <data name="LABEL_BIOMETRICS" xml:space="preserve">
-    <value>Biometrics</value>
-  </data>
-  <data name="LABEL_MAC_ADDRESS" xml:space="preserve">
-    <value>Mac address</value>
+  <data name="MESESAGE_CHECKED_OUT" xml:space="preserve">
+    <value>Checked out employee id: </value>
   </data>
 </root>
