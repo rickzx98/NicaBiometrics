@@ -12,26 +12,29 @@ namespace NicaBiometrics.models
             message = null;
             try
             {
+                var url = Settings.Default._serverAddress +
+                          Settings.Default._serverTimeinUrl;
                 var request =
-                    (HttpWebRequest) WebRequest.Create(Settings.Default._serverAddress +
-                                                       Settings.Default._serverTimeinUrl);
+                    (HttpWebRequest) WebRequest.Create(url);
                 request.Method = "POST";
                 request.Accept = "application/json";
-
+                request.ContentType = "application/json";
                 var parsedContent = "{\"empId\":\"" + enollId + "\"}";
-                var encoding = new ASCIIEncoding();
+                var encoding = new UTF8Encoding();
                 var bytes = encoding.GetBytes(parsedContent);
                 var newStream = request.GetRequestStream();
                 newStream.Write(bytes, 0, bytes.Length);
                 newStream.Close();
                 var response = (HttpWebResponse) request.GetResponse();
-                if (response.StatusCode == HttpStatusCode.OK) message = Resources.MESSAGE_CHECKED_IN + enollId;
-                else message = Resources.MESSAGE_FAILED_TO_CHEKED_IN + enollId;
+                message = response.StatusCode == HttpStatusCode.Created
+                    ? WriteLog(Resources.MESSAGE_CHECKED_IN + enollId)
+                    : WriteLog(Resources.MESSAGE_FAILED_TO_CHEKED_IN + enollId);
+                Settings.Default._serverLogs.Add(WriteLog(url + " " + response.StatusCode));
             }
             catch (Exception e)
             {
-                Settings.Default._serverLogs.Add(e.Message);
-                message = Resources.MESSAGE_FAILED_TO_CHEKED_IN + enollId;
+                Settings.Default._serverLogs.Add(WriteLog(e.Message));
+                message = WriteLog(Resources.MESSAGE_FAILED_TO_CHEKED_IN + enollId);
             }
         }
 
@@ -46,7 +49,7 @@ namespace NicaBiometrics.models
                                                        Settings.Default._serverTimeoutUrl);
                 request.Method = "PUT";
                 request.Accept = "application/json";
-
+                request.ContentType = "application/json";
                 var parsedContent = "{\"empId\":\"" + enollId + "\"}";
                 var encoding = new ASCIIEncoding();
                 var bytes = encoding.GetBytes(parsedContent);
@@ -54,14 +57,20 @@ namespace NicaBiometrics.models
                 newStream.Write(bytes, 0, bytes.Length);
                 newStream.Close();
                 var response = (HttpWebResponse) request.GetResponse();
-                if (response.StatusCode == HttpStatusCode.OK) message = Resources.MESESAGE_CHECKED_OUT + enollId;
-                else message = Resources.MESSAGE_FAILED_TO_CHECKED_OUT + enollId;
+                message = response.StatusCode == HttpStatusCode.Created
+                    ? WriteLog(Resources.MESESAGE_CHECKED_OUT + enollId)
+                    : WriteLog(Resources.MESSAGE_FAILED_TO_CHECKED_OUT + enollId);
             }
             catch (Exception e)
             {
-                Settings.Default._serverLogs.Add(e.Message);
-                message = Resources.MESSAGE_FAILED_TO_CHECKED_OUT + enollId;
+                Settings.Default._serverLogs.Add(WriteLog(e.Message));
+                message = WriteLog(Resources.MESSAGE_FAILED_TO_CHECKED_OUT + enollId);
             }
+        }
+
+        private string WriteLog(string log)
+        {
+            return DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + ": " + log;
         }
     }
 }
