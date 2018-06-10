@@ -313,4 +313,7 @@
   <data name="LABEL_SELECT_ALL" xml:space="preserve">
     <value>Select all</value>
   </data>
+  <data name="LABEL_FETCHING_DEVICE_EMPLOYEES" xml:space="preserve">
+    <value>Fetching device employee records...</value>
+  </data>
 </root>

@@ -308,6 +308,15 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fetching device employee records....
+        /// </summary>
+        internal static string LABEL_FETCHING_DEVICE_EMPLOYEES {
+            get {
+                return ResourceManager.GetString("LABEL_FETCHING_DEVICE_EMPLOYEES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to *CommKey illegal!.
         /// </summary>
         internal static string LABEL_ILLEGAL_COMMKEY {

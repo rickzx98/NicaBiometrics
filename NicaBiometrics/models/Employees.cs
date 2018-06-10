@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -18,6 +19,14 @@ namespace NicaBiometrics.models
             _search = search;
         }
 
+        public void LoadDeviceEmployyes(out List<Employee> employees)
+        {
+            employees = new List<Employee>();
+            if (Settings.Default._connected)
+            {
+            }
+        }
+
         public void LoadEmployees(out List<Employee> employees, int companyId)
         {
             employees = new List<Employee>();
@@ -25,6 +34,17 @@ namespace NicaBiometrics.models
             employeeUrl = employeeUrl.Replace(CompanyId, companyId.ToString());
             GetEmployees(employees, employeeUrl);
         }
+
+        public void SearchEmployees(out List<Employee> employees, int companyId)
+        {
+            var currentEmployees = new List<Employee>();
+            var employeeUrl = Settings.Default._serverAddress + Settings.Default._serverEmployeeUrl;
+            employeeUrl = employeeUrl.Replace(CompanyId, companyId.ToString());
+            GetEmployees(currentEmployees, employeeUrl);
+            employees = currentEmployees.Where(employee => employee.FullName.ToLower().Contains(_search.ToLower()))
+                .ToList();
+        }
+
 
         private static void GetEmployees(List<Employee> employees, string employeeUrl)
         {

@@ -482,5 +482,39 @@ namespace NicaBiometrics.forms
             if (PROGRESS_EMPLOYEE.Value == 100) PROGRESS_EMPLOYEE.Value = 0;
             PROGRESS_EMPLOYEE.Increment(5);
         }
+
+        private void TAB_FORM_TRAY_TabIndexChanged(object sender, EventArgs e)
+        {
+            var tabControl = (TabControl) sender;
+            if (tabControl.SelectedTab.Name == Resources.LABEL_EMPLOYEE)
+                new ConnectingToDeviceProcessForm(() =>
+                    {
+
+                    }, Resources.LABEL_FETCHING_DEVICE_EMPLOYEES)
+                    .ShowDialog(this);
+        }
+
+        private void VALUE_SEARCH_EMPLOYEE_TextChanged(object sender, EventArgs e)
+        {
+            _employees.SetSearch(((TextBox) sender).Text);
+        }
+
+        private void VALUE_SEARCH_EMPLOYEE_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) SearchEmployee();
+        }
+
+        private void SearchEmployee()
+        {
+            var selectCompany = (Companies.Company) SELECT_COMPANIES.SelectedItem;
+            _employees.SearchEmployees(out var employeeList, selectCompany.Id);
+            _employeeList = employeeList;
+            SetEmployeeList();
+        }
+
+        private void BUTTON_SEARCH_EMPLOYEE_Click(object sender, EventArgs e)
+        {
+            SearchEmployee();
+        }
     }
 }
