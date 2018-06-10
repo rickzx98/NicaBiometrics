@@ -71,6 +71,45 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap body_bg {
+            get {
+                object obj = ResourceManager.GetObject("body-bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap home_banner {
+            get {
+                object obj = ResourceManager.GetObject("home-banner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap home_header {
+            get {
+                object obj = ResourceManager.GetObject("home-header", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string LABEL_ADD {
+            get {
+                return ResourceManager.GetString("LABEL_ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nica Biometrics.
         /// </summary>
         internal static string LABEL_APP_NAME {
@@ -143,6 +182,15 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company URL.
+        /// </summary>
+        internal static string LABEL_COMPANY_URL {
+            get {
+                return ResourceManager.GetString("LABEL_COMPANY_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you to exit application?.
         /// </summary>
         internal static string LABEL_CONFIRM_EXIT {
@@ -157,6 +205,15 @@ namespace NicaBiometrics.Properties {
         internal static string LABEL_CONNECTING_TO_DEVICE {
             get {
                 return ResourceManager.GetString("LABEL_CONNECTING_TO_DEVICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deselect all.
+        /// </summary>
+        internal static string LABEL_DESELECT_ALL {
+            get {
+                return ResourceManager.GetString("LABEL_DESELECT_ALL", resourceCulture);
             }
         }
         
@@ -211,6 +268,15 @@ namespace NicaBiometrics.Properties {
         internal static string LABEL_DISCONNECTING_DEVICE {
             get {
                 return ResourceManager.GetString("LABEL_DISCONNECTING_DEVICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee.
+        /// </summary>
+        internal static string LABEL_EMPLOYEE {
+            get {
+                return ResourceManager.GetString("LABEL_EMPLOYEE", resourceCulture);
             }
         }
         
@@ -341,6 +407,15 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        internal static string LABEL_REMOVE_COMPANY {
+            get {
+                return ResourceManager.GetString("LABEL_REMOVE_COMPANY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restart.
         /// </summary>
         internal static string LABEL_RESTART {
@@ -364,6 +439,24 @@ namespace NicaBiometrics.Properties {
         internal static string LABEL_SAVE {
             get {
                 return ResourceManager.GetString("LABEL_SAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string LABEL_SEARCH {
+            get {
+                return ResourceManager.GetString("LABEL_SEARCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        internal static string LABEL_SELECT_ALL {
+            get {
+                return ResourceManager.GetString("LABEL_SELECT_ALL", resourceCulture);
             }
         }
         
@@ -458,6 +551,16 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap library_header {
+            get {
+                object obj = ResourceManager.GetObject("library-header", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Checked out employee id: .
         /// </summary>
         internal static string MESESAGE_CHECKED_OUT {
@@ -508,6 +611,46 @@ namespace NicaBiometrics.Properties {
         internal static string MESSAGE_INVALID_SERVER_ADDRESS {
             get {
                 return ResourceManager.GetString("MESSAGE_INVALID_SERVER_ADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap record_view_banner {
+            get {
+                object obj = ResourceManager.GetObject("record-view-banner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search_header {
+            get {
+                object obj = ResourceManager.GetObject("search-header", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_header {
+            get {
+                object obj = ResourceManager.GetObject("settings-header", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap subject_header {
+            get {
+                object obj = ResourceManager.GetObject("subject-header", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

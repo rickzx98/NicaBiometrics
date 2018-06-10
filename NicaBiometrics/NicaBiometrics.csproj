@@ -78,6 +78,10 @@
       <HintPath>..\packages\ZKemkeeper.1.0.2\lib\Interop.zkemkeeper.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -100,6 +104,12 @@
     <Compile Include="forms\AppForm.Designer.cs">
       <DependentUpon>AppForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\CompaniesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\CompaniesDialog.Designer.cs">
+      <DependentUpon>CompaniesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\ConnectingToDeviceProcessForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +117,8 @@
       <DependentUpon>ConnectingToDeviceProcessForm.cs</DependentUpon>
     </Compile>
     <Compile Include="helper\SearchforUsbCom.cs" />
+    <Compile Include="models\Companies.cs" />
+    <Compile Include="models\Employees.cs" />
     <Compile Include="models\GetUserInfo.cs" />
     <Compile Include="models\ServerSetting.cs" />
     <Compile Include="models\DeviceSetting.cs" />
@@ -141,6 +153,9 @@
     <EmbeddedResource Include="forms\AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\CompaniesDialog.resx">
+      <DependentUpon>CompaniesDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\ConnectingToDeviceProcessForm.resx">
       <DependentUpon>ConnectingToDeviceProcessForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +179,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="appicon.ico" />
+    <None Include="Resources\subject-header.jpg" />
+    <None Include="Resources\settings-header.jpg" />
+    <None Include="Resources\search-header.jpg" />
+    <None Include="Resources\record-view-banner.jpg" />
+    <None Include="Resources\library-header.jpg" />
+    <None Include="Resources\home-header.jpg" />
+    <None Include="Resources\home-banner.jpg" />
+    <None Include="Resources\body-bg.jpg" />
     <None Include="Resources\appicon.ico" />
   </ItemGroup>
   <ItemGroup>

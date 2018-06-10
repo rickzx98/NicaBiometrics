@@ -432,7 +432,7 @@ namespace NicaBiometrics.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("/timeIn")]
         public string _serverTimeinUrl {
             get {
                 return ((string)(this["_serverTimeinUrl"]));
@@ -444,7 +444,7 @@ namespace NicaBiometrics.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("/timeOut")]
         public string _serverTimeoutUrl {
             get {
                 return ((string)(this["_serverTimeoutUrl"]));
@@ -456,7 +456,7 @@ namespace NicaBiometrics.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("/companies/{companyId}/employees")]
         public string _serverEmployeeUrl {
             get {
                 return ((string)(this["_serverEmployeeUrl"]));
@@ -479,10 +479,9 @@ namespace NicaBiometrics.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string _serverCompany {
+        public global::System.Collections.Specialized.StringCollection _serverCompany {
             get {
-                return ((string)(this["_serverCompany"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["_serverCompany"]));
             }
             set {
                 this["_serverCompany"] = value;
@@ -491,10 +490,9 @@ namespace NicaBiometrics.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int _serverCompanyId {
+        public global::System.Collections.Specialized.StringCollection _serverCompanyId {
             get {
-                return ((int)(this["_serverCompanyId"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["_serverCompanyId"]));
             }
             set {
                 this["_serverCompanyId"] = value;
@@ -510,6 +508,29 @@ namespace NicaBiometrics.Properties {
             }
             set {
                 this["_serverCompanyValid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/companies")]
+        public string _serverCompanyUrl {
+            get {
+                return ((string)(this["_serverCompanyUrl"]));
+            }
+            set {
+                this["_serverCompanyUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection _companies {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["_companies"]));
+            }
+            set {
+                this["_companies"] = value;
             }
         }
     }
