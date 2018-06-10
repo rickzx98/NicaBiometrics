@@ -4,11 +4,13 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NicaBiometrics.Properties;
 
 namespace NicaBiometrics.models
 {
     internal class Employees
     {
+        private const string CompanyId = "${companyId}";
         private string _search;
 
         public void SetSearch(string search)
@@ -16,9 +18,12 @@ namespace NicaBiometrics.models
             _search = search;
         }
 
-        public void LoadEmployees(out List<Employee> employees)
+        public void LoadEmployees(out List<Employee> employees, int companyId)
         {
             employees = new List<Employee>();
+            var employeeUrl = Settings.Default._serverAddress + Settings.Default._serverEmployeeUrl;
+            employeeUrl = employeeUrl.Replace(CompanyId, companyId.ToString());
+            GetEmployees(employees, employeeUrl);
         }
 
         private static void GetEmployees(List<Employee> employees, string employeeUrl)
@@ -41,7 +46,7 @@ namespace NicaBiometrics.models
                 {
                     var id = int.Parse(company["id"].ToString());
                     var fullName = company["fullName"].ToString();
-                    var pin = int.Parse(company["ping"].ToString());
+                    var pin = int.Parse(company["pin"].ToString());
                     employees.Add(new Employee(id, pin, fullName));
                 }
             }

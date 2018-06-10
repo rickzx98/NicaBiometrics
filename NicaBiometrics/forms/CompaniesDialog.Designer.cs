@@ -109,6 +109,7 @@ namespace NicaBiometrics.forms
             this.PROGRESS_SEARCH.Location = new System.Drawing.Point(58, 26);
             this.PROGRESS_SEARCH.Name = "PROGRESS_SEARCH";
             this.PROGRESS_SEARCH.Size = new System.Drawing.Size(315, 20);
+            this.PROGRESS_SEARCH.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.PROGRESS_SEARCH.TabIndex = 6;
             this.PROGRESS_SEARCH.Tag = "PROGRESS_SEARCH";
             // 

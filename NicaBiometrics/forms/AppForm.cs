@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using NicaBiometrics.helper;
 using NicaBiometrics.models;
@@ -12,14 +13,17 @@ namespace NicaBiometrics.forms
     {
         private readonly Companies _companies;
         private readonly DeviceSetting _deviceSetting;
+        private readonly Employees _employees;
         private readonly ServerSetting _serverSetting;
         private List<Companies.Company> _companyList;
+        private List<Employees.Employee> _employeeList;
         private List<string> _messages;
         private List<string> _serverMessages;
         private bool _shutdown;
 
         public TRAY_FORM()
         {
+            _employees = new Employees();
             _companies = new Companies();
             _shutdown = false;
             _deviceSetting = new DeviceSetting();
@@ -430,19 +434,53 @@ namespace NicaBiometrics.forms
             SetCompanies();
         }
 
-        private void GetEmployees()
+        private void GetEmployees(int companyId)
         {
             StartFetchingEmployees();
+            Task.Factory.StartNew(() =>
+                {
+                    _employees.LoadEmployees(out var employees, companyId);
+                    _employeeList = employees;
+                })
+                .ContinueWith(t => { DoneFetchingEmployees(); },
+                    TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private void StartFetchingEmployees()
         {
-
+            TIME_EMPLOYEE.Start();
+            VALUE_SEARCH_EMPLOYEE.Enabled = false;
+            SELECT_COMPANIES.Enabled = false;
+            PROGRESS_EMPLOYEE.Visible = true;
         }
 
         private void DoneFetchingEmployees()
         {
+            SetEmployeeList();
+            VALUE_SEARCH_EMPLOYEE.Enabled = true;
+            SELECT_COMPANIES.Enabled = true;
+            PROGRESS_EMPLOYEE.Visible = false;
+            TIME_EMPLOYEE.Stop();
+        }
 
+        private void SELECT_COMPANIES_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var companyBox = (ComboBox) sender;
+            var company = (Companies.Company) companyBox.SelectedItem;
+            GetEmployees(company.Id);
+        }
+
+        private void SetEmployeeList()
+        {
+            LIST_EMPLOYEES.DataSource = _employeeList;
+            LIST_EMPLOYEES.DisplayMember = "FullName";
+            LIST_EMPLOYEES.ValueMember = "Id";
+        }
+
+        private void TIME_EMPLOYEE_Tick(object sender, EventArgs e)
+        {
+            if (PROGRESS_EMPLOYEE.Value == 100) PROGRESS_EMPLOYEE.Value = 0;
+            PROGRESS_EMPLOYEE.Increment(5);
         }
     }
 }
