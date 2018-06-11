@@ -316,4 +316,22 @@
   <data name="LABEL_FETCHING_DEVICE_EMPLOYEES" xml:space="preserve">
     <value>Fetching device employee records...</value>
   </data>
+  <data name="MESSAGE_LOADED_ALL_EMPLOYEES" xml:space="preserve">
+    <value>Loaded all employess</value>
+  </data>
+  <data name="MESSAGE_ENROLLED_USER" xml:space="preserve">
+    <value>Successfully enrolled user </value>
+  </data>
+  <data name="MESSAGE_REMOVED_USER" xml:space="preserve">
+    <value>Removed user </value>
+  </data>
+  <data name="FAILED_TO_ENROLL" xml:space="preserve">
+    <value>Failed to enroll user </value>
+  </data>
+  <data name="MESSAGE_UNABLE_TO_REMOVE_USER" xml:space="preserve">
+    <value>Unable to remove user </value>
+  </data>
+  <data name="LABEL_FETCHING_EMPLOYEES_FROM_DEVICE" xml:space="preserve">
+    <value>Fetching employees from device...</value>
+  </data>
 </root>

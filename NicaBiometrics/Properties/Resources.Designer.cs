@@ -81,6 +81,15 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to enroll user .
+        /// </summary>
+        internal static string FAILED_TO_ENROLL {
+            get {
+                return ResourceManager.GetString("FAILED_TO_ENROLL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap home_banner {
@@ -313,6 +322,15 @@ namespace NicaBiometrics.Properties {
         internal static string LABEL_FETCHING_DEVICE_EMPLOYEES {
             get {
                 return ResourceManager.GetString("LABEL_FETCHING_DEVICE_EMPLOYEES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fetching employees from device....
+        /// </summary>
+        internal static string LABEL_FETCHING_EMPLOYEES_FROM_DEVICE {
+            get {
+                return ResourceManager.GetString("LABEL_FETCHING_EMPLOYEES_FROM_DEVICE", resourceCulture);
             }
         }
         
@@ -588,6 +606,15 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Successfully enrolled user .
+        /// </summary>
+        internal static string MESSAGE_ENROLLED_USER {
+            get {
+                return ResourceManager.GetString("MESSAGE_ENROLLED_USER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to checked out employee id: .
         /// </summary>
         internal static string MESSAGE_FAILED_TO_CHECKED_OUT {
@@ -620,6 +647,33 @@ namespace NicaBiometrics.Properties {
         internal static string MESSAGE_INVALID_SERVER_ADDRESS {
             get {
                 return ResourceManager.GetString("MESSAGE_INVALID_SERVER_ADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loaded all employess.
+        /// </summary>
+        internal static string MESSAGE_LOADED_ALL_EMPLOYEES {
+            get {
+                return ResourceManager.GetString("MESSAGE_LOADED_ALL_EMPLOYEES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removed user .
+        /// </summary>
+        internal static string MESSAGE_REMOVED_USER {
+            get {
+                return ResourceManager.GetString("MESSAGE_REMOVED_USER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to remove user .
+        /// </summary>
+        internal static string MESSAGE_UNABLE_TO_REMOVE_USER {
+            get {
+                return ResourceManager.GetString("MESSAGE_UNABLE_TO_REMOVE_USER", resourceCulture);
             }
         }
         

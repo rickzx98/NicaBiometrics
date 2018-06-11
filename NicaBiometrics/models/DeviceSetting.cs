@@ -250,52 +250,111 @@ namespace NicaBiometrics.models
             return value;
         }
 
-        public void SendNewLog(out string message)
+        public void SendNewLog(out List<string> messages, out bool found)
         {
-            message = "";
-            if (Settings.Default._connected)
+            messages = new List<string>();
+            found = false;
+            var dwWorkCode = 0;
+            try
             {
-                int dwVerifyMode = 0,
-                    dwInOutMode = 0,
-                    dwYear = 0,
-                    dwMonth = 0,
-                    dwDay = 0,
-                    dwHour = 0,
-                    dwMMinute = 0,
-                    dwSecond = 0,
-                    dwWorkCode = 0;
-
-                var dwEnrollNumber = "";
-                _czkem.ReadGeneralLogData(Settings.Default._machineNo);
-                var found = _czkem.SSR_GetGeneralLogData(Settings.Default._machineNo,
-                    out dwEnrollNumber,
-                    out dwVerifyMode,
-                    out dwInOutMode,
-                    out dwYear,
-                    out dwMonth,
-                    out dwDay,
-                    out dwHour,
-                    out dwMMinute,
-                    out dwSecond,
-                    ref dwWorkCode);
-
-                if (found && !string.IsNullOrEmpty(dwEnrollNumber))
-
+                if (Settings.Default._connected)
                 {
-                    switch (dwInOutMode)
-                    {
-                        case OvertimeIn:
-                        case CheckedIn:
-                            _timeReport.TimeIn(dwEnrollNumber, out message);
-                            break;
-                        case CheckedOut:
-                        case OvertimeOut:
-                            _timeReport.TimeOut(dwEnrollNumber, out message);
-                            break;
-                    }
+                    _czkem.ReadGeneralLogData(Settings.Default._machineNo);
 
-                    _czkem.ClearGLog(Settings.Default._machineNo);
+                    found = _czkem.SSR_GetGeneralLogData(Settings.Default._machineNo,
+                        out var dwEnrollNumber,
+                        out _,
+                        out var dwInOutMode,
+                        out _,
+                        out _,
+                        out _,
+                        out _,
+                        out _,
+                        out _,
+                        ref dwWorkCode);
+
+                    if (found && !string.IsNullOrEmpty(dwEnrollNumber))
+
+                    {
+                        switch (dwInOutMode)
+                        {
+                            case OvertimeIn:
+                            case CheckedIn:
+                                _timeReport.TimeIn(dwEnrollNumber, out var messageList0);
+                                messages = messageList0;
+                                break;
+                            case CheckedOut:
+                            case OvertimeOut:
+                                _timeReport.TimeOut(dwEnrollNumber, out var messageList1);
+                                messages = messageList1;
+                                break;
+                        }
+
+                        _czkem.ClearGLog(Settings.Default._machineNo);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                messages.Add(WriteLog(e.Message));
+            }
+        }
+
+        public void LoadEnrolledEmployees(out List<Employees.Employee> employees, out List<string> messages)
+        {
+            employees = new List<Employees.Employee>();
+            messages = new List<string>();
+            try
+            {
+                _czkem.ReadAllUserID(Settings.Default._machineNo);
+                while (_czkem.SSR_GetAllUserInfo(Settings.Default._machineNo, out var dwEnrollNumber, out var name,
+                    out var password, out var privelage,
+                    out var enabled))
+                    employees.Add(new Employees.Employee(int.Parse(dwEnrollNumber), int.Parse(password), name));
+
+                messages.Add(Resources.MESSAGE_LOADED_ALL_EMPLOYEES);
+            }
+            catch (Exception e)
+            {
+                messages.Add(WriteLog(e.Message));
+            }
+        }
+
+        public void EnrollEmployee(Employees.Employee employee, out List<string> messages, out bool enrolled)
+        {
+            messages = new List<string>();
+            enrolled = false;
+            try
+            {
+                enrolled = _czkem.SSR_SetUserInfo(Settings.Default._machineNo, employee.Id.ToString(),
+                    employee.FullName,
+                    employee.Pin.ToString(),
+                    0, true);
+                messages.Add(enrolled
+                    ? WriteLog(Resources.MESSAGE_ENROLLED_USER + employee.FullName)
+                    : WriteLog(Resources.FAILED_TO_ENROLL + employee.FullName));
+            }
+            catch (Exception e)
+            {
+                messages.Add(WriteLog(e.Message));
+            }
+        }
+
+        public void DeleteEnrolledEmployee(Employees.Employee employee, out List<string> messages, out bool deleted)
+        {
+            messages = new List<string>();
+            deleted = false;
+            try
+            {
+                deleted = _czkem.DeleteEnrollData(Settings.Default._machineNo, employee.Id, Settings.Default._machineNo,
+                    11);
+                messages.Add(deleted
+                    ? WriteLog(Resources.MESSAGE_REMOVED_USER + employee.FullName)
+                    : WriteLog(Resources.MESSAGE_UNABLE_TO_REMOVE_USER + employee.FullName));
+            }
+            catch (Exception e)
+            {
+                messages.Add(WriteLog(e.Message));
             }
         }
     }

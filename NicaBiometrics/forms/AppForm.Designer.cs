@@ -86,6 +86,7 @@ namespace NicaBiometrics.forms
             this.BUTTON_ADD_COMPANY = new System.Windows.Forms.Button();
             this.LIST_COMPANIES = new System.Windows.Forms.CheckedListBox();
             this.TAB_EMPLOYEE = new System.Windows.Forms.TabPage();
+            this.BUTTON_SAVE_EMPLOYEES = new System.Windows.Forms.Button();
             this.PROGRESS_EMPLOYEE = new System.Windows.Forms.ProgressBar();
             this.BUTTON_SEARCH_EMPLOYEE = new System.Windows.Forms.Button();
             this.BUTTON_DESELECT_ALL = new System.Windows.Forms.Button();
@@ -159,7 +160,6 @@ namespace NicaBiometrics.forms
             this.TAB_FORM_TRAY.SelectedIndex = 0;
             this.TAB_FORM_TRAY.Size = new System.Drawing.Size(382, 440);
             this.TAB_FORM_TRAY.TabIndex = 5;
-            this.TAB_FORM_TRAY.TabIndexChanged += new System.EventHandler(this.TAB_FORM_TRAY_TabIndexChanged);
             // 
             // TAB_DEVICE_SETTING
             // 
@@ -710,6 +710,7 @@ namespace NicaBiometrics.forms
             // TAB_EMPLOYEE
             // 
             this.TAB_EMPLOYEE.BackColor = System.Drawing.Color.OldLace;
+            this.TAB_EMPLOYEE.Controls.Add(this.BUTTON_SAVE_EMPLOYEES);
             this.TAB_EMPLOYEE.Controls.Add(this.PROGRESS_EMPLOYEE);
             this.TAB_EMPLOYEE.Controls.Add(this.BUTTON_SEARCH_EMPLOYEE);
             this.TAB_EMPLOYEE.Controls.Add(this.BUTTON_DESELECT_ALL);
@@ -724,6 +725,18 @@ namespace NicaBiometrics.forms
             this.TAB_EMPLOYEE.TabIndex = 4;
             this.TAB_EMPLOYEE.Tag = "TAB_EMPLOYEE";
             this.TAB_EMPLOYEE.Text = global::NicaBiometrics.Properties.Resources.LABEL_EMPLOYEE;
+            // 
+            // BUTTON_SAVE_EMPLOYEES
+            // 
+            this.BUTTON_SAVE_EMPLOYEES.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.BUTTON_SAVE_EMPLOYEES.Location = new System.Drawing.Point(216, 74);
+            this.BUTTON_SAVE_EMPLOYEES.Name = "BUTTON_SAVE_EMPLOYEES";
+            this.BUTTON_SAVE_EMPLOYEES.Size = new System.Drawing.Size(75, 30);
+            this.BUTTON_SAVE_EMPLOYEES.TabIndex = 7;
+            this.BUTTON_SAVE_EMPLOYEES.Tag = "BUTTON_SAVE_EMPLOYEES";
+            this.BUTTON_SAVE_EMPLOYEES.Text = global::NicaBiometrics.Properties.Resources.LABEL_SAVE;
+            this.BUTTON_SAVE_EMPLOYEES.UseVisualStyleBackColor = true;
+            this.BUTTON_SAVE_EMPLOYEES.Click += new System.EventHandler(this.BUTTON_SAVE_EMPLOYEES_Click);
             // 
             // PROGRESS_EMPLOYEE
             // 
@@ -749,24 +762,26 @@ namespace NicaBiometrics.forms
             // BUTTON_DESELECT_ALL
             // 
             this.BUTTON_DESELECT_ALL.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_DESELECT_ALL.Location = new System.Drawing.Point(134, 72);
+            this.BUTTON_DESELECT_ALL.Location = new System.Drawing.Point(134, 74);
             this.BUTTON_DESELECT_ALL.Name = "BUTTON_DESELECT_ALL";
             this.BUTTON_DESELECT_ALL.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_DESELECT_ALL.TabIndex = 4;
             this.BUTTON_DESELECT_ALL.Tag = "BUTTON_DESELECT_ALL";
             this.BUTTON_DESELECT_ALL.Text = global::NicaBiometrics.Properties.Resources.LABEL_DESELECT_ALL;
             this.BUTTON_DESELECT_ALL.UseVisualStyleBackColor = true;
+            this.BUTTON_DESELECT_ALL.Click += new System.EventHandler(this.BUTTON_DESELECT_ALL_Click);
             // 
             // BUTTON_SELECT_ALL
             // 
             this.BUTTON_SELECT_ALL.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_SELECT_ALL.Location = new System.Drawing.Point(52, 72);
+            this.BUTTON_SELECT_ALL.Location = new System.Drawing.Point(52, 74);
             this.BUTTON_SELECT_ALL.Name = "BUTTON_SELECT_ALL";
             this.BUTTON_SELECT_ALL.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_SELECT_ALL.TabIndex = 3;
             this.BUTTON_SELECT_ALL.Tag = "BUTTON_SELECT_ALL";
             this.BUTTON_SELECT_ALL.Text = global::NicaBiometrics.Properties.Resources.LABEL_SELECT_ALL;
             this.BUTTON_SELECT_ALL.UseVisualStyleBackColor = true;
+            this.BUTTON_SELECT_ALL.Click += new System.EventHandler(this.BUTTON_SELECT_ALL_Click);
             // 
             // VALUE_SEARCH_EMPLOYEE
             // 
@@ -780,6 +795,7 @@ namespace NicaBiometrics.forms
             // 
             // LIST_EMPLOYEES
             // 
+            this.LIST_EMPLOYEES.CheckOnClick = true;
             this.LIST_EMPLOYEES.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LIST_EMPLOYEES.FormattingEnabled = true;
             this.LIST_EMPLOYEES.Location = new System.Drawing.Point(52, 108);
@@ -787,6 +803,7 @@ namespace NicaBiometrics.forms
             this.LIST_EMPLOYEES.Size = new System.Drawing.Size(286, 277);
             this.LIST_EMPLOYEES.TabIndex = 1;
             this.LIST_EMPLOYEES.Tag = "LIST_EMPLOYEES";
+            this.LIST_EMPLOYEES.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.LIST_EMPLOYEES_ItemCheck);
             // 
             // SELECT_COMPANIES
             // 
@@ -972,5 +989,6 @@ namespace NicaBiometrics.forms
         private System.Windows.Forms.TextBox VALUE_SEARCH_EMPLOYEE;
         private System.Windows.Forms.CheckedListBox LIST_EMPLOYEES;
         private System.Windows.Forms.Timer TIME_EMPLOYEE;
+        private System.Windows.Forms.Button BUTTON_SAVE_EMPLOYEES;
     }
 }

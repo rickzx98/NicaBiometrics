@@ -20,14 +20,15 @@ namespace NicaBiometrics.forms
         private List<string> _messages;
         private List<string> _serverMessages;
         private bool _shutdown;
+        private bool _timeInProgress;
 
         public TRAY_FORM()
         {
-            _employees = new Employees();
-            _companies = new Companies();
             _shutdown = false;
             _deviceSetting = new DeviceSetting();
             _serverSetting = new ServerSetting();
+            _employees = new Employees(_deviceSetting);
+            _companies = new Companies();
             InitializeComponent();
         }
 
@@ -126,11 +127,6 @@ namespace NicaBiometrics.forms
             }
         }
 
-        private void APP_CONTEXT_MENU_DoubleClick(object sender, EventArgs e)
-        {
-            Show();
-        }
-
         private void TRAY_FORM_Load(object sender, EventArgs e)
         {
             CHECK_VIA_NET.Checked = Settings.Default._connectViaNet;
@@ -147,6 +143,7 @@ namespace NicaBiometrics.forms
             RefreshServerSettingComponents();
             RefreshServerLogs();
             LoadCompanies();
+            LoadEmployees();
         }
 
         private void LoadConsoleLogs()
@@ -256,7 +253,7 @@ namespace NicaBiometrics.forms
             {
                 RefreshRemoteControl();
                 TIME_LISTENER_LOG.Start();
-                if (TAB_FORM_TRAY.Controls.Contains(TAB_REMOTE_CONTROL))
+                if (!TAB_FORM_TRAY.Controls.Contains(TAB_REMOTE_CONTROL))
                     TAB_FORM_TRAY.Controls.Add(TAB_REMOTE_CONTROL);
             }
             else
@@ -315,17 +312,18 @@ namespace NicaBiometrics.forms
 
         private void TIME_LISTENER_LOG_Tick(object sender, EventArgs e)
         {
-            if (Settings.Default._connected)
+            if (Settings.Default._connected && !_timeInProgress)
             {
-                _deviceSetting.SendNewLog(out var message);
-                if (!string.IsNullOrEmpty(message))
-                {
-                    LIST_DEVICE_HARDWARE.Items.Add(message);
-                    var latestMessage = Settings.Default._serverLogs[Settings.Default._serverLogs.Count - 1];
-                    LIST_SERVER_LOGS.Items.Add(latestMessage);
-                }
+                _timeInProgress = true;
+                _deviceSetting.SendNewLog(out var messages, out var found);
+                if (found)
+                    foreach (var log in messages)
+                    {
+                        LIST_DEVICE_HARDWARE.Items.Add(log);
+                        Settings.Default._consoleLogs.Add(log);
+                    }
 
-                ;
+                _timeInProgress = false;
             }
         }
 
@@ -434,6 +432,20 @@ namespace NicaBiometrics.forms
             SetCompanies();
         }
 
+        private void LoadEmployees()
+        {
+            new ConnectingToDeviceProcessForm(() =>
+            {
+                _employees.LoadDeviceEmployees(out var messages);
+                _messages = messages;
+            }, Resources.LABEL_FETCHING_EMPLOYEES_FROM_DEVICE).ShowDialog(this);
+            _messages.ForEach(message =>
+            {
+                Settings.Default._consoleLogs.Add(message);
+                LIST_DEVICE_HARDWARE.Items.Add(message);
+            });
+        }
+
         private void GetEmployees(int companyId)
         {
             StartFetchingEmployees();
@@ -475,23 +487,17 @@ namespace NicaBiometrics.forms
             LIST_EMPLOYEES.DataSource = _employeeList;
             LIST_EMPLOYEES.DisplayMember = "FullName";
             LIST_EMPLOYEES.ValueMember = "Id";
+            for (var i = 0; i < _employeeList.Count; i++)
+            {
+                var emp = _employeeList[i];
+                LIST_EMPLOYEES.SetItemChecked(i, emp.IsChecked);
+            }
         }
 
         private void TIME_EMPLOYEE_Tick(object sender, EventArgs e)
         {
             if (PROGRESS_EMPLOYEE.Value == 100) PROGRESS_EMPLOYEE.Value = 0;
             PROGRESS_EMPLOYEE.Increment(5);
-        }
-
-        private void TAB_FORM_TRAY_TabIndexChanged(object sender, EventArgs e)
-        {
-            var tabControl = (TabControl) sender;
-            if (tabControl.SelectedTab.Name == Resources.LABEL_EMPLOYEE)
-                new ConnectingToDeviceProcessForm(() =>
-                    {
-
-                    }, Resources.LABEL_FETCHING_DEVICE_EMPLOYEES)
-                    .ShowDialog(this);
         }
 
         private void VALUE_SEARCH_EMPLOYEE_TextChanged(object sender, EventArgs e)
@@ -515,6 +521,43 @@ namespace NicaBiometrics.forms
         private void BUTTON_SEARCH_EMPLOYEE_Click(object sender, EventArgs e)
         {
             SearchEmployee();
+        }
+
+        private void LIST_EMPLOYEES_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            var employees = (CheckedListBox) sender;
+            var employeesItem = (Employees.Employee) employees.Items[e.Index];
+
+            if (e.CurrentValue == CheckState.Checked && e.NewValue == CheckState.Unchecked)
+                employeesItem.ToDelete = true;
+
+            if (e.CurrentValue == CheckState.Unchecked && e.NewValue == CheckState.Checked) employeesItem.ToSave = true;
+            _employees.ToggleEmployee(employeesItem);
+        }
+
+        private void BUTTON_SELECT_ALL_Click(object sender, EventArgs e)
+        {
+            for (var i = 0; i < LIST_EMPLOYEES.Items.Count; i++) LIST_EMPLOYEES.SetItemChecked(i, true);
+        }
+
+        private void BUTTON_DESELECT_ALL_Click(object sender, EventArgs e)
+        {
+            for (var i = 0; i < LIST_EMPLOYEES.Items.Count; i++) LIST_EMPLOYEES.SetItemChecked(i, false);
+        }
+
+        private void BUTTON_SAVE_EMPLOYEES_Click(object sender, EventArgs e)
+        {
+            new ConnectingToDeviceProcessForm(() =>
+                {
+                    _employees.SaveEmployees(out var messages);
+                    _messages = messages;
+                },
+                "Sending employee updates to device...").ShowDialog(this);
+            foreach (var message in _messages)
+            {
+                Settings.Default._consoleLogs.Add(message);
+                LIST_DEVICE_HARDWARE.Items.Add(message);
+            }
         }
     }
 }
