@@ -60,7 +60,7 @@ namespace NicaBiometrics.models
                 newStream.Write(bytes, 0, bytes.Length);
                 newStream.Close();
                 var response = (HttpWebResponse) request.GetResponse();
-                var log = response.StatusCode == HttpStatusCode.Created
+                var log = response.StatusCode == HttpStatusCode.OK
                     ? WriteLog(Resources.MESESAGE_CHECKED_OUT + enollId)
                     : WriteLog(Resources.MESSAGE_FAILED_TO_CHECKED_OUT + enollId);
                 messages.Add(log);

@@ -151,14 +151,14 @@ namespace NicaBiometrics.models
             if (Settings.Default._connected)
             {
                 _czkem.Disconnect();
-                UnRegisterEvents();
+               // UnRegisterEvents();
                 SetConnected(false);
                 messages.Add(WriteLog(Resources.LABEL_DISCONNECT_WITH_DEVICE));
             }
 
             if (_czkem.Connect_Com(iPort, iDeviceId, iBaudrate))
             {
-                RegisterEvents(messages);
+              //  RegisterEvents(messages);
                 SetConnected(true);
                 messages.Add(WriteLog(Resources.LABEL_DEVICE_CONNECTED));
             }
@@ -346,8 +346,7 @@ namespace NicaBiometrics.models
             deleted = false;
             try
             {
-                deleted = _czkem.DeleteEnrollData(Settings.Default._machineNo, employee.Id, Settings.Default._machineNo,
-                    11);
+                deleted = _czkem.SSR_DeleteEnrollData(Settings.Default._machineNo, employee.Id.ToString(), 12);
                 messages.Add(deleted
                     ? WriteLog(Resources.MESSAGE_REMOVED_USER + employee.FullName)
                     : WriteLog(Resources.MESSAGE_UNABLE_TO_REMOVE_USER + employee.FullName));
