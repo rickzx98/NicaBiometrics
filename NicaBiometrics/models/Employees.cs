@@ -20,6 +20,7 @@ namespace NicaBiometrics.models
 
         public Employees(DeviceSetting deviceSetting)
         {
+            _search = "";
             _toUpdateEmployees = new List<Employee>();
             _deviceSetting = deviceSetting;
             _savedEmployees = new List<Employee>();
