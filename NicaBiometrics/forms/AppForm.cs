@@ -312,18 +312,23 @@ namespace NicaBiometrics.forms
 
         private void TIME_LISTENER_LOG_Tick(object sender, EventArgs e)
         {
+            var messageList = new List<string>();
             if (Settings.Default._connected && !_timeInProgress)
             {
                 _timeInProgress = true;
-                _deviceSetting.SendNewLog(out var messages, out var found);
-                if (found)
-                    foreach (var log in messages)
+                Task.Factory.StartNew(() =>
+                {
+                    _deviceSetting.SendNewLog(out var messages);
+                    messageList = messages;
+                }).ContinueWith(t =>
+                {
+                    messageList.ForEach(message =>
                     {
-                        LIST_DEVICE_HARDWARE.Items.Add(log);
-                        Settings.Default._consoleLogs.Add(log);
-                    }
-
-                _timeInProgress = false;
+                        LIST_DEVICE_HARDWARE.Items.Add(message);
+                        Settings.Default._consoleLogs.Add(message);
+                    });
+                    _timeInProgress = false;
+                }, TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
 

@@ -828,7 +828,7 @@ namespace NicaBiometrics.forms
             // 
             // TIME_LISTENER_LOG
             // 
-            this.TIME_LISTENER_LOG.Interval = 1000;
+            this.TIME_LISTENER_LOG.Interval = 400;
             this.TIME_LISTENER_LOG.Tick += new System.EventHandler(this.TIME_LISTENER_LOG_Tick);
             // 
             // notifyIcon1

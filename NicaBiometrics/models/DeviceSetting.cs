@@ -151,14 +151,14 @@ namespace NicaBiometrics.models
             if (Settings.Default._connected)
             {
                 _czkem.Disconnect();
-               // UnRegisterEvents();
+                // UnRegisterEvents();
                 SetConnected(false);
                 messages.Add(WriteLog(Resources.LABEL_DISCONNECT_WITH_DEVICE));
             }
 
             if (_czkem.Connect_Com(iPort, iDeviceId, iBaudrate))
             {
-              //  RegisterEvents(messages);
+                //  RegisterEvents(messages);
                 SetConnected(true);
                 messages.Add(WriteLog(Resources.LABEL_DEVICE_CONNECTED));
             }
@@ -218,6 +218,7 @@ namespace NicaBiometrics.models
             if (_czkem.RegEvent(Settings.Default._machineNo, 65535))
             {
                 // no fn events really worked
+                _czkem.OnFinger += () => { Console.WriteLine("Fingered"); };
                 messages.Add(Resources.LABEL_REGISTERED_EVENTS);
             }
             else
@@ -250,48 +251,47 @@ namespace NicaBiometrics.models
             return value;
         }
 
-        public void SendNewLog(out List<string> messages, out bool found)
+        public void SendNewLog(out List<string> messages)
         {
             messages = new List<string>();
-            found = false;
+            var count = 0;
             var dwWorkCode = 0;
             try
             {
                 if (Settings.Default._connected)
                 {
-                    _czkem.ReadGeneralLogData(Settings.Default._machineNo);
-
-                    found = _czkem.SSR_GetGeneralLogData(Settings.Default._machineNo,
-                        out var dwEnrollNumber,
-                        out _,
-                        out var dwInOutMode,
-                        out _,
-                        out _,
-                        out _,
-                        out _,
-                        out _,
-                        out _,
-                        ref dwWorkCode);
-
-                    if (found && !string.IsNullOrEmpty(dwEnrollNumber))
-
-                    {
-                        switch (dwInOutMode)
+                    _czkem.ReadAllGLogData(Settings.Default._machineNo);
+                    while (_czkem.SSR_GetGeneralLogData(
+                               Settings.Default._machineNo,
+                               out var dwEnrollNumber,
+                               out _,
+                               out var dwInOutMode,
+                               out _,
+                               out _,
+                               out _,
+                               out _,
+                               out _,
+                               out _,
+                               ref dwWorkCode))
+                        if (!string.IsNullOrEmpty(dwEnrollNumber))
                         {
-                            case OvertimeIn:
-                            case CheckedIn:
-                                _timeReport.TimeIn(dwEnrollNumber, out var messageList0);
-                                messages = messageList0;
-                                break;
-                            case CheckedOut:
-                            case OvertimeOut:
-                                _timeReport.TimeOut(dwEnrollNumber, out var messageList1);
-                                messages = messageList1;
-                                break;
+                            count++;
+                            switch (dwInOutMode)
+                            {
+                                case OvertimeIn:
+                                case CheckedIn:
+                                    _timeReport.TimeIn(dwEnrollNumber, out var messageList0);
+                                    messages = messageList0;
+                                    break;
+                                case CheckedOut:
+                                case OvertimeOut:
+                                    _timeReport.TimeOut(dwEnrollNumber, out var messageList1);
+                                    messages = messageList1;
+                                    break;
+                            }
                         }
 
-                        _czkem.ClearGLog(Settings.Default._machineNo);
-                    }
+                    if (count > 0) _czkem.ClearGLog(Settings.Default._machineNo);
                 }
             }
             catch (Exception e)
