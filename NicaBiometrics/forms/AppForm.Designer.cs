@@ -755,7 +755,7 @@ namespace NicaBiometrics.forms
             this.BUTTON_SEARCH_EMPLOYEE.Name = "BUTTON_SEARCH_EMPLOYEE";
             this.BUTTON_SEARCH_EMPLOYEE.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_SEARCH_EMPLOYEE.TabIndex = 5;
-            this.BUTTON_SEARCH_EMPLOYEE.Text = global::NicaBiometrics.Properties.Resources.LABEL_SEARCH;
+            this.BUTTON_SEARCH_EMPLOYEE.Text = global::NicaBiometrics.Properties.Resources.LABEL_REFRESH;
             this.BUTTON_SEARCH_EMPLOYEE.UseVisualStyleBackColor = true;
             this.BUTTON_SEARCH_EMPLOYEE.Click += new System.EventHandler(this.BUTTON_SEARCH_EMPLOYEE_Click);
             // 

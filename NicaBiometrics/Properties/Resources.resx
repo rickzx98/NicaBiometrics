@@ -334,4 +334,7 @@
   <data name="LABEL_FETCHING_EMPLOYEES_FROM_DEVICE" xml:space="preserve">
     <value>Fetching employees from device...</value>
   </data>
+  <data name="LABEL_REFRESH" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
 </root>

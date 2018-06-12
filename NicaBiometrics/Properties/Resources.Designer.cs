@@ -398,6 +398,15 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string LABEL_REFRESH {
+            get {
+                return ResourceManager.GetString("LABEL_REFRESH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refreshing server connection....
         /// </summary>
         internal static string LABEL_REFRESHING_SERVER_CONNECTION {

@@ -460,10 +460,12 @@ namespace NicaBiometrics.forms
 
         private void StartFetchingEmployees()
         {
+            PROGRESS_EMPLOYEE.Visible = true;
             TIME_EMPLOYEE.Start();
             VALUE_SEARCH_EMPLOYEE.Enabled = false;
             SELECT_COMPANIES.Enabled = false;
-            PROGRESS_EMPLOYEE.Visible = true;
+            BUTTON_SELECT_ALL.Enabled = false;
+            BUTTON_DESELECT_ALL.Enabled = false;
         }
 
         private void DoneFetchingEmployees()
@@ -472,14 +474,19 @@ namespace NicaBiometrics.forms
             VALUE_SEARCH_EMPLOYEE.Enabled = true;
             SELECT_COMPANIES.Enabled = true;
             PROGRESS_EMPLOYEE.Visible = false;
+            BUTTON_SELECT_ALL.Enabled = true;
+            BUTTON_DESELECT_ALL.Enabled = true;
             TIME_EMPLOYEE.Stop();
         }
 
         private void SELECT_COMPANIES_SelectedIndexChanged(object sender, EventArgs e)
         {
             var companyBox = (ComboBox) sender;
-            var company = (Companies.Company) companyBox.SelectedItem;
-            GetEmployees(company.Id);
+            if (companyBox.SelectedItem != null)
+            {
+                var company = (Companies.Company) companyBox.SelectedItem;
+                GetEmployees(company.Id);
+            }
         }
 
         private void SetEmployeeList()
@@ -502,7 +509,10 @@ namespace NicaBiometrics.forms
 
         private void VALUE_SEARCH_EMPLOYEE_TextChanged(object sender, EventArgs e)
         {
-            _employees.SetSearch(((TextBox) sender).Text);
+            var text = ((TextBox) sender).Text;
+            _employees.SetSearch(text);
+            BUTTON_SEARCH_EMPLOYEE.Text =
+                string.IsNullOrWhiteSpace(text) ? Resources.LABEL_REFRESH : Resources.LABEL_SEARCH;
         }
 
         private void VALUE_SEARCH_EMPLOYEE_KeyUp(object sender, KeyEventArgs e)
@@ -512,10 +522,18 @@ namespace NicaBiometrics.forms
 
         private void SearchEmployee()
         {
-            var selectCompany = (Companies.Company) SELECT_COMPANIES.SelectedItem;
-            _employees.SearchEmployees(out var employeeList, selectCompany.Id);
-            _employeeList = employeeList;
-            SetEmployeeList();
+            StartFetchingEmployees();
+            Task.Factory.StartNew(() =>
+                {
+                    if (SELECT_COMPANIES.SelectedItem != null)
+                    {
+                        var selectCompany = (Companies.Company) SELECT_COMPANIES.SelectedItem;
+                        _employees.LoadEmployees(out var employees, selectCompany.Id);
+                        _employeeList = employees;
+                    }
+                })
+                .ContinueWith(t => { DoneFetchingEmployees(); },
+                    TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private void BUTTON_SEARCH_EMPLOYEE_Click(object sender, EventArgs e)
