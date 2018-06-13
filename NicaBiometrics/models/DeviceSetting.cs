@@ -261,7 +261,7 @@ namespace NicaBiometrics.models
                 if (Settings.Default._connected)
                 {
                     _czkem.ReadAllGLogData(Settings.Default._machineNo);
-                    while (_czkem.SSR_GetGeneralLogData(
+                    while (!_czkem.QueryState(4) && _czkem.SSR_GetGeneralLogData(
                                Settings.Default._machineNo,
                                out var dwEnrollNumber,
                                out _,

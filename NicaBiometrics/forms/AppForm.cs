@@ -420,6 +420,7 @@ namespace NicaBiometrics.forms
             SELECT_COMPANIES.DataSource = _companyList;
             SELECT_COMPANIES.DisplayMember = "Name";
             SELECT_COMPANIES.ValueMember = "Id";
+            RefreshTabEmployee();
         }
 
         private void BUTTON_REMOVE_COMPANY_Click(object sender, EventArgs e)
@@ -580,6 +581,18 @@ namespace NicaBiometrics.forms
             {
                 Settings.Default._consoleLogs.Add(message);
                 LIST_DEVICE_HARDWARE.Items.Add(message);
+            }
+        }
+        
+        private void RefreshTabEmployee()
+        {
+            if (_companyList.Count > 0)
+            {
+                if (!TAB_FORM_TRAY.Controls.Contains(TAB_EMPLOYEE)) TAB_FORM_TRAY.Controls.Add(TAB_EMPLOYEE);
+            }
+            else
+            {
+                TAB_FORM_TRAY.Controls.Remove(TAB_EMPLOYEE);
             }
         }
     }
