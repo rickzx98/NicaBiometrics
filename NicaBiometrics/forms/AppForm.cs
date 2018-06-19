@@ -472,6 +472,7 @@ namespace NicaBiometrics.forms
             SELECT_COMPANIES.Enabled = false;
             BUTTON_SELECT_ALL.Enabled = false;
             BUTTON_DESELECT_ALL.Enabled = false;
+            BUTTON_SEARCH_EMPLOYEE.Enabled = false;
         }
 
         private void DoneFetchingEmployees()
@@ -482,6 +483,7 @@ namespace NicaBiometrics.forms
             PROGRESS_EMPLOYEE.Visible = false;
             BUTTON_SELECT_ALL.Enabled = true;
             BUTTON_DESELECT_ALL.Enabled = true;
+            BUTTON_SEARCH_EMPLOYEE.Enabled = true;
             TIME_EMPLOYEE.Stop();
         }
 
@@ -528,18 +530,18 @@ namespace NicaBiometrics.forms
 
         private void SearchEmployee()
         {
-            StartFetchingEmployees();
-            Task.Factory.StartNew(() =>
-                {
-                    if (SELECT_COMPANIES.SelectedItem != null)
+            if (SELECT_COMPANIES.SelectedItem != null)
+            {
+                var selectCompany = (Companies.Company) SELECT_COMPANIES.SelectedItem;
+                StartFetchingEmployees();
+                Task.Factory.StartNew(() =>
                     {
-                        var selectCompany = (Companies.Company) SELECT_COMPANIES.SelectedItem;
-                        _employees.LoadEmployees(out var employees, selectCompany.Id);
+                        _employees.SearchEmployees(out var employees, selectCompany.Id);
                         _employeeList = employees;
-                    }
-                })
-                .ContinueWith(t => { DoneFetchingEmployees(); },
-                    TaskScheduler.FromCurrentSynchronizationContext());
+                    })
+                    .ContinueWith(t => { DoneFetchingEmployees(); },
+                        TaskScheduler.FromCurrentSynchronizationContext());
+            }
         }
 
         private void BUTTON_SEARCH_EMPLOYEE_Click(object sender, EventArgs e)
@@ -583,7 +585,7 @@ namespace NicaBiometrics.forms
                 LIST_DEVICE_HARDWARE.Items.Add(message);
             }
         }
-        
+
         private void RefreshTabEmployee()
         {
             if (_companyList.Count > 0)

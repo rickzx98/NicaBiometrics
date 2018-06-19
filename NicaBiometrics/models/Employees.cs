@@ -58,10 +58,8 @@ namespace NicaBiometrics.models
             employeeUrl = employeeUrl.Replace(CompanyId, companyId.ToString());
             GetEmployees(currentEmployees, employeeUrl);
             if (currentEmployees.Count > 0)
-            {
                 employees = currentEmployees.Where(employee => employee.FullName.ToLower().Contains(_search.ToLower()))
                     .ToList();
-            }
         }
 
 
@@ -87,7 +85,9 @@ namespace NicaBiometrics.models
                     {
                         var id = int.Parse(company["id"].ToString());
                         var fullName = company["fullName"].ToString();
-                        var pin = int.Parse(company["pin"].ToString());
+                        var pin = company["pin"] != null && company["pin"].HasValues
+                            ? int.Parse(company["pin"].ToString())
+                            : 0;
 
                         var employee = new Employee(id, pin, fullName);
                         employee.IsChecked = _savedEmployees.Contains(employee);
