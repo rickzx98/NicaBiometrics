@@ -126,7 +126,7 @@
       <Value Profile="(Default)">/timeOut</Value>
     </Setting>
     <Setting Name="_serverEmployeeUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">/companies/{companyId}/employees</Value>
+      <Value Profile="(Default)">/companies/${companyId}/employees</Value>
     </Setting>
     <Setting Name="_serverLogs" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)" />

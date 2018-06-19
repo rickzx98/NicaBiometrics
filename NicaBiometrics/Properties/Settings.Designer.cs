@@ -456,7 +456,7 @@ namespace NicaBiometrics.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/companies/{companyId}/employees")]
+        [global::System.Configuration.DefaultSettingValueAttribute("/companies/${companyId}/employees")]
         public string _serverEmployeeUrl {
             get {
                 return ((string)(this["_serverEmployeeUrl"]));
