@@ -533,5 +533,16 @@ namespace NicaBiometrics.Properties {
                 this["_companies"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection _savedEmployees {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["_savedEmployees"]));
+            }
+            set {
+                this["_savedEmployees"] = value;
+            }
+        }
     }
 }

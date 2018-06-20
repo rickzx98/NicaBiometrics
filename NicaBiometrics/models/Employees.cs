@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -14,7 +15,6 @@ namespace NicaBiometrics.models
         private const string CompanyId = "${companyId}";
         private readonly DeviceSetting _deviceSetting;
         private readonly List<Employee> _toUpdateEmployees;
-        private List<Employee> _savedEmployees;
 
         private string _search;
 
@@ -23,7 +23,6 @@ namespace NicaBiometrics.models
             _search = "";
             _toUpdateEmployees = new List<Employee>();
             _deviceSetting = deviceSetting;
-            _savedEmployees = new List<Employee>();
         }
 
         public void SetSearch(string search)
@@ -36,8 +35,12 @@ namespace NicaBiometrics.models
             messageList = new List<string>();
             if (Settings.Default._connected)
             {
+                Settings.Default._savedEmployees = new StringCollection();
                 _deviceSetting.LoadEnrolledEmployees(out var employees, out var messages);
-                _savedEmployees = employees;
+                if (employees != null && employees.Count > 0)
+                    foreach (var employee in employees)
+                        Settings.Default._savedEmployees.Add(employee.Id.ToString());
+
                 messageList = messages;
             }
         }
@@ -90,7 +93,8 @@ namespace NicaBiometrics.models
                             : 0;
 
                         var employee = new Employee(id, pin, fullName);
-                        employee.IsChecked = _savedEmployees.Contains(employee);
+                        employee.IsChecked = Settings.Default._savedEmployees != null &&
+                                             Settings.Default._savedEmployees.Contains(employee.Id.ToString());
                         employees.Add(employee);
                     }
                 }
@@ -114,20 +118,22 @@ namespace NicaBiometrics.models
         public void SaveEmployees(out List<string> messageList)
         {
             messageList = new List<string>();
-
             foreach (var employee in _toUpdateEmployees)
                 if (employee.ToDelete)
                 {
                     _deviceSetting.DeleteEnrolledEmployee(employee, out var messages, out var deleted);
                     messageList = messages;
-                    if (deleted) _savedEmployees.Remove(employee);
+                    if (deleted)
+                        Settings.Default._savedEmployees.Remove(employee.Id.ToString());
                 }
                 else if (employee.ToSave)
                 {
                     _deviceSetting.EnrollEmployee(employee, out var messages, out var enrolled);
                     messageList = messages;
-                    if (enrolled) _savedEmployees.Add(employee);
+                    if (enrolled) Settings.Default._savedEmployees.Add(employee.Id.ToString());
                 }
+
+            Settings.Default.Save();
         }
 
         public struct Employee : IEquatable<Employee>

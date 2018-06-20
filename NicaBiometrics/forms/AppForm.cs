@@ -143,7 +143,7 @@ namespace NicaBiometrics.forms
             RefreshServerSettingComponents();
             RefreshServerLogs();
             LoadCompanies();
-            LoadEmployees();
+            //LoadEmployees();
         }
 
         private void LoadConsoleLogs()
@@ -265,6 +265,8 @@ namespace NicaBiometrics.forms
         private void ConnectDevice()
         {
             _deviceSetting.Connect(out _messages);
+            _employees.LoadDeviceEmployees(out var messages);
+            if (messages.Count > 0) messages.ForEach(msg => _messages.Add(msg));
         }
 
 
