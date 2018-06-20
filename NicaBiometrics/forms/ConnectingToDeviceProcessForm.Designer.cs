@@ -46,7 +46,7 @@
             this.LABEL_NB.BackColor = System.Drawing.Color.Transparent;
             this.LABEL_NB.Font = new System.Drawing.Font("Magneto", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LABEL_NB.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LABEL_NB.Location = new System.Drawing.Point(2, 9);
+            this.LABEL_NB.Location = new System.Drawing.Point(4, 12);
             this.LABEL_NB.Name = "LABEL_NB";
             this.LABEL_NB.Size = new System.Drawing.Size(67, 35);
             this.LABEL_NB.TabIndex = 5;
@@ -55,9 +55,9 @@
             // 
             // PROGRESS_CONNECTING_TO_DEVICE
             // 
-            this.PROGRESS_CONNECTING_TO_DEVICE.Location = new System.Drawing.Point(90, 61);
+            this.PROGRESS_CONNECTING_TO_DEVICE.Location = new System.Drawing.Point(75, 30);
             this.PROGRESS_CONNECTING_TO_DEVICE.Name = "PROGRESS_CONNECTING_TO_DEVICE";
-            this.PROGRESS_CONNECTING_TO_DEVICE.Size = new System.Drawing.Size(289, 23);
+            this.PROGRESS_CONNECTING_TO_DEVICE.Size = new System.Drawing.Size(329, 23);
             this.PROGRESS_CONNECTING_TO_DEVICE.Step = 1;
             this.PROGRESS_CONNECTING_TO_DEVICE.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.PROGRESS_CONNECTING_TO_DEVICE.TabIndex = 1;
@@ -70,7 +70,7 @@
             this.LABEL_CONNECTING_TO_DEVICE.BackColor = System.Drawing.Color.Transparent;
             this.LABEL_CONNECTING_TO_DEVICE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LABEL_CONNECTING_TO_DEVICE.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.LABEL_CONNECTING_TO_DEVICE.Location = new System.Drawing.Point(93, 39);
+            this.LABEL_CONNECTING_TO_DEVICE.Location = new System.Drawing.Point(78, 8);
             this.LABEL_CONNECTING_TO_DEVICE.Name = "LABEL_CONNECTING_TO_DEVICE";
             this.LABEL_CONNECTING_TO_DEVICE.Size = new System.Drawing.Size(169, 20);
             this.LABEL_CONNECTING_TO_DEVICE.TabIndex = 0;
@@ -81,8 +81,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(416, 125);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(413, 65);
             this.ControlBox = false;
             this.Controls.Add(this.LABEL_NB);
             this.Controls.Add(this.PROGRESS_CONNECTING_TO_DEVICE);

@@ -99,7 +99,6 @@ namespace NicaBiometrics.forms
             this.TIME_LISTENER_LOG = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyIcon2 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.PANEL_GDS = new System.Windows.Forms.Panel();
             this.LABEL_NB = new System.Windows.Forms.LinkLabel();
             this.APP_TRAY_ICON = new System.Windows.Forms.NotifyIcon(this.components);
             this.TIME_EMPLOYEE = new System.Windows.Forms.Timer(this.components);
@@ -155,26 +154,26 @@ namespace NicaBiometrics.forms
             this.TAB_FORM_TRAY.Controls.Add(this.TAB_REMOTE_CONTROL);
             this.TAB_FORM_TRAY.Controls.Add(this.TAB_COMPANY);
             this.TAB_FORM_TRAY.Controls.Add(this.TAB_EMPLOYEE);
-            this.TAB_FORM_TRAY.Location = new System.Drawing.Point(113, -1);
+            this.TAB_FORM_TRAY.Location = new System.Drawing.Point(74, -1);
             this.TAB_FORM_TRAY.Name = "TAB_FORM_TRAY";
             this.TAB_FORM_TRAY.SelectedIndex = 0;
-            this.TAB_FORM_TRAY.Size = new System.Drawing.Size(382, 440);
+            this.TAB_FORM_TRAY.Size = new System.Drawing.Size(421, 440);
             this.TAB_FORM_TRAY.TabIndex = 5;
             // 
             // TAB_DEVICE_SETTING
             // 
-            this.TAB_DEVICE_SETTING.BackColor = System.Drawing.Color.OldLace;
+            this.TAB_DEVICE_SETTING.BackColor = System.Drawing.Color.White;
             this.TAB_DEVICE_SETTING.Controls.Add(this.PANEL_DEVICE_NET_SETTING);
             this.TAB_DEVICE_SETTING.Location = new System.Drawing.Point(4, 22);
             this.TAB_DEVICE_SETTING.Name = "TAB_DEVICE_SETTING";
             this.TAB_DEVICE_SETTING.Padding = new System.Windows.Forms.Padding(3);
-            this.TAB_DEVICE_SETTING.Size = new System.Drawing.Size(374, 414);
+            this.TAB_DEVICE_SETTING.Size = new System.Drawing.Size(413, 414);
             this.TAB_DEVICE_SETTING.TabIndex = 0;
             this.TAB_DEVICE_SETTING.Text = "Device";
             // 
             // PANEL_DEVICE_NET_SETTING
             // 
-            this.PANEL_DEVICE_NET_SETTING.BackColor = System.Drawing.Color.Transparent;
+            this.PANEL_DEVICE_NET_SETTING.BackColor = System.Drawing.Color.White;
             this.PANEL_DEVICE_NET_SETTING.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.BUTTON_CLEAR_LOGS);
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.VALUE_DEVICE_ID);
@@ -193,7 +192,7 @@ namespace NicaBiometrics.forms
             this.PANEL_DEVICE_NET_SETTING.Controls.Add(this.VALUE_DEVICE_ADDRESS);
             this.PANEL_DEVICE_NET_SETTING.Location = new System.Drawing.Point(0, 0);
             this.PANEL_DEVICE_NET_SETTING.Name = "PANEL_DEVICE_NET_SETTING";
-            this.PANEL_DEVICE_NET_SETTING.Size = new System.Drawing.Size(378, 414);
+            this.PANEL_DEVICE_NET_SETTING.Size = new System.Drawing.Size(413, 418);
             this.PANEL_DEVICE_NET_SETTING.TabIndex = 7;
             this.PANEL_DEVICE_NET_SETTING.Tag = "PANEL_DEVICE_NET_SETTING";
             // 
@@ -253,10 +252,10 @@ namespace NicaBiometrics.forms
             this.LIST_DEVICE_HARDWARE.ForeColor = System.Drawing.SystemColors.Window;
             this.LIST_DEVICE_HARDWARE.FormattingEnabled = true;
             this.LIST_DEVICE_HARDWARE.HorizontalScrollbar = true;
-            this.LIST_DEVICE_HARDWARE.Location = new System.Drawing.Point(52, 266);
+            this.LIST_DEVICE_HARDWARE.Location = new System.Drawing.Point(13, 266);
             this.LIST_DEVICE_HARDWARE.Name = "LIST_DEVICE_HARDWARE";
             this.LIST_DEVICE_HARDWARE.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.LIST_DEVICE_HARDWARE.Size = new System.Drawing.Size(286, 134);
+            this.LIST_DEVICE_HARDWARE.Size = new System.Drawing.Size(390, 134);
             this.LIST_DEVICE_HARDWARE.TabIndex = 11;
             this.LIST_DEVICE_HARDWARE.Tag = "LIST_DEVICE_HARDWARE";
             // 
@@ -323,7 +322,7 @@ namespace NicaBiometrics.forms
             // LABEL_DEVICE_PORT
             // 
             this.LABEL_DEVICE_PORT.AutoSize = true;
-            this.LABEL_DEVICE_PORT.BackColor = System.Drawing.Color.OldLace;
+            this.LABEL_DEVICE_PORT.BackColor = System.Drawing.Color.White;
             this.LABEL_DEVICE_PORT.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.LABEL_DEVICE_PORT.Location = new System.Drawing.Point(80, 78);
             this.LABEL_DEVICE_PORT.Name = "LABEL_DEVICE_PORT";
@@ -334,7 +333,7 @@ namespace NicaBiometrics.forms
             // LABEL_DEVICE_ADDRESS
             // 
             this.LABEL_DEVICE_ADDRESS.AutoSize = true;
-            this.LABEL_DEVICE_ADDRESS.BackColor = System.Drawing.Color.OldLace;
+            this.LABEL_DEVICE_ADDRESS.BackColor = System.Drawing.Color.White;
             this.LABEL_DEVICE_ADDRESS.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.LABEL_DEVICE_ADDRESS.Location = new System.Drawing.Point(10, 52);
             this.LABEL_DEVICE_ADDRESS.Name = "LABEL_DEVICE_ADDRESS";
@@ -368,13 +367,13 @@ namespace NicaBiometrics.forms
             this.TAB_SERVER_SETTING.Location = new System.Drawing.Point(4, 22);
             this.TAB_SERVER_SETTING.Name = "TAB_SERVER_SETTING";
             this.TAB_SERVER_SETTING.Padding = new System.Windows.Forms.Padding(3);
-            this.TAB_SERVER_SETTING.Size = new System.Drawing.Size(374, 414);
+            this.TAB_SERVER_SETTING.Size = new System.Drawing.Size(413, 414);
             this.TAB_SERVER_SETTING.TabIndex = 1;
             this.TAB_SERVER_SETTING.Text = "Server";
             // 
             // PANEL_SERVER_SETTING
             // 
-            this.PANEL_SERVER_SETTING.BackColor = System.Drawing.Color.Transparent;
+            this.PANEL_SERVER_SETTING.BackColor = System.Drawing.Color.White;
             this.PANEL_SERVER_SETTING.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PANEL_SERVER_SETTING.Controls.Add(this.LABEL_COMPANY_URL);
             this.PANEL_SERVER_SETTING.Controls.Add(this.VALUE_COMPANY_URL);
@@ -392,7 +391,7 @@ namespace NicaBiometrics.forms
             this.PANEL_SERVER_SETTING.Controls.Add(this.LABEL_SERVER_IPADDRESS);
             this.PANEL_SERVER_SETTING.Location = new System.Drawing.Point(0, 0);
             this.PANEL_SERVER_SETTING.Name = "PANEL_SERVER_SETTING";
-            this.PANEL_SERVER_SETTING.Size = new System.Drawing.Size(374, 414);
+            this.PANEL_SERVER_SETTING.Size = new System.Drawing.Size(413, 414);
             this.PANEL_SERVER_SETTING.TabIndex = 9;
             // 
             // LABEL_COMPANY_URL
@@ -419,10 +418,10 @@ namespace NicaBiometrics.forms
             this.LIST_SERVER_LOGS.ForeColor = System.Drawing.SystemColors.Window;
             this.LIST_SERVER_LOGS.FormattingEnabled = true;
             this.LIST_SERVER_LOGS.HorizontalScrollbar = true;
-            this.LIST_SERVER_LOGS.Location = new System.Drawing.Point(52, 266);
+            this.LIST_SERVER_LOGS.Location = new System.Drawing.Point(13, 266);
             this.LIST_SERVER_LOGS.Name = "LIST_SERVER_LOGS";
             this.LIST_SERVER_LOGS.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.LIST_SERVER_LOGS.Size = new System.Drawing.Size(286, 134);
+            this.LIST_SERVER_LOGS.Size = new System.Drawing.Size(390, 134);
             this.LIST_SERVER_LOGS.TabIndex = 21;
             this.LIST_SERVER_LOGS.Tag = "LIST_SERVER_LOGS";
             // 
@@ -538,7 +537,8 @@ namespace NicaBiometrics.forms
             // 
             // TAB_REMOTE_CONTROL
             // 
-            this.TAB_REMOTE_CONTROL.BackColor = System.Drawing.Color.OldLace;
+            this.TAB_REMOTE_CONTROL.BackColor = System.Drawing.Color.White;
+            this.TAB_REMOTE_CONTROL.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TAB_REMOTE_CONTROL.Controls.Add(this.VALUE_BIOTMETRIC_TYPE);
             this.TAB_REMOTE_CONTROL.Controls.Add(this.LABEL_BIOMETRIC_TYPE);
             this.TAB_REMOTE_CONTROL.Controls.Add(this.VALUE_MAC_ADD);
@@ -552,7 +552,7 @@ namespace NicaBiometrics.forms
             this.TAB_REMOTE_CONTROL.Location = new System.Drawing.Point(4, 22);
             this.TAB_REMOTE_CONTROL.Name = "TAB_REMOTE_CONTROL";
             this.TAB_REMOTE_CONTROL.Padding = new System.Windows.Forms.Padding(3);
-            this.TAB_REMOTE_CONTROL.Size = new System.Drawing.Size(374, 414);
+            this.TAB_REMOTE_CONTROL.Size = new System.Drawing.Size(413, 414);
             this.TAB_REMOTE_CONTROL.TabIndex = 2;
             this.TAB_REMOTE_CONTROL.Tag = "TAB_REMOTE_CONTROL";
             this.TAB_REMOTE_CONTROL.Text = global::NicaBiometrics.Properties.Resources.LABEL_REMOTE;
@@ -562,7 +562,7 @@ namespace NicaBiometrics.forms
             this.VALUE_BIOTMETRIC_TYPE.Location = new System.Drawing.Point(232, 103);
             this.VALUE_BIOTMETRIC_TYPE.Name = "VALUE_BIOTMETRIC_TYPE";
             this.VALUE_BIOTMETRIC_TYPE.ReadOnly = true;
-            this.VALUE_BIOTMETRIC_TYPE.Size = new System.Drawing.Size(127, 20);
+            this.VALUE_BIOTMETRIC_TYPE.Size = new System.Drawing.Size(171, 20);
             this.VALUE_BIOTMETRIC_TYPE.TabIndex = 10;
             this.VALUE_BIOTMETRIC_TYPE.Tag = "VALUE_BIOTMETRIC_TYPE";
             // 
@@ -581,7 +581,7 @@ namespace NicaBiometrics.forms
             this.VALUE_MAC_ADD.Location = new System.Drawing.Point(232, 72);
             this.VALUE_MAC_ADD.Name = "VALUE_MAC_ADD";
             this.VALUE_MAC_ADD.ReadOnly = true;
-            this.VALUE_MAC_ADD.Size = new System.Drawing.Size(127, 20);
+            this.VALUE_MAC_ADD.Size = new System.Drawing.Size(171, 20);
             this.VALUE_MAC_ADD.TabIndex = 8;
             this.VALUE_MAC_ADD.Tag = "VALUE_MAC_ADD";
             // 
@@ -613,7 +613,7 @@ namespace NicaBiometrics.forms
             this.VALUE_SERIAL.Location = new System.Drawing.Point(232, 45);
             this.VALUE_SERIAL.Name = "VALUE_SERIAL";
             this.VALUE_SERIAL.ReadOnly = true;
-            this.VALUE_SERIAL.Size = new System.Drawing.Size(127, 20);
+            this.VALUE_SERIAL.Size = new System.Drawing.Size(171, 20);
             this.VALUE_SERIAL.TabIndex = 4;
             this.VALUE_SERIAL.Tag = "VALUE_SERIAL";
             // 
@@ -632,7 +632,7 @@ namespace NicaBiometrics.forms
             this.VALUE_DEVICE_NAME.Location = new System.Drawing.Point(232, 19);
             this.VALUE_DEVICE_NAME.Name = "VALUE_DEVICE_NAME";
             this.VALUE_DEVICE_NAME.ReadOnly = true;
-            this.VALUE_DEVICE_NAME.Size = new System.Drawing.Size(127, 20);
+            this.VALUE_DEVICE_NAME.Size = new System.Drawing.Size(171, 20);
             this.VALUE_DEVICE_NAME.TabIndex = 2;
             this.VALUE_DEVICE_NAME.Tag = "VALUE_DEVICE_NAME";
             this.VALUE_DEVICE_NAME.Text = "ZKT 629";
@@ -660,14 +660,15 @@ namespace NicaBiometrics.forms
             // 
             // TAB_COMPANY
             // 
-            this.TAB_COMPANY.BackColor = System.Drawing.Color.OldLace;
+            this.TAB_COMPANY.BackColor = System.Drawing.Color.White;
+            this.TAB_COMPANY.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TAB_COMPANY.Controls.Add(this.BUTTON_REMOVE_COMPANY);
             this.TAB_COMPANY.Controls.Add(this.BUTTON_ADD_COMPANY);
             this.TAB_COMPANY.Controls.Add(this.LIST_COMPANIES);
             this.TAB_COMPANY.Location = new System.Drawing.Point(4, 22);
             this.TAB_COMPANY.Name = "TAB_COMPANY";
             this.TAB_COMPANY.Padding = new System.Windows.Forms.Padding(3);
-            this.TAB_COMPANY.Size = new System.Drawing.Size(374, 414);
+            this.TAB_COMPANY.Size = new System.Drawing.Size(413, 414);
             this.TAB_COMPANY.TabIndex = 3;
             this.TAB_COMPANY.Tag = "TAB_COMPANY";
             this.TAB_COMPANY.Text = global::NicaBiometrics.Properties.Resources.LABEL_COMPANY;
@@ -675,7 +676,7 @@ namespace NicaBiometrics.forms
             // BUTTON_REMOVE_COMPANY
             // 
             this.BUTTON_REMOVE_COMPANY.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_REMOVE_COMPANY.Location = new System.Drawing.Point(268, 15);
+            this.BUTTON_REMOVE_COMPANY.Location = new System.Drawing.Point(319, 12);
             this.BUTTON_REMOVE_COMPANY.Name = "BUTTON_REMOVE_COMPANY";
             this.BUTTON_REMOVE_COMPANY.Size = new System.Drawing.Size(70, 30);
             this.BUTTON_REMOVE_COMPANY.TabIndex = 2;
@@ -687,7 +688,7 @@ namespace NicaBiometrics.forms
             // BUTTON_ADD_COMPANY
             // 
             this.BUTTON_ADD_COMPANY.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_ADD_COMPANY.Location = new System.Drawing.Point(192, 15);
+            this.BUTTON_ADD_COMPANY.Location = new System.Drawing.Point(243, 12);
             this.BUTTON_ADD_COMPANY.Name = "BUTTON_ADD_COMPANY";
             this.BUTTON_ADD_COMPANY.Size = new System.Drawing.Size(70, 30);
             this.BUTTON_ADD_COMPANY.TabIndex = 1;
@@ -701,15 +702,16 @@ namespace NicaBiometrics.forms
             this.LIST_COMPANIES.CheckOnClick = true;
             this.LIST_COMPANIES.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LIST_COMPANIES.FormattingEnabled = true;
-            this.LIST_COMPANIES.Location = new System.Drawing.Point(52, 48);
+            this.LIST_COMPANIES.Location = new System.Drawing.Point(25, 48);
             this.LIST_COMPANIES.Name = "LIST_COMPANIES";
-            this.LIST_COMPANIES.Size = new System.Drawing.Size(286, 340);
+            this.LIST_COMPANIES.Size = new System.Drawing.Size(364, 340);
             this.LIST_COMPANIES.TabIndex = 0;
             this.LIST_COMPANIES.Tag = "LIST_COMPANIES";
             // 
             // TAB_EMPLOYEE
             // 
-            this.TAB_EMPLOYEE.BackColor = System.Drawing.Color.OldLace;
+            this.TAB_EMPLOYEE.BackColor = System.Drawing.Color.White;
+            this.TAB_EMPLOYEE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TAB_EMPLOYEE.Controls.Add(this.BUTTON_SAVE_EMPLOYEES);
             this.TAB_EMPLOYEE.Controls.Add(this.PROGRESS_EMPLOYEE);
             this.TAB_EMPLOYEE.Controls.Add(this.BUTTON_SEARCH_EMPLOYEE);
@@ -721,7 +723,7 @@ namespace NicaBiometrics.forms
             this.TAB_EMPLOYEE.Location = new System.Drawing.Point(4, 22);
             this.TAB_EMPLOYEE.Name = "TAB_EMPLOYEE";
             this.TAB_EMPLOYEE.Padding = new System.Windows.Forms.Padding(3);
-            this.TAB_EMPLOYEE.Size = new System.Drawing.Size(374, 414);
+            this.TAB_EMPLOYEE.Size = new System.Drawing.Size(413, 414);
             this.TAB_EMPLOYEE.TabIndex = 4;
             this.TAB_EMPLOYEE.Tag = "TAB_EMPLOYEE";
             this.TAB_EMPLOYEE.Text = global::NicaBiometrics.Properties.Resources.LABEL_EMPLOYEE;
@@ -729,7 +731,7 @@ namespace NicaBiometrics.forms
             // BUTTON_SAVE_EMPLOYEES
             // 
             this.BUTTON_SAVE_EMPLOYEES.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_SAVE_EMPLOYEES.Location = new System.Drawing.Point(216, 74);
+            this.BUTTON_SAVE_EMPLOYEES.Location = new System.Drawing.Point(187, 74);
             this.BUTTON_SAVE_EMPLOYEES.Name = "BUTTON_SAVE_EMPLOYEES";
             this.BUTTON_SAVE_EMPLOYEES.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_SAVE_EMPLOYEES.TabIndex = 7;
@@ -741,9 +743,9 @@ namespace NicaBiometrics.forms
             // PROGRESS_EMPLOYEE
             // 
             this.PROGRESS_EMPLOYEE.Cursor = System.Windows.Forms.Cursors.Default;
-            this.PROGRESS_EMPLOYEE.Location = new System.Drawing.Point(52, 391);
+            this.PROGRESS_EMPLOYEE.Location = new System.Drawing.Point(25, 390);
             this.PROGRESS_EMPLOYEE.Name = "PROGRESS_EMPLOYEE";
-            this.PROGRESS_EMPLOYEE.Size = new System.Drawing.Size(286, 20);
+            this.PROGRESS_EMPLOYEE.Size = new System.Drawing.Size(364, 20);
             this.PROGRESS_EMPLOYEE.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.PROGRESS_EMPLOYEE.TabIndex = 6;
             this.PROGRESS_EMPLOYEE.Tag = "PROGRESS_EMPLOYEE";
@@ -751,7 +753,7 @@ namespace NicaBiometrics.forms
             // BUTTON_SEARCH_EMPLOYEE
             // 
             this.BUTTON_SEARCH_EMPLOYEE.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_SEARCH_EMPLOYEE.Location = new System.Drawing.Point(263, 42);
+            this.BUTTON_SEARCH_EMPLOYEE.Location = new System.Drawing.Point(314, 42);
             this.BUTTON_SEARCH_EMPLOYEE.Name = "BUTTON_SEARCH_EMPLOYEE";
             this.BUTTON_SEARCH_EMPLOYEE.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_SEARCH_EMPLOYEE.TabIndex = 5;
@@ -762,7 +764,7 @@ namespace NicaBiometrics.forms
             // BUTTON_DESELECT_ALL
             // 
             this.BUTTON_DESELECT_ALL.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_DESELECT_ALL.Location = new System.Drawing.Point(134, 74);
+            this.BUTTON_DESELECT_ALL.Location = new System.Drawing.Point(106, 74);
             this.BUTTON_DESELECT_ALL.Name = "BUTTON_DESELECT_ALL";
             this.BUTTON_DESELECT_ALL.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_DESELECT_ALL.TabIndex = 4;
@@ -774,7 +776,7 @@ namespace NicaBiometrics.forms
             // BUTTON_SELECT_ALL
             // 
             this.BUTTON_SELECT_ALL.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_SELECT_ALL.Location = new System.Drawing.Point(52, 74);
+            this.BUTTON_SELECT_ALL.Location = new System.Drawing.Point(25, 74);
             this.BUTTON_SELECT_ALL.Name = "BUTTON_SELECT_ALL";
             this.BUTTON_SELECT_ALL.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_SELECT_ALL.TabIndex = 3;
@@ -785,9 +787,9 @@ namespace NicaBiometrics.forms
             // 
             // VALUE_SEARCH_EMPLOYEE
             // 
-            this.VALUE_SEARCH_EMPLOYEE.Location = new System.Drawing.Point(52, 47);
+            this.VALUE_SEARCH_EMPLOYEE.Location = new System.Drawing.Point(25, 48);
             this.VALUE_SEARCH_EMPLOYEE.Name = "VALUE_SEARCH_EMPLOYEE";
-            this.VALUE_SEARCH_EMPLOYEE.Size = new System.Drawing.Size(199, 20);
+            this.VALUE_SEARCH_EMPLOYEE.Size = new System.Drawing.Size(283, 20);
             this.VALUE_SEARCH_EMPLOYEE.TabIndex = 2;
             this.VALUE_SEARCH_EMPLOYEE.Tag = "VALUE_SEARCH_EMPLOYEE";
             this.VALUE_SEARCH_EMPLOYEE.TextChanged += new System.EventHandler(this.VALUE_SEARCH_EMPLOYEE_TextChanged);
@@ -798,9 +800,9 @@ namespace NicaBiometrics.forms
             this.LIST_EMPLOYEES.CheckOnClick = true;
             this.LIST_EMPLOYEES.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LIST_EMPLOYEES.FormattingEnabled = true;
-            this.LIST_EMPLOYEES.Location = new System.Drawing.Point(52, 108);
+            this.LIST_EMPLOYEES.Location = new System.Drawing.Point(25, 108);
             this.LIST_EMPLOYEES.Name = "LIST_EMPLOYEES";
-            this.LIST_EMPLOYEES.Size = new System.Drawing.Size(286, 277);
+            this.LIST_EMPLOYEES.Size = new System.Drawing.Size(364, 277);
             this.LIST_EMPLOYEES.TabIndex = 1;
             this.LIST_EMPLOYEES.Tag = "LIST_EMPLOYEES";
             this.LIST_EMPLOYEES.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.LIST_EMPLOYEES_ItemCheck);
@@ -810,9 +812,9 @@ namespace NicaBiometrics.forms
             this.SELECT_COMPANIES.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SELECT_COMPANIES.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.SELECT_COMPANIES.FormattingEnabled = true;
-            this.SELECT_COMPANIES.Location = new System.Drawing.Point(52, 15);
+            this.SELECT_COMPANIES.Location = new System.Drawing.Point(25, 15);
             this.SELECT_COMPANIES.Name = "SELECT_COMPANIES";
-            this.SELECT_COMPANIES.Size = new System.Drawing.Size(286, 21);
+            this.SELECT_COMPANIES.Size = new System.Drawing.Size(364, 21);
             this.SELECT_COMPANIES.TabIndex = 0;
             this.SELECT_COMPANIES.Tag = "SELECT_COMPANIES";
             this.SELECT_COMPANIES.SelectedIndexChanged += new System.EventHandler(this.SELECT_COMPANIES_SelectedIndexChanged);
@@ -840,24 +842,13 @@ namespace NicaBiometrics.forms
             this.notifyIcon2.Text = "notifyIcon2";
             this.notifyIcon2.Visible = true;
             // 
-            // PANEL_GDS
-            // 
-            this.PANEL_GDS.BackColor = System.Drawing.Color.Transparent;
-            this.PANEL_GDS.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PANEL_GDS.BackgroundImage")));
-            this.PANEL_GDS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PANEL_GDS.Location = new System.Drawing.Point(29, 364);
-            this.PANEL_GDS.Name = "PANEL_GDS";
-            this.PANEL_GDS.Size = new System.Drawing.Size(61, 63);
-            this.PANEL_GDS.TabIndex = 6;
-            this.PANEL_GDS.Tag = "PANEL_GDS";
-            // 
             // LABEL_NB
             // 
             this.LABEL_NB.AutoSize = true;
             this.LABEL_NB.BackColor = System.Drawing.Color.Transparent;
             this.LABEL_NB.Font = new System.Drawing.Font("Magneto", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LABEL_NB.LinkColor = System.Drawing.Color.Red;
-            this.LABEL_NB.Location = new System.Drawing.Point(23, 9);
+            this.LABEL_NB.Location = new System.Drawing.Point(5, 6);
             this.LABEL_NB.Name = "LABEL_NB";
             this.LABEL_NB.Size = new System.Drawing.Size(67, 35);
             this.LABEL_NB.TabIndex = 4;
@@ -880,11 +871,9 @@ namespace NicaBiometrics.forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.Color.OldLace;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(495, 439);
-            this.Controls.Add(this.PANEL_GDS);
             this.Controls.Add(this.LABEL_NB);
             this.Controls.Add(this.TAB_FORM_TRAY);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -971,7 +960,6 @@ namespace NicaBiometrics.forms
         private System.Windows.Forms.Button BUTTON_CLEAR_SERVER_LOGS;
         private System.Windows.Forms.ListBox LIST_SERVER_LOGS;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.Panel PANEL_GDS;
         private System.Windows.Forms.NotifyIcon notifyIcon2;
         private System.Windows.Forms.TextBox VALUE_COMPANY_URL;
         private System.Windows.Forms.Label LABEL_COMPANY_URL;

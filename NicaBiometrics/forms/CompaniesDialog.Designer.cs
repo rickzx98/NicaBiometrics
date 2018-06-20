@@ -43,7 +43,7 @@ namespace NicaBiometrics.forms
             // 
             // VALUE_FIND_COMPANY
             // 
-            this.VALUE_FIND_COMPANY.Location = new System.Drawing.Point(58, 58);
+            this.VALUE_FIND_COMPANY.Location = new System.Drawing.Point(24, 56);
             this.VALUE_FIND_COMPANY.Name = "VALUE_FIND_COMPANY";
             this.VALUE_FIND_COMPANY.Size = new System.Drawing.Size(234, 20);
             this.VALUE_FIND_COMPANY.TabIndex = 0;
@@ -54,7 +54,7 @@ namespace NicaBiometrics.forms
             // BUTTON_SEARCH_COMPANY
             // 
             this.BUTTON_SEARCH_COMPANY.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_SEARCH_COMPANY.Location = new System.Drawing.Point(298, 52);
+            this.BUTTON_SEARCH_COMPANY.Location = new System.Drawing.Point(264, 50);
             this.BUTTON_SEARCH_COMPANY.Name = "BUTTON_SEARCH_COMPANY";
             this.BUTTON_SEARCH_COMPANY.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_SEARCH_COMPANY.TabIndex = 1;
@@ -68,7 +68,7 @@ namespace NicaBiometrics.forms
             this.LIST_COMPANIES.CheckOnClick = true;
             this.LIST_COMPANIES.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LIST_COMPANIES.FormattingEnabled = true;
-            this.LIST_COMPANIES.Location = new System.Drawing.Point(58, 84);
+            this.LIST_COMPANIES.Location = new System.Drawing.Point(24, 82);
             this.LIST_COMPANIES.Name = "LIST_COMPANIES";
             this.LIST_COMPANIES.Size = new System.Drawing.Size(315, 256);
             this.LIST_COMPANIES.TabIndex = 2;
@@ -78,7 +78,7 @@ namespace NicaBiometrics.forms
             // BUTTON_CANCEL
             // 
             this.BUTTON_CANCEL.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_CANCEL.Location = new System.Drawing.Point(139, 353);
+            this.BUTTON_CANCEL.Location = new System.Drawing.Point(105, 351);
             this.BUTTON_CANCEL.Name = "BUTTON_CANCEL";
             this.BUTTON_CANCEL.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_CANCEL.TabIndex = 4;
@@ -90,7 +90,7 @@ namespace NicaBiometrics.forms
             // BUTTON_SAVE
             // 
             this.BUTTON_SAVE.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_SAVE.Location = new System.Drawing.Point(58, 353);
+            this.BUTTON_SAVE.Location = new System.Drawing.Point(24, 351);
             this.BUTTON_SAVE.Name = "BUTTON_SAVE";
             this.BUTTON_SAVE.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_SAVE.TabIndex = 5;
@@ -106,7 +106,7 @@ namespace NicaBiometrics.forms
             // 
             // PROGRESS_SEARCH
             // 
-            this.PROGRESS_SEARCH.Location = new System.Drawing.Point(58, 26);
+            this.PROGRESS_SEARCH.Location = new System.Drawing.Point(24, 24);
             this.PROGRESS_SEARCH.Name = "PROGRESS_SEARCH";
             this.PROGRESS_SEARCH.Size = new System.Drawing.Size(315, 20);
             this.PROGRESS_SEARCH.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -117,8 +117,8 @@ namespace NicaBiometrics.forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::NicaBiometrics.Properties.Resources.search_header;
-            this.ClientSize = new System.Drawing.Size(395, 395);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(364, 392);
             this.Controls.Add(this.PROGRESS_SEARCH);
             this.Controls.Add(this.BUTTON_SAVE);
             this.Controls.Add(this.BUTTON_CANCEL);
@@ -126,6 +126,8 @@ namespace NicaBiometrics.forms
             this.Controls.Add(this.BUTTON_SEARCH_COMPANY);
             this.Controls.Add(this.VALUE_FIND_COMPANY);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(380, 431);
+            this.MinimumSize = new System.Drawing.Size(380, 431);
             this.Name = "CompaniesDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Companies";
