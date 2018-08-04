@@ -15,6 +15,7 @@ namespace NicaBiometrics.forms
         private readonly DeviceSetting _deviceSetting;
         private readonly Employees _employees;
         private readonly ServerSetting _serverSetting;
+        private readonly UserSession _userSession;
         private List<Companies.Company> _companyList;
         private List<Employees.Employee> _employeeList;
         private List<string> _messages;
@@ -25,10 +26,11 @@ namespace NicaBiometrics.forms
         public TRAY_FORM()
         {
             _shutdown = false;
-            _deviceSetting = new DeviceSetting();
-            _serverSetting = new ServerSetting();
-            _employees = new Employees(_deviceSetting);
-            _companies = new Companies();
+            _userSession = new UserSession();
+            _deviceSetting = new DeviceSetting(_userSession);
+            _serverSetting = new ServerSetting(_userSession);
+            _employees = new Employees(_deviceSetting, _userSession);
+            _companies = new Companies(_userSession);
             InitializeComponent();
         }
 
@@ -143,7 +145,6 @@ namespace NicaBiometrics.forms
             RefreshServerSettingComponents();
             RefreshServerLogs();
             LoadCompanies();
-            //LoadEmployees();
         }
 
         private void LoadConsoleLogs()
@@ -343,16 +344,11 @@ namespace NicaBiometrics.forms
         private void RefreshServerSettingComponents()
         {
             VALUE_SERVER_ADDRESS.Text = Settings.Default._serverAddress;
-            VALUE_TIMEIN_URL.Text = Settings.Default._serverTimeinUrl;
-            VALUE_TIMEOUT_URL.Text = Settings.Default._serverTimeoutUrl;
-            VALUE_EMPLOYEE_URL.Text = Settings.Default._serverEmployeeUrl;
-            VALUE_COMPANY_URL.Text = Settings.Default._serverCompanyUrl;
+            VALUE_PASSWORD.Text = Settings.Default._serverPassword;
+            VALUE_USERNAME.Text = Settings.Default._serverUsername;
             BUTTON_CONNECT_SERVER.Enabled = !Settings.Default._connectedServer;
             BUTTON_REFRESH_SERVER.Enabled = Settings.Default._connectedServer;
-            VALUE_TIMEIN_URL.Enabled = Settings.Default._connectedServer;
-            VALUE_TIMEOUT_URL.Enabled = Settings.Default._connectedServer;
-            VALUE_EMPLOYEE_URL.Enabled = Settings.Default._connectedServer;
-            VALUE_COMPANY_URL.Enabled = Settings.Default._connectedServer;
+
             if (Settings.Default._connectedServer && !string.IsNullOrWhiteSpace(Settings.Default._serverCompanyUrl))
             {
                 if (!TAB_FORM_TRAY.Controls.Contains(TAB_COMPANY)) TAB_FORM_TRAY.Controls.Add(TAB_COMPANY);
@@ -598,6 +594,18 @@ namespace NicaBiometrics.forms
             {
                 TAB_FORM_TRAY.Controls.Remove(TAB_EMPLOYEE);
             }
+        }
+
+        private void VALUE_USERNAME_TextChanged(object sender, EventArgs e)
+        {
+            var text = (TextBox) sender;
+            _userSession.SetUsername(text.Text);
+        }
+
+        private void VALUE_PASSWORD_TextChanged(object sender, EventArgs e)
+        {
+            var text = (TextBox) sender;
+            _userSession.SetPassword(text.Text);
         }
     }
 }

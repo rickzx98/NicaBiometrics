@@ -56,16 +56,12 @@ namespace NicaBiometrics.forms
             this.VALUE_DEVICE_ADDRESS = new System.Windows.Forms.TextBox();
             this.TAB_SERVER_SETTING = new System.Windows.Forms.TabPage();
             this.PANEL_SERVER_SETTING = new System.Windows.Forms.Panel();
-            this.LABEL_COMPANY_URL = new System.Windows.Forms.Label();
-            this.VALUE_COMPANY_URL = new System.Windows.Forms.TextBox();
+            this.VALUE_PASSWORD = new System.Windows.Forms.TextBox();
+            this.VALUE_USERNAME = new System.Windows.Forms.TextBox();
+            this.LABEL_PASSWORD = new System.Windows.Forms.Label();
+            this.LABEL_USERNAME = new System.Windows.Forms.Label();
             this.LIST_SERVER_LOGS = new System.Windows.Forms.ListBox();
             this.BUTTON_CLEAR_SERVER_LOGS = new System.Windows.Forms.Button();
-            this.VALUE_EMPLOYEE_URL = new System.Windows.Forms.TextBox();
-            this.LABEL_EMPLOYEE_URL = new System.Windows.Forms.Label();
-            this.VALUE_TIMEOUT_URL = new System.Windows.Forms.TextBox();
-            this.VALUE_TIMEIN_URL = new System.Windows.Forms.TextBox();
-            this.LABEL_TIMEOUT_URL = new System.Windows.Forms.Label();
-            this.LABEL_TIMEIN_URL = new System.Windows.Forms.Label();
             this.VALUE_SERVER_ADDRESS = new System.Windows.Forms.TextBox();
             this.BUTTON_REFRESH_SERVER = new System.Windows.Forms.Button();
             this.BUTTON_CONNECT_SERVER = new System.Windows.Forms.Button();
@@ -102,6 +98,7 @@ namespace NicaBiometrics.forms
             this.LABEL_NB = new System.Windows.Forms.LinkLabel();
             this.APP_TRAY_ICON = new System.Windows.Forms.NotifyIcon(this.components);
             this.TIME_EMPLOYEE = new System.Windows.Forms.Timer(this.components);
+            this.JAR_BROWSER = new System.Windows.Forms.OpenFileDialog();
             APP_CONTEXT_MENU = new System.Windows.Forms.ContextMenuStrip(this.components);
             APP_CONTEXT_MENU.SuspendLayout();
             this.TAB_FORM_TRAY.SuspendLayout();
@@ -375,16 +372,12 @@ namespace NicaBiometrics.forms
             // 
             this.PANEL_SERVER_SETTING.BackColor = System.Drawing.Color.White;
             this.PANEL_SERVER_SETTING.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PANEL_SERVER_SETTING.Controls.Add(this.LABEL_COMPANY_URL);
-            this.PANEL_SERVER_SETTING.Controls.Add(this.VALUE_COMPANY_URL);
+            this.PANEL_SERVER_SETTING.Controls.Add(this.VALUE_PASSWORD);
+            this.PANEL_SERVER_SETTING.Controls.Add(this.VALUE_USERNAME);
+            this.PANEL_SERVER_SETTING.Controls.Add(this.LABEL_PASSWORD);
+            this.PANEL_SERVER_SETTING.Controls.Add(this.LABEL_USERNAME);
             this.PANEL_SERVER_SETTING.Controls.Add(this.LIST_SERVER_LOGS);
             this.PANEL_SERVER_SETTING.Controls.Add(this.BUTTON_CLEAR_SERVER_LOGS);
-            this.PANEL_SERVER_SETTING.Controls.Add(this.VALUE_EMPLOYEE_URL);
-            this.PANEL_SERVER_SETTING.Controls.Add(this.LABEL_EMPLOYEE_URL);
-            this.PANEL_SERVER_SETTING.Controls.Add(this.VALUE_TIMEOUT_URL);
-            this.PANEL_SERVER_SETTING.Controls.Add(this.VALUE_TIMEIN_URL);
-            this.PANEL_SERVER_SETTING.Controls.Add(this.LABEL_TIMEOUT_URL);
-            this.PANEL_SERVER_SETTING.Controls.Add(this.LABEL_TIMEIN_URL);
             this.PANEL_SERVER_SETTING.Controls.Add(this.VALUE_SERVER_ADDRESS);
             this.PANEL_SERVER_SETTING.Controls.Add(this.BUTTON_REFRESH_SERVER);
             this.PANEL_SERVER_SETTING.Controls.Add(this.BUTTON_CONNECT_SERVER);
@@ -394,23 +387,44 @@ namespace NicaBiometrics.forms
             this.PANEL_SERVER_SETTING.Size = new System.Drawing.Size(413, 414);
             this.PANEL_SERVER_SETTING.TabIndex = 9;
             // 
-            // LABEL_COMPANY_URL
+            // VALUE_PASSWORD
             // 
-            this.LABEL_COMPANY_URL.AutoSize = true;
-            this.LABEL_COMPANY_URL.Location = new System.Drawing.Point(29, 94);
-            this.LABEL_COMPANY_URL.Name = "LABEL_COMPANY_URL";
-            this.LABEL_COMPANY_URL.Size = new System.Drawing.Size(76, 13);
-            this.LABEL_COMPANY_URL.TabIndex = 23;
-            this.LABEL_COMPANY_URL.Tag = "LABEL_COMPANY_URL";
-            this.LABEL_COMPANY_URL.Text = "Company URL";
+            this.VALUE_PASSWORD.Location = new System.Drawing.Point(111, 83);
+            this.VALUE_PASSWORD.Name = "VALUE_PASSWORD";
+            this.VALUE_PASSWORD.PasswordChar = '*';
+            this.VALUE_PASSWORD.Size = new System.Drawing.Size(190, 20);
+            this.VALUE_PASSWORD.TabIndex = 25;
+            this.VALUE_PASSWORD.Tag = "VALUE_PASSWORD";
+            this.VALUE_PASSWORD.TextChanged += new System.EventHandler(this.VALUE_PASSWORD_TextChanged);
             // 
-            // VALUE_COMPANY_URL
+            // VALUE_USERNAME
             // 
-            this.VALUE_COMPANY_URL.Location = new System.Drawing.Point(111, 91);
-            this.VALUE_COMPANY_URL.Name = "VALUE_COMPANY_URL";
-            this.VALUE_COMPANY_URL.Size = new System.Drawing.Size(190, 20);
-            this.VALUE_COMPANY_URL.TabIndex = 22;
-            this.VALUE_COMPANY_URL.Tag = "VALUE_COMPANY_URL";
+            this.VALUE_USERNAME.Location = new System.Drawing.Point(111, 48);
+            this.VALUE_USERNAME.Name = "VALUE_USERNAME";
+            this.VALUE_USERNAME.Size = new System.Drawing.Size(190, 20);
+            this.VALUE_USERNAME.TabIndex = 24;
+            this.VALUE_USERNAME.Tag = "VALUE_USERNAME";
+            this.VALUE_USERNAME.TextChanged += new System.EventHandler(this.VALUE_USERNAME_TextChanged);
+            // 
+            // LABEL_PASSWORD
+            // 
+            this.LABEL_PASSWORD.AutoSize = true;
+            this.LABEL_PASSWORD.Location = new System.Drawing.Point(49, 86);
+            this.LABEL_PASSWORD.Name = "LABEL_PASSWORD";
+            this.LABEL_PASSWORD.Size = new System.Drawing.Size(53, 13);
+            this.LABEL_PASSWORD.TabIndex = 23;
+            this.LABEL_PASSWORD.Tag = "LABEL_PASSWORD";
+            this.LABEL_PASSWORD.Text = "Password";
+            // 
+            // LABEL_USERNAME
+            // 
+            this.LABEL_USERNAME.AutoSize = true;
+            this.LABEL_USERNAME.Location = new System.Drawing.Point(47, 51);
+            this.LABEL_USERNAME.Name = "LABEL_USERNAME";
+            this.LABEL_USERNAME.Size = new System.Drawing.Size(55, 13);
+            this.LABEL_USERNAME.TabIndex = 22;
+            this.LABEL_USERNAME.Tag = "LABEL_USERNAME";
+            this.LABEL_USERNAME.Text = "Username";
             // 
             // LIST_SERVER_LOGS
             // 
@@ -418,17 +432,17 @@ namespace NicaBiometrics.forms
             this.LIST_SERVER_LOGS.ForeColor = System.Drawing.SystemColors.Window;
             this.LIST_SERVER_LOGS.FormattingEnabled = true;
             this.LIST_SERVER_LOGS.HorizontalScrollbar = true;
-            this.LIST_SERVER_LOGS.Location = new System.Drawing.Point(13, 266);
+            this.LIST_SERVER_LOGS.Location = new System.Drawing.Point(13, 162);
             this.LIST_SERVER_LOGS.Name = "LIST_SERVER_LOGS";
             this.LIST_SERVER_LOGS.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.LIST_SERVER_LOGS.Size = new System.Drawing.Size(390, 134);
+            this.LIST_SERVER_LOGS.Size = new System.Drawing.Size(390, 238);
             this.LIST_SERVER_LOGS.TabIndex = 21;
             this.LIST_SERVER_LOGS.Tag = "LIST_SERVER_LOGS";
             // 
             // BUTTON_CLEAR_SERVER_LOGS
             // 
             this.BUTTON_CLEAR_SERVER_LOGS.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_CLEAR_SERVER_LOGS.Location = new System.Drawing.Point(52, 230);
+            this.BUTTON_CLEAR_SERVER_LOGS.Location = new System.Drawing.Point(37, 115);
             this.BUTTON_CLEAR_SERVER_LOGS.Name = "BUTTON_CLEAR_SERVER_LOGS";
             this.BUTTON_CLEAR_SERVER_LOGS.Size = new System.Drawing.Size(68, 30);
             this.BUTTON_CLEAR_SERVER_LOGS.TabIndex = 20;
@@ -436,63 +450,6 @@ namespace NicaBiometrics.forms
             this.BUTTON_CLEAR_SERVER_LOGS.Text = global::NicaBiometrics.Properties.Resources.LABEL_CLEAR_LOGS;
             this.BUTTON_CLEAR_SERVER_LOGS.UseVisualStyleBackColor = true;
             this.BUTTON_CLEAR_SERVER_LOGS.Click += new System.EventHandler(this.BUTTON_CLEAR_SERVER_LOGS_Click);
-            // 
-            // VALUE_EMPLOYEE_URL
-            // 
-            this.VALUE_EMPLOYEE_URL.Location = new System.Drawing.Point(111, 194);
-            this.VALUE_EMPLOYEE_URL.Name = "VALUE_EMPLOYEE_URL";
-            this.VALUE_EMPLOYEE_URL.Size = new System.Drawing.Size(190, 20);
-            this.VALUE_EMPLOYEE_URL.TabIndex = 19;
-            this.VALUE_EMPLOYEE_URL.Tag = "VALUE_EMPLOYEE_URL";
-            this.VALUE_EMPLOYEE_URL.TextChanged += new System.EventHandler(this.VALUE_EMPLOYEE_URL_TextChanged);
-            // 
-            // LABEL_EMPLOYEE_URL
-            // 
-            this.LABEL_EMPLOYEE_URL.AutoSize = true;
-            this.LABEL_EMPLOYEE_URL.Location = new System.Drawing.Point(27, 197);
-            this.LABEL_EMPLOYEE_URL.Name = "LABEL_EMPLOYEE_URL";
-            this.LABEL_EMPLOYEE_URL.Size = new System.Drawing.Size(78, 13);
-            this.LABEL_EMPLOYEE_URL.TabIndex = 18;
-            this.LABEL_EMPLOYEE_URL.Tag = "LABEL_EMPLOYEE_URL";
-            this.LABEL_EMPLOYEE_URL.Text = "Employee URL";
-            // 
-            // VALUE_TIMEOUT_URL
-            // 
-            this.VALUE_TIMEOUT_URL.Location = new System.Drawing.Point(111, 160);
-            this.VALUE_TIMEOUT_URL.Name = "VALUE_TIMEOUT_URL";
-            this.VALUE_TIMEOUT_URL.Size = new System.Drawing.Size(190, 20);
-            this.VALUE_TIMEOUT_URL.TabIndex = 17;
-            this.VALUE_TIMEOUT_URL.Tag = "VALUE_TIMEOUT_URL";
-            this.VALUE_TIMEOUT_URL.TextChanged += new System.EventHandler(this.VALUE_TIMEOUT_URL_TextChanged);
-            // 
-            // VALUE_TIMEIN_URL
-            // 
-            this.VALUE_TIMEIN_URL.Location = new System.Drawing.Point(111, 125);
-            this.VALUE_TIMEIN_URL.Name = "VALUE_TIMEIN_URL";
-            this.VALUE_TIMEIN_URL.Size = new System.Drawing.Size(190, 20);
-            this.VALUE_TIMEIN_URL.TabIndex = 16;
-            this.VALUE_TIMEIN_URL.Tag = "VALUE_TIMEIN_URL";
-            this.VALUE_TIMEIN_URL.TextChanged += new System.EventHandler(this.VALUE_TIMEIN_URL_TextChanged);
-            // 
-            // LABEL_TIMEOUT_URL
-            // 
-            this.LABEL_TIMEOUT_URL.AutoSize = true;
-            this.LABEL_TIMEOUT_URL.Location = new System.Drawing.Point(32, 164);
-            this.LABEL_TIMEOUT_URL.Name = "LABEL_TIMEOUT_URL";
-            this.LABEL_TIMEOUT_URL.Size = new System.Drawing.Size(73, 13);
-            this.LABEL_TIMEOUT_URL.TabIndex = 15;
-            this.LABEL_TIMEOUT_URL.Tag = "LABEL_TIMEOUT_URL";
-            this.LABEL_TIMEOUT_URL.Text = "Time out URL";
-            // 
-            // LABEL_TIMEIN_URL
-            // 
-            this.LABEL_TIMEIN_URL.AutoSize = true;
-            this.LABEL_TIMEIN_URL.Location = new System.Drawing.Point(39, 129);
-            this.LABEL_TIMEIN_URL.Name = "LABEL_TIMEIN_URL";
-            this.LABEL_TIMEIN_URL.Size = new System.Drawing.Size(66, 13);
-            this.LABEL_TIMEIN_URL.TabIndex = 14;
-            this.LABEL_TIMEIN_URL.Tag = "LABEL_TIMEIN_URL";
-            this.LABEL_TIMEIN_URL.Text = "Time in URL";
             // 
             // VALUE_SERVER_ADDRESS
             // 
@@ -507,7 +464,7 @@ namespace NicaBiometrics.forms
             // 
             this.BUTTON_REFRESH_SERVER.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BUTTON_REFRESH_SERVER.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_REFRESH_SERVER.Location = new System.Drawing.Point(268, 40);
+            this.BUTTON_REFRESH_SERVER.Location = new System.Drawing.Point(272, 115);
             this.BUTTON_REFRESH_SERVER.Name = "BUTTON_REFRESH_SERVER";
             this.BUTTON_REFRESH_SERVER.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_REFRESH_SERVER.TabIndex = 12;
@@ -518,7 +475,7 @@ namespace NicaBiometrics.forms
             // BUTTON_CONNECT_SERVER
             // 
             this.BUTTON_CONNECT_SERVER.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BUTTON_CONNECT_SERVER.Location = new System.Drawing.Point(187, 40);
+            this.BUTTON_CONNECT_SERVER.Location = new System.Drawing.Point(191, 115);
             this.BUTTON_CONNECT_SERVER.Name = "BUTTON_CONNECT_SERVER";
             this.BUTTON_CONNECT_SERVER.Size = new System.Drawing.Size(75, 30);
             this.BUTTON_CONNECT_SERVER.TabIndex = 11;
@@ -867,6 +824,13 @@ namespace NicaBiometrics.forms
             // 
             this.TIME_EMPLOYEE.Tick += new System.EventHandler(this.TIME_EMPLOYEE_Tick);
             // 
+            // JAR_BROWSER
+            // 
+            this.JAR_BROWSER.DefaultExt = "jar";
+            this.JAR_BROWSER.Filter = "Executable Jar File (.jar) |*.jar";
+            this.JAR_BROWSER.Tag = "JAR_BROWSER";
+            this.JAR_BROWSER.Title = "Open server file";
+            // 
             // TRAY_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -951,18 +915,10 @@ namespace NicaBiometrics.forms
         private System.Windows.Forms.TextBox VALUE_BIOTMETRIC_TYPE;
         private System.Windows.Forms.Label LABEL_BIOMETRIC_TYPE;
         private System.Windows.Forms.Timer TIME_LISTENER_LOG;
-        private System.Windows.Forms.TextBox VALUE_TIMEOUT_URL;
-        private System.Windows.Forms.TextBox VALUE_TIMEIN_URL;
-        private System.Windows.Forms.Label LABEL_TIMEOUT_URL;
-        private System.Windows.Forms.Label LABEL_TIMEIN_URL;
-        private System.Windows.Forms.Label LABEL_EMPLOYEE_URL;
-        private System.Windows.Forms.TextBox VALUE_EMPLOYEE_URL;
         private System.Windows.Forms.Button BUTTON_CLEAR_SERVER_LOGS;
         private System.Windows.Forms.ListBox LIST_SERVER_LOGS;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.NotifyIcon notifyIcon2;
-        private System.Windows.Forms.TextBox VALUE_COMPANY_URL;
-        private System.Windows.Forms.Label LABEL_COMPANY_URL;
         private System.Windows.Forms.TabPage TAB_COMPANY;
         private System.Windows.Forms.Button BUTTON_ADD_COMPANY;
         private System.Windows.Forms.CheckedListBox LIST_COMPANIES;
@@ -977,5 +933,10 @@ namespace NicaBiometrics.forms
         private System.Windows.Forms.CheckedListBox LIST_EMPLOYEES;
         private System.Windows.Forms.Timer TIME_EMPLOYEE;
         private System.Windows.Forms.Button BUTTON_SAVE_EMPLOYEES;
+        private System.Windows.Forms.TextBox VALUE_PASSWORD;
+        private System.Windows.Forms.TextBox VALUE_USERNAME;
+        private System.Windows.Forms.Label LABEL_PASSWORD;
+        private System.Windows.Forms.Label LABEL_USERNAME;
+        private System.Windows.Forms.OpenFileDialog JAR_BROWSER;
     }
 }

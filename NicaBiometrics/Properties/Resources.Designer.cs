@@ -398,6 +398,33 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open jar.
+        /// </summary>
+        internal static string LABEL_OPEN_JAR {
+            get {
+                return ResourceManager.GetString("LABEL_OPEN_JAR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        internal static string LABEL_PASSWORD {
+            get {
+                return ResourceManager.GetString("LABEL_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port.
+        /// </summary>
+        internal static string LABEL_PORT {
+            get {
+                return ResourceManager.GetString("LABEL_PORT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         internal static string LABEL_REFRESH {
@@ -506,6 +533,15 @@ namespace NicaBiometrics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Server file location.
+        /// </summary>
+        internal static string LABEL_SERVER_LOCATION {
+            get {
+                return ResourceManager.GetString("LABEL_SERVER_LOCATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shutdown.
         /// </summary>
         internal static string LABEL_SHUTDOWN {
@@ -538,6 +574,15 @@ namespace NicaBiometrics.Properties {
         internal static string LABEL_STARTING_DEVICE {
             get {
                 return ResourceManager.GetString("LABEL_STARTING_DEVICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop.
+        /// </summary>
+        internal static string LABEL_STOP {
+            get {
+                return ResourceManager.GetString("LABEL_STOP", resourceCulture);
             }
         }
         
@@ -583,6 +628,15 @@ namespace NicaBiometrics.Properties {
         internal static string LABEL_UPDATE_EMPLOYEE_RECORD {
             get {
                 return ResourceManager.GetString("LABEL_UPDATE_EMPLOYEE_RECORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        internal static string LABEL_USERNAME {
+            get {
+                return ResourceManager.GetString("LABEL_USERNAME", resourceCulture);
             }
         }
         

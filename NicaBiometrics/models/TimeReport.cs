@@ -6,9 +6,16 @@ using NicaBiometrics.Properties;
 
 namespace NicaBiometrics.models
 {
-    internal class TimeReport
+    public class TimeReport
     {
-        public void TimeIn(string enollId, out List<string> messages)
+        private readonly UserSession _userSession;
+
+        public TimeReport(UserSession userSession)
+        {
+            _userSession = userSession;
+        }
+
+        public void TimeIn(string enollId, DateTime dateTime, out List<string> messages)
         {
             messages = new List<string>();
             try
@@ -20,7 +27,11 @@ namespace NicaBiometrics.models
                 request.Method = "POST";
                 request.Accept = "application/json";
                 request.ContentType = "application/json";
-                var parsedContent = "{\"empId\":\"" + enollId + "\"}";
+                request.Headers.Add("Authorization", _userSession.GetBasicAuthenticationHeaderValue());
+                var parsedContent = "{\"empId\":\"" + enollId + "\", \"input\":\"" +
+                                    dateTime.ToString("yyyy-MM-ddThh:mm:ss") +
+                                    "\"}";
+                Console.WriteLine("parsedContent", parsedContent);
                 var encoding = new UTF8Encoding();
                 var bytes = encoding.GetBytes(parsedContent);
                 var newStream = request.GetRequestStream();
@@ -41,7 +52,7 @@ namespace NicaBiometrics.models
         }
 
 
-        public void TimeOut(string enollId, out List<string> messages)
+        public void TimeOut(string enollId, DateTime dateTime, out List<string> messages)
         {
             messages = new List<string>();
             try
@@ -53,7 +64,11 @@ namespace NicaBiometrics.models
                 request.Method = "POST";
                 request.Accept = "application/json";
                 request.ContentType = "application/json";
-                var parsedContent = "{\"empId\":\"" + enollId + "\"}";
+                request.Headers.Add("Authorization", _userSession.GetBasicAuthenticationHeaderValue());
+                var parsedContent = "{\"empId\":\"" + enollId + "\", \"input\":\"" +
+                                    dateTime.ToString("yyyy-MM-ddThh:mm:ss") +
+                                    "\"}";
+                Console.WriteLine("parsedContent", parsedContent);
                 var encoding = new ASCIIEncoding();
                 var bytes = encoding.GetBytes(parsedContent);
                 var newStream = request.GetRequestStream();

@@ -544,5 +544,53 @@ namespace NicaBiometrics.Properties {
                 this["_savedEmployees"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _serverUsername {
+            get {
+                return ((string)(this["_serverUsername"]));
+            }
+            set {
+                this["_serverUsername"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _serverPassword {
+            get {
+                return ((string)(this["_serverPassword"]));
+            }
+            set {
+                this["_serverPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string _serverJarLocation {
+            get {
+                return ((string)(this["_serverJarLocation"]));
+            }
+            set {
+                this["_serverJarLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool _serverState {
+            get {
+                return ((bool)(this["_serverState"]));
+            }
+            set {
+                this["_serverState"] = value;
+            }
+        }
     }
 }

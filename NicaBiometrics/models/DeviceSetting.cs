@@ -16,11 +16,11 @@ namespace NicaBiometrics.models
         private static CZKEM _czkem;
         private readonly TimeReport _timeReport;
 
-        public DeviceSetting()
+        public DeviceSetting(UserSession userSession)
         {
             if (_czkem == null)
                 _czkem = new CZKEM();
-            _timeReport = new TimeReport();
+            _timeReport = new TimeReport(userSession);
         }
 
         public void SetIpAddress(string ipAddress)
@@ -266,26 +266,27 @@ namespace NicaBiometrics.models
                                out var dwEnrollNumber,
                                out _,
                                out var dwInOutMode,
-                               out _,
-                               out _,
-                               out _,
-                               out _,
-                               out _,
-                               out _,
+                               out var dwYear,
+                               out var dwMonth,
+                               out var dwDay,
+                               out var dwHour,
+                               out var dwMinute,
+                               out var dwSecond,
                                ref dwWorkCode))
                         if (!string.IsNullOrEmpty(dwEnrollNumber))
                         {
+                            DateTime dateTime  = new DateTime(dwYear, dwMonth, dwDay, dwHour, dwMinute, dwSecond);
                             count++;
                             switch (dwInOutMode)
                             {
                                 case OvertimeIn:
                                 case CheckedIn:
-                                    _timeReport.TimeIn(dwEnrollNumber, out var messageList0);
+                                    _timeReport.TimeIn(dwEnrollNumber, dateTime, out var messageList0);
                                     messages = messageList0;
                                     break;
                                 case CheckedOut:
                                 case OvertimeOut:
-                                    _timeReport.TimeOut(dwEnrollNumber, out var messageList1);
+                                    _timeReport.TimeOut(dwEnrollNumber, dateTime, out var messageList1);
                                     messages = messageList1;
                                     break;
                             }

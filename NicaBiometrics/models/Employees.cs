@@ -15,14 +15,16 @@ namespace NicaBiometrics.models
         private const string CompanyId = "${companyId}";
         private readonly DeviceSetting _deviceSetting;
         private readonly List<Employee> _toUpdateEmployees;
+        private readonly UserSession _userSession;
 
         private string _search;
 
-        public Employees(DeviceSetting deviceSetting)
+        public Employees(DeviceSetting deviceSetting, UserSession userSession)
         {
             _search = "";
             _toUpdateEmployees = new List<Employee>();
             _deviceSetting = deviceSetting;
+            _userSession = userSession;
         }
 
         public void SetSearch(string search)
@@ -74,7 +76,7 @@ namespace NicaBiometrics.models
             request.Method = "GET";
             request.ContentType = "Application/json";
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-
+            request.Headers.Add("Authorization", _userSession.GetBasicAuthenticationHeaderValue());
             try
             {
                 var response = (HttpWebResponse) request.GetResponse();

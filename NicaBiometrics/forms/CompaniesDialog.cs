@@ -9,17 +9,18 @@ namespace NicaBiometrics.forms
     public partial class CompaniesDialog : Form
     {
         private readonly Companies _companies;
+        private readonly UserSession _userSession = new UserSession();
         private List<Companies.Company> _companyResult;
 
         public CompaniesDialog()
         {
-            _companies = new Companies();
+            _companies = new Companies(_userSession);
             InitializeComponent();
         }
 
         public CompaniesDialog(Action<List<Companies.Company>> worker)
         {
-            _companies = new Companies();
+            _companies = new Companies(_userSession);
             Worker = worker ?? throw new ArgumentNullException();
             InitializeComponent();
         }

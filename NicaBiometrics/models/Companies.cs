@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
-using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NicaBiometrics.Properties;
@@ -12,7 +11,13 @@ namespace NicaBiometrics.models
 {
     public class Companies
     {
+        private readonly UserSession _userSession;
         private string _search;
+
+        public Companies(UserSession userSession)
+        {
+            _userSession = userSession;
+        }
 
         public void SetSearch(string search)
         {
@@ -50,7 +55,7 @@ namespace NicaBiometrics.models
                 }
         }
 
-        private static void GetCompanies(List<Company> companies, string companyUrl)
+        private void GetCompanies(List<Company> companies, string companyUrl)
         {
             var request =
                 (HttpWebRequest) WebRequest.Create(companyUrl);
@@ -58,7 +63,7 @@ namespace NicaBiometrics.models
             request.Method = "GET";
             request.ContentType = "Application/json";
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-
+            request.Headers.Add("Authorization", _userSession.GetBasicAuthenticationHeaderValue());
             var response = (HttpWebResponse) request.GetResponse();
 
             using (var sr =
@@ -112,7 +117,7 @@ namespace NicaBiometrics.models
             }
 
             public string Name { get; set; }
-            public int Id { get; set; }
+            public int Id { get; }
             public bool IsChecked { get; set; }
 
             public override bool Equals(object obj)
